@@ -3,7 +3,7 @@ services:
         image: mcr.microsoft.com/planetary-computer/python:latest
         container_name: hub
         environment:
-            JUPYTERHUB_API_TOKEN: ${JUPYTERHUB_API_TOKEN}
+            JUPYTERHUB_API_TOKEN: $JUPYTERHUB_API_TOKEN
             DASK_GATEWAY__AUTH__TYPE: "jupyterhub"
             DASK_GATEWAY__CLUSTER__OPTIONS__IMAGE: "mcr.microsoft.com/planetary-computer/python:latest"
             DASK_GATEWAY__ADDRESS: "https://pccompute.westeurope.cloudapp.azure.com/compute/services/dask-gateway"
@@ -12,7 +12,7 @@ services:
             - "8888:8888"
         volumes:
             - .:/home/jovyan
-        command: jupyter lab --ip 0.0.0.0
+        command: bash -c "pip install -e . && cat welcome.txt && jupyter lab --no-browser --ip=0.0.0.0"
 
     localserver:
         image: python:3.9-alpine

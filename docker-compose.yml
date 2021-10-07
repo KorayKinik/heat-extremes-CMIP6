@@ -19,8 +19,4 @@ services:
         container_name: localserver
         ports:
             - "8889:8889"
-        volumes:
-            - ./datasets:/opt/src/datasets
-            - ./quickstarts:/opt/src/quickstarts
-            - ./tutorials:/opt/src/tutorials
         command: python3 -m "http.server" 8889 -d /opt/src

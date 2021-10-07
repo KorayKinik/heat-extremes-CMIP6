@@ -128,4 +128,9 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# Our stuff
 .vscode/
+*/.ipynb_checkpoints
+.local/
+.jupyter/
+.config

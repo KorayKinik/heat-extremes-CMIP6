@@ -131,6 +131,9 @@ dmypy.json
 # Our stuff
 .vscode/
 */.ipynb_checkpoints
+.ipynb_checkpoints
 .local/
 .jupyter/
+.jupyter
 .config
+src.egg-info

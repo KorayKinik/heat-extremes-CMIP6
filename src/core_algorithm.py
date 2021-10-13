@@ -1,6 +1,16 @@
 
 import numpy as np
 import pandas as pd
+from time import sleep
+
+def dask_inc(x):
+    print("Worker Running")
+    sleep(1)
+    return x + 1
+
+def dask_add(x, y):
+    sleep(1)
+    return x + y
 
 
 def get_xy_meshgrid(arr_tmax3d:np.ndarray) -> np.ndarray:

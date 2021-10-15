@@ -1,0 +1,22 @@
+services:
+    hub:
+        image: pbooth01/pb-hub:latest
+        container_name: hub
+        environment:
+            JUPYTERHUB_API_TOKEN: $JUPYTERHUB_API_TOKEN
+            DASK_GATEWAY__AUTH__TYPE: "jupyterhub"
+            DASK_GATEWAY__CLUSTER__OPTIONS__IMAGE: "pbooth01/pb-hub:latest"
+            DASK_GATEWAY__ADDRESS: "https://pccompute.westeurope.cloudapp.azure.com/compute/services/dask-gateway"
+            DASK_GATEWAY__PROXY_ADDRESS: "gateway://pccompute-dask.westeurope.cloudapp.azure.com:80"
+        ports:
+            - "8888:8888"
+        volumes:
+            - .:/home/jovyan
+        command: bash -c "cat welcome.txt && jupyter lab --no-browser --ip=0.0.0.0"
+
+    localserver:
+        image: python:3.9-alpine
+        container_name: localserver
+        ports:
+            - "8889:8889"
+        command: python3 -m "http.server" 8889 -d /opt/src

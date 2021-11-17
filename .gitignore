@@ -134,6 +134,14 @@ dmypy.json
 .ipynb_checkpoints
 .local/
 .jupyter/
-.jupyter
-.config
-src.egg-info
+.config/
+.astropy/
+.cache/
+.config/
+.idea/
+.ipython/
+.jupyter/
+.local/
+.vscode/
+src.egg-info/
+

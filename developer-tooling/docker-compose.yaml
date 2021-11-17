@@ -1,0 +1,26 @@
+version: "3.6"
+services:
+    hub:
+        image: ${DOCKER_IMAGE_FULL}
+        container_name: hub
+        environment:
+            JUPYTERHUB_API_TOKEN: ${JUPYTERHUB_API_TOKEN}
+            DASK_GATEWAY__AUTH__TYPE: "jupyterhub"
+            DASK_GATEWAY__CLUSTER__OPTIONS__IMAGE: ${DOCKER_IMAGE_FULL}
+            DASK_GATEWAY__ADDRESS: "https://pccompute.westeurope.cloudapp.azure.com/compute/services/dask-gateway"
+            DASK_GATEWAY__PROXY_ADDRESS: "gateway://pccompute-dask.westeurope.cloudapp.azure.com:80"
+        ports:
+            - "8888:8888"
+        volumes:
+            # Mapping the folder planetary_compute_env to the /home/jovyan folder in the container
+            - ./planetary_compute_env:/home/jovyan
+            # Creating a volume for the dev_concept library to make it easier to integrate local code changes
+            - ./dev_concept:/app/dev_concept
+        command: bash -c "cat /scratch/welcome.txt && jupyter lab --no-browser --ip=0.0.0.0"
+
+    localserver:
+        image: python:3.9-alpine
+        container_name: localserver
+        ports:
+            - "8889:8889"
+        command: python3 -m "http.server" 8889 -d /opt/src

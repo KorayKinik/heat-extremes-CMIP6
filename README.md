@@ -21,7 +21,7 @@ This repo includes:
 Visualize in an interactive plot - the maximum temperature:
 ![Visualize maximum temperature](images/interactive_visual_polar_example_01.png)
 
-Visualize contours -- and a video created by stitching many images of many days:
+Visualize contours -- and a video created by stitching together images of many days:
 ![Visualize maximum temperature](images/Contours_visualization.png)
 
 

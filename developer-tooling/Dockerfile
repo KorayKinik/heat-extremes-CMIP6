@@ -8,11 +8,11 @@ RUN echo "Running as ${NB_USER} user..."
 ADD --chown=${NB_USER} welcome.txt /scratch/welcome.txt
 
 # Add environment extension configuration file into Image for including any additional packages into notebook environment
-ADD --chown=${NB_USER} notebook-env-extension.yml /evn-extension/notebook-env-extension.yml
+ADD --chown=${NB_USER} notebook-env-extension.yml /env-extension/notebook-env-extension.yml
 
 # Use Conda to install any environment extensions into Conda notebook environment
 # So it becomes available on Dask workers.
-RUN conda env update -n notebook --file /evn-extension/notebook-env-extension.yml
+RUN conda env update -n notebook --file /env-extension/notebook-env-extension.yml
 
 # Inject the dev_concept library src code into the planetary compute image
 ADD --chown=${NB_USER} dev_concept /app/dev_concept

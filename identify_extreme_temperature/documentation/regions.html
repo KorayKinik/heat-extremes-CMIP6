@@ -1,0 +1,716 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>regions API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>regions</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#### ####################################################################
+#### imports
+#### ####################################################################
+from extreme_temp_utils import *
+
+#### ####################################################################    
+#### Regions
+#### A class to store predefined regions and areas-of-interest
+#### providsion to get region details and coordinates for the specified region ID
+#### and other helpful functions in the class
+
+#### As of the now, the regions and areas-of-interset are hard-coded
+#### in future, this class can be enhanced to get regions / areas-of-interes
+#### from a separate, persistent data source.
+
+#### 11/14/2021 - As of now, the region implemented is North America and
+#### the areas of interset implemented are: Mainland United States and 
+#### eight sub-areas within the US.
+#### ####################################################################
+
+class Regions:
+    &#34;&#34;&#34;
+    Impletemented as hard-coded values for the time being. That can be changed later to dynamic lookup.
+        Available Regions:
+        1 - North America. Lat (14 to 84) Lon (190 to 350)        
+    &#34;&#34;&#34;
+    # individual regions
+    reg_1_na = {&#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;, &#39;top_lat&#39;: 84, &#39;bottom_lat&#39;: 14, &#39;left_lon&#39;: 190, &#39;right_lon&#39;: 350
+                , &#39;may_to_oct_range&#39; : (200, 335)
+                , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/Region_North_America.png&#39;}
+
+    # all regions
+    regions = {1: reg_1_na}
+    
+    # individual areas-of-interest (region: NA)
+    aoi_1_na_0 = {&#39;aoi_id&#39;: 100, &#39;area_of_interest&#39;: &#39;Mainland United States&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 49, &#39;bottom_lat&#39;: 25, &#39;left_lon&#39;: 235, &#39;right_lon&#39;: 293
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                  , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_Mainland_US.png&#39;}
+
+    aoi_1_na_1 = {&#39;aoi_id&#39;: 101, &#39;area_of_interest&#39;: &#39;Upper Northeast US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 46, &#39;bottom_lat&#39;: 39, &#39;left_lon&#39;: 280, &#39;right_lon&#39;: 293
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_Upper_Northeast_US.png&#39;}
+
+    aoi_1_na_2 = {&#39;aoi_id&#39;: 102, &#39;area_of_interest&#39;: &#39;Lower Northeast US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 39, &#39;bottom_lat&#39;: 37, &#39;left_lon&#39;: 271, &#39;right_lon&#39;: 286
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_Lower_Northeast_US.png&#39;}
+
+    aoi_1_na_3 = {&#39;aoi_id&#39;: 103, &#39;area_of_interest&#39;: &#39;Southeast US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 37, &#39;bottom_lat&#39;: 25, &#39;left_lon&#39;: 266, &#39;right_lon&#39;: 285
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_Southeast_US.png&#39;}
+
+    aoi_1_na_4 = {&#39;aoi_id&#39;: 104, &#39;area_of_interest&#39;: &#39;Midwest US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 49, &#39;bottom_lat&#39;: 37, &#39;left_lon&#39;: 263, &#39;right_lon&#39;: 280
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_Midwest_US.png&#39;}
+
+    aoi_1_na_5 = {&#39;aoi_id&#39;: 105, &#39;area_of_interest&#39;: &#39;North Central US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 49, &#39;bottom_lat&#39;: 37, &#39;left_lon&#39;: 245, &#39;right_lon&#39;: 265
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_North_Central_US.png&#39;}
+
+    aoi_1_na_6 = {&#39;aoi_id&#39;: 106, &#39;area_of_interest&#39;: &#39;South Central US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 37, &#39;bottom_lat&#39;: 26, &#39;left_lon&#39;: 251, &#39;right_lon&#39;: 266
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_South_Central_US.png&#39;}
+
+    aoi_1_na_7 = {&#39;aoi_id&#39;: 107, &#39;area_of_interest&#39;: &#39;Northwest US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 49, &#39;bottom_lat&#39;: 42, &#39;left_lon&#39;: 235, &#39;right_lon&#39;: 249
+                     , &#39;may_to_oct_range&#39; : (265, 325)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_Northwest_US.png&#39;}
+
+    aoi_1_na_8 = {&#39;aoi_id&#39;: 108, &#39;area_of_interest&#39;: &#39;Southwest US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 42, &#39;bottom_lat&#39;: 32, &#39;left_lon&#39;: 235, &#39;right_lon&#39;: 251
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_Southwest_US.png&#39;}
+
+    # all areas-of-interest
+    areas_of_interest = {100: aoi_1_na_0, 101: aoi_1_na_1, 102: aoi_1_na_2, 103: aoi_1_na_3, 104: aoi_1_na_4
+                         , 105: aoi_1_na_5, 106: aoi_1_na_6, 107: aoi_1_na_7, 108: aoi_1_na_8}
+    
+    
+    def get_region_by_ID(self, region_id):
+        &#34;&#34;&#34;
+        Get region details and coordinates for the specified region ID.    
+        Input:  region_id. Integer value.
+        Returns: None if region_id is not found. 
+                 Else, returns the dict with the following keys (value types):
+                 region_id (int), region_name (str), top_lat (int), bottom_lat (int), left_lon (int), right_lon (int), img_url (str).
+        &#34;&#34;&#34;        
+        return self.regions.get(region_id) 
+    
+    def get_all_regions(self):
+        &#34;&#34;&#34;
+        Get all regions. To look up all available regions.    
+        Input:  None.
+        Returns: Dict of all regions.
+        &#34;&#34;&#34;        
+        return self.regions
+    
+    def show_image(self, image_path, footnote=&#39;&#39;, **kwargs):
+        if not image_path == &#39;&#39;:
+            filename = os.path.basename(image_path)
+            overwrite_local_file = False if kwargs.get(&#39;overwrite_local_file&#39;) is None else kwargs.get(&#39;overwrite_local_file&#39;)
+            from_azure = False if kwargs.get(&#39;from_azure&#39;) is None else kwargs.get(&#39;from_azure&#39;)
+            print_msg = False if kwargs.get(&#39;print_msg&#39;) is None else kwargs.get(&#39;print_msg&#39;)
+            figure_size = (8,8) if kwargs.get(&#39;figure_size&#39;) is None else kwargs.get(&#39;figure_size&#39;)
+            if (isinstance(figure_size, int)):
+                figure_size = (figure_size, figure_size)  # make tuple
+
+            download_file(image_path, filename, overwrite_local_file, from_azure, print_msg)
+
+            # read the image file in a numpy array
+            img_data = plt.imread(filename)
+            plt.figure(figsize = figure_size)
+            plt.imshow(img_data)
+            plt.axis(&#39;off&#39;)
+            plt.show()
+
+        print(footnote)
+        
+    
+    def show_region_by_ID(self, region_id, **kwargs):
+        &#34;&#34;&#34;
+        Prints out the image, if available, for the specified region ID.    
+        Input:  region_id. Integer value.
+             :  for kwargs parameters, see the function show_image()
+        Returns: None
+        &#34;&#34;&#34;        
+        # create a file-like object from the url
+        img_url = self.regions.get(region_id).get(&#39;img_url&#39;)
+        reg = self.regions.get(region_id)
+        if img_url == &#39;&#39;:
+            print(&#34;Image URL not available for this region {}-{}&#34;.format(region_id, reg.get(&#39;region_name&#39;)))
+        else:
+            footnote = &#39;Region: {} - {}, top_lat: {}, bottom_lat: {}, left_lon: {}, right_lon: {}&#39;.format(region_id, reg.get(&#39;region_name&#39;)
+                                                                                                          , reg.get(&#39;top_lat&#39;)
+                                                                                                          , reg.get(&#39;bottom_lat&#39;)
+                                                                                                          , reg.get(&#39;left_lon&#39;)
+                                                                                                          , reg.get(&#39;right_lon&#39;))
+            self.show_image(img_url, footnote, **kwargs)
+            
+            
+    def get_all_areas_of_interest_by_region_ID(self, region_id):
+        &#34;&#34;&#34;
+        Get details of all areas of interest for the specified region ID.    
+        Input:  region_id. Integer value. 
+        Returns: [] if region_id is not found. 
+                 Else, returns the array of dicts with the following keys (value types):
+                 &#39;aoi_id&#39;, &#39;area_of_interest&#39;, &#39;region_id&#39;, &#39;region_name&#39;, &#39;top_lat&#39;, &#39;bottom_lat&#39;, &#39;left_lon&#39;, &#39;right_lon&#39;, &#39;img_url&#39;: &#39;&#39;
+        &#34;&#34;&#34;        
+        return [self.areas_of_interest[k] for k in self.areas_of_interest if k//100==region_id]
+    
+    
+    def get_area_of_interest_by_ID(self, aoi_id):
+        &#34;&#34;&#34;
+        Get region details and coordinates for the specified area of interest ID.    
+        Input:  aoi_id. Integer value. 
+        Returns: None if aoi_id is not found. 
+                 Else, returns the dict with the following keys (value types):
+                 &#39;aoi_id&#39;, &#39;area_of_interest&#39;, &#39;region_id&#39;, &#39;region_name&#39;, &#39;top_lat&#39;, &#39;bottom_lat&#39;, &#39;left_lon&#39;, &#39;right_lon&#39;, &#39;img_url&#39;: &#39;&#39;
+        &#34;&#34;&#34;        
+        return self.areas_of_interest.get(aoi_id) 
+    
+    def show_areas_of_interest_by_aoi_ID(self, aoi_id, **kwargs):
+        &#34;&#34;&#34;
+        Prints out the image, if available, for the specified area of interest ID.    
+        Input:  aoi_id. Integer value.
+             :  for kwargs parameters, see the function show_image()
+        Returns: None
+        &#34;&#34;&#34;        
+        # create a file-like object from the url
+        aoi = self.areas_of_interest.get(aoi_id)
+        if aoi is None:
+            print(&#34;Area of Interest not available for this aoi_id: {}&#34;.format(aoi_id))   
+        else:
+            img_url = aoi.get(&#39;img_url&#39;)
+            if img_url == &#39;&#39;:
+                print(&#34;Image URL not available for this area-of-interest: {}-{}\n&#34;.format(aoi_id, aoi.get(&#39;area_of_interest&#39;)))
+            
+            footnote = &#39;Area of Interest: {} - {}, top_lat: {}, bottom_lat: {}, left_lon: {}, right_lon: {}&#39;.format(aoi_id, aoi.get(&#39;area_of_interest&#39;)
+                                                                                                              , aoi.get(&#39;top_lat&#39;)
+                                                                                                              , aoi.get(&#39;bottom_lat&#39;)
+                                                                                                              , aoi.get(&#39;left_lon&#39;)
+                                                                                                              , aoi.get(&#39;right_lon&#39;))
+            self.show_image(img_url, footnote, **kwargs)
+    </code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="regions.Regions"><code class="flex name class">
+<span>class <span class="ident">Regions</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Impletemented as hard-coded values for the time being. That can be changed later to dynamic lookup.
+Available Regions:
+1 - North America. Lat (14 to 84) Lon (190 to 350)</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Regions:
+    &#34;&#34;&#34;
+    Impletemented as hard-coded values for the time being. That can be changed later to dynamic lookup.
+        Available Regions:
+        1 - North America. Lat (14 to 84) Lon (190 to 350)        
+    &#34;&#34;&#34;
+    # individual regions
+    reg_1_na = {&#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;, &#39;top_lat&#39;: 84, &#39;bottom_lat&#39;: 14, &#39;left_lon&#39;: 190, &#39;right_lon&#39;: 350
+                , &#39;may_to_oct_range&#39; : (200, 335)
+                , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/Region_North_America.png&#39;}
+
+    # all regions
+    regions = {1: reg_1_na}
+    
+    # individual areas-of-interest (region: NA)
+    aoi_1_na_0 = {&#39;aoi_id&#39;: 100, &#39;area_of_interest&#39;: &#39;Mainland United States&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 49, &#39;bottom_lat&#39;: 25, &#39;left_lon&#39;: 235, &#39;right_lon&#39;: 293
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                  , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_Mainland_US.png&#39;}
+
+    aoi_1_na_1 = {&#39;aoi_id&#39;: 101, &#39;area_of_interest&#39;: &#39;Upper Northeast US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 46, &#39;bottom_lat&#39;: 39, &#39;left_lon&#39;: 280, &#39;right_lon&#39;: 293
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_Upper_Northeast_US.png&#39;}
+
+    aoi_1_na_2 = {&#39;aoi_id&#39;: 102, &#39;area_of_interest&#39;: &#39;Lower Northeast US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 39, &#39;bottom_lat&#39;: 37, &#39;left_lon&#39;: 271, &#39;right_lon&#39;: 286
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_Lower_Northeast_US.png&#39;}
+
+    aoi_1_na_3 = {&#39;aoi_id&#39;: 103, &#39;area_of_interest&#39;: &#39;Southeast US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 37, &#39;bottom_lat&#39;: 25, &#39;left_lon&#39;: 266, &#39;right_lon&#39;: 285
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_Southeast_US.png&#39;}
+
+    aoi_1_na_4 = {&#39;aoi_id&#39;: 104, &#39;area_of_interest&#39;: &#39;Midwest US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 49, &#39;bottom_lat&#39;: 37, &#39;left_lon&#39;: 263, &#39;right_lon&#39;: 280
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_Midwest_US.png&#39;}
+
+    aoi_1_na_5 = {&#39;aoi_id&#39;: 105, &#39;area_of_interest&#39;: &#39;North Central US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 49, &#39;bottom_lat&#39;: 37, &#39;left_lon&#39;: 245, &#39;right_lon&#39;: 265
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_North_Central_US.png&#39;}
+
+    aoi_1_na_6 = {&#39;aoi_id&#39;: 106, &#39;area_of_interest&#39;: &#39;South Central US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 37, &#39;bottom_lat&#39;: 26, &#39;left_lon&#39;: 251, &#39;right_lon&#39;: 266
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_South_Central_US.png&#39;}
+
+    aoi_1_na_7 = {&#39;aoi_id&#39;: 107, &#39;area_of_interest&#39;: &#39;Northwest US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 49, &#39;bottom_lat&#39;: 42, &#39;left_lon&#39;: 235, &#39;right_lon&#39;: 249
+                     , &#39;may_to_oct_range&#39; : (265, 325)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_Northwest_US.png&#39;}
+
+    aoi_1_na_8 = {&#39;aoi_id&#39;: 108, &#39;area_of_interest&#39;: &#39;Southwest US&#39;, &#39;region_id&#39;: 1, &#39;region_name&#39;: &#39;North America&#39;
+                     , &#39;top_lat&#39;: 42, &#39;bottom_lat&#39;: 32, &#39;left_lon&#39;: 235, &#39;right_lon&#39;: 251
+                     , &#39;may_to_oct_range&#39; : (210, 335)
+                     , &#39;img_url&#39;: &#39;https://nasanex30analysis.blob.core.windows.net/cmip6/images/AoI_Southwest_US.png&#39;}
+
+    # all areas-of-interest
+    areas_of_interest = {100: aoi_1_na_0, 101: aoi_1_na_1, 102: aoi_1_na_2, 103: aoi_1_na_3, 104: aoi_1_na_4
+                         , 105: aoi_1_na_5, 106: aoi_1_na_6, 107: aoi_1_na_7, 108: aoi_1_na_8}
+    
+    
+    def get_region_by_ID(self, region_id):
+        &#34;&#34;&#34;
+        Get region details and coordinates for the specified region ID.    
+        Input:  region_id. Integer value.
+        Returns: None if region_id is not found. 
+                 Else, returns the dict with the following keys (value types):
+                 region_id (int), region_name (str), top_lat (int), bottom_lat (int), left_lon (int), right_lon (int), img_url (str).
+        &#34;&#34;&#34;        
+        return self.regions.get(region_id) 
+    
+    def get_all_regions(self):
+        &#34;&#34;&#34;
+        Get all regions. To look up all available regions.    
+        Input:  None.
+        Returns: Dict of all regions.
+        &#34;&#34;&#34;        
+        return self.regions
+    
+    def show_image(self, image_path, footnote=&#39;&#39;, **kwargs):
+        if not image_path == &#39;&#39;:
+            filename = os.path.basename(image_path)
+            overwrite_local_file = False if kwargs.get(&#39;overwrite_local_file&#39;) is None else kwargs.get(&#39;overwrite_local_file&#39;)
+            from_azure = False if kwargs.get(&#39;from_azure&#39;) is None else kwargs.get(&#39;from_azure&#39;)
+            print_msg = False if kwargs.get(&#39;print_msg&#39;) is None else kwargs.get(&#39;print_msg&#39;)
+            figure_size = (8,8) if kwargs.get(&#39;figure_size&#39;) is None else kwargs.get(&#39;figure_size&#39;)
+            if (isinstance(figure_size, int)):
+                figure_size = (figure_size, figure_size)  # make tuple
+
+            download_file(image_path, filename, overwrite_local_file, from_azure, print_msg)
+
+            # read the image file in a numpy array
+            img_data = plt.imread(filename)
+            plt.figure(figsize = figure_size)
+            plt.imshow(img_data)
+            plt.axis(&#39;off&#39;)
+            plt.show()
+
+        print(footnote)
+        
+    
+    def show_region_by_ID(self, region_id, **kwargs):
+        &#34;&#34;&#34;
+        Prints out the image, if available, for the specified region ID.    
+        Input:  region_id. Integer value.
+             :  for kwargs parameters, see the function show_image()
+        Returns: None
+        &#34;&#34;&#34;        
+        # create a file-like object from the url
+        img_url = self.regions.get(region_id).get(&#39;img_url&#39;)
+        reg = self.regions.get(region_id)
+        if img_url == &#39;&#39;:
+            print(&#34;Image URL not available for this region {}-{}&#34;.format(region_id, reg.get(&#39;region_name&#39;)))
+        else:
+            footnote = &#39;Region: {} - {}, top_lat: {}, bottom_lat: {}, left_lon: {}, right_lon: {}&#39;.format(region_id, reg.get(&#39;region_name&#39;)
+                                                                                                          , reg.get(&#39;top_lat&#39;)
+                                                                                                          , reg.get(&#39;bottom_lat&#39;)
+                                                                                                          , reg.get(&#39;left_lon&#39;)
+                                                                                                          , reg.get(&#39;right_lon&#39;))
+            self.show_image(img_url, footnote, **kwargs)
+            
+            
+    def get_all_areas_of_interest_by_region_ID(self, region_id):
+        &#34;&#34;&#34;
+        Get details of all areas of interest for the specified region ID.    
+        Input:  region_id. Integer value. 
+        Returns: [] if region_id is not found. 
+                 Else, returns the array of dicts with the following keys (value types):
+                 &#39;aoi_id&#39;, &#39;area_of_interest&#39;, &#39;region_id&#39;, &#39;region_name&#39;, &#39;top_lat&#39;, &#39;bottom_lat&#39;, &#39;left_lon&#39;, &#39;right_lon&#39;, &#39;img_url&#39;: &#39;&#39;
+        &#34;&#34;&#34;        
+        return [self.areas_of_interest[k] for k in self.areas_of_interest if k//100==region_id]
+    
+    
+    def get_area_of_interest_by_ID(self, aoi_id):
+        &#34;&#34;&#34;
+        Get region details and coordinates for the specified area of interest ID.    
+        Input:  aoi_id. Integer value. 
+        Returns: None if aoi_id is not found. 
+                 Else, returns the dict with the following keys (value types):
+                 &#39;aoi_id&#39;, &#39;area_of_interest&#39;, &#39;region_id&#39;, &#39;region_name&#39;, &#39;top_lat&#39;, &#39;bottom_lat&#39;, &#39;left_lon&#39;, &#39;right_lon&#39;, &#39;img_url&#39;: &#39;&#39;
+        &#34;&#34;&#34;        
+        return self.areas_of_interest.get(aoi_id) 
+    
+    def show_areas_of_interest_by_aoi_ID(self, aoi_id, **kwargs):
+        &#34;&#34;&#34;
+        Prints out the image, if available, for the specified area of interest ID.    
+        Input:  aoi_id. Integer value.
+             :  for kwargs parameters, see the function show_image()
+        Returns: None
+        &#34;&#34;&#34;        
+        # create a file-like object from the url
+        aoi = self.areas_of_interest.get(aoi_id)
+        if aoi is None:
+            print(&#34;Area of Interest not available for this aoi_id: {}&#34;.format(aoi_id))   
+        else:
+            img_url = aoi.get(&#39;img_url&#39;)
+            if img_url == &#39;&#39;:
+                print(&#34;Image URL not available for this area-of-interest: {}-{}\n&#34;.format(aoi_id, aoi.get(&#39;area_of_interest&#39;)))
+            
+            footnote = &#39;Area of Interest: {} - {}, top_lat: {}, bottom_lat: {}, left_lon: {}, right_lon: {}&#39;.format(aoi_id, aoi.get(&#39;area_of_interest&#39;)
+                                                                                                              , aoi.get(&#39;top_lat&#39;)
+                                                                                                              , aoi.get(&#39;bottom_lat&#39;)
+                                                                                                              , aoi.get(&#39;left_lon&#39;)
+                                                                                                              , aoi.get(&#39;right_lon&#39;))
+            self.show_image(img_url, footnote, **kwargs)</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="regions.Regions.aoi_1_na_0"><code class="name">var <span class="ident">aoi_1_na_0</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="regions.Regions.aoi_1_na_1"><code class="name">var <span class="ident">aoi_1_na_1</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="regions.Regions.aoi_1_na_2"><code class="name">var <span class="ident">aoi_1_na_2</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="regions.Regions.aoi_1_na_3"><code class="name">var <span class="ident">aoi_1_na_3</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="regions.Regions.aoi_1_na_4"><code class="name">var <span class="ident">aoi_1_na_4</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="regions.Regions.aoi_1_na_5"><code class="name">var <span class="ident">aoi_1_na_5</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="regions.Regions.aoi_1_na_6"><code class="name">var <span class="ident">aoi_1_na_6</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="regions.Regions.aoi_1_na_7"><code class="name">var <span class="ident">aoi_1_na_7</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="regions.Regions.aoi_1_na_8"><code class="name">var <span class="ident">aoi_1_na_8</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="regions.Regions.areas_of_interest"><code class="name">var <span class="ident">areas_of_interest</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="regions.Regions.reg_1_na"><code class="name">var <span class="ident">reg_1_na</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="regions.Regions.regions"><code class="name">var <span class="ident">regions</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="regions.Regions.get_all_areas_of_interest_by_region_ID"><code class="name flex">
+<span>def <span class="ident">get_all_areas_of_interest_by_region_ID</span></span>(<span>self, region_id)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get details of all areas of interest for the specified region ID.
+<br>
+Input:
+region_id. Integer value.
+Returns: [] if region_id is not found.
+Else, returns the array of dicts with the following keys (value types):
+'aoi_id', 'area_of_interest', 'region_id', 'region_name', 'top_lat', 'bottom_lat', 'left_lon', 'right_lon', 'img_url': ''</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_all_areas_of_interest_by_region_ID(self, region_id):
+    &#34;&#34;&#34;
+    Get details of all areas of interest for the specified region ID.    
+    Input:  region_id. Integer value. 
+    Returns: [] if region_id is not found. 
+             Else, returns the array of dicts with the following keys (value types):
+             &#39;aoi_id&#39;, &#39;area_of_interest&#39;, &#39;region_id&#39;, &#39;region_name&#39;, &#39;top_lat&#39;, &#39;bottom_lat&#39;, &#39;left_lon&#39;, &#39;right_lon&#39;, &#39;img_url&#39;: &#39;&#39;
+    &#34;&#34;&#34;        
+    return [self.areas_of_interest[k] for k in self.areas_of_interest if k//100==region_id]</code></pre>
+</details>
+</dd>
+<dt id="regions.Regions.get_all_regions"><code class="name flex">
+<span>def <span class="ident">get_all_regions</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get all regions. To look up all available regions.
+<br>
+Input:
+None.
+Returns: Dict of all regions.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_all_regions(self):
+    &#34;&#34;&#34;
+    Get all regions. To look up all available regions.    
+    Input:  None.
+    Returns: Dict of all regions.
+    &#34;&#34;&#34;        
+    return self.regions</code></pre>
+</details>
+</dd>
+<dt id="regions.Regions.get_area_of_interest_by_ID"><code class="name flex">
+<span>def <span class="ident">get_area_of_interest_by_ID</span></span>(<span>self, aoi_id)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get region details and coordinates for the specified area of interest ID.
+<br>
+Input:
+aoi_id. Integer value.
+Returns: None if aoi_id is not found.
+Else, returns the dict with the following keys (value types):
+'aoi_id', 'area_of_interest', 'region_id', 'region_name', 'top_lat', 'bottom_lat', 'left_lon', 'right_lon', 'img_url': ''</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_area_of_interest_by_ID(self, aoi_id):
+    &#34;&#34;&#34;
+    Get region details and coordinates for the specified area of interest ID.    
+    Input:  aoi_id. Integer value. 
+    Returns: None if aoi_id is not found. 
+             Else, returns the dict with the following keys (value types):
+             &#39;aoi_id&#39;, &#39;area_of_interest&#39;, &#39;region_id&#39;, &#39;region_name&#39;, &#39;top_lat&#39;, &#39;bottom_lat&#39;, &#39;left_lon&#39;, &#39;right_lon&#39;, &#39;img_url&#39;: &#39;&#39;
+    &#34;&#34;&#34;        
+    return self.areas_of_interest.get(aoi_id) </code></pre>
+</details>
+</dd>
+<dt id="regions.Regions.get_region_by_ID"><code class="name flex">
+<span>def <span class="ident">get_region_by_ID</span></span>(<span>self, region_id)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get region details and coordinates for the specified region ID.
+<br>
+Input:
+region_id. Integer value.
+Returns: None if region_id is not found.
+Else, returns the dict with the following keys (value types):
+region_id (int), region_name (str), top_lat (int), bottom_lat (int), left_lon (int), right_lon (int), img_url (str).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_region_by_ID(self, region_id):
+    &#34;&#34;&#34;
+    Get region details and coordinates for the specified region ID.    
+    Input:  region_id. Integer value.
+    Returns: None if region_id is not found. 
+             Else, returns the dict with the following keys (value types):
+             region_id (int), region_name (str), top_lat (int), bottom_lat (int), left_lon (int), right_lon (int), img_url (str).
+    &#34;&#34;&#34;        
+    return self.regions.get(region_id) </code></pre>
+</details>
+</dd>
+<dt id="regions.Regions.show_areas_of_interest_by_aoi_ID"><code class="name flex">
+<span>def <span class="ident">show_areas_of_interest_by_aoi_ID</span></span>(<span>self, aoi_id, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Prints out the image, if available, for the specified area of interest ID.
+<br>
+Input:
+aoi_id. Integer value.
+:
+for kwargs parameters, see the function show_image()
+Returns: None</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_areas_of_interest_by_aoi_ID(self, aoi_id, **kwargs):
+    &#34;&#34;&#34;
+    Prints out the image, if available, for the specified area of interest ID.    
+    Input:  aoi_id. Integer value.
+         :  for kwargs parameters, see the function show_image()
+    Returns: None
+    &#34;&#34;&#34;        
+    # create a file-like object from the url
+    aoi = self.areas_of_interest.get(aoi_id)
+    if aoi is None:
+        print(&#34;Area of Interest not available for this aoi_id: {}&#34;.format(aoi_id))   
+    else:
+        img_url = aoi.get(&#39;img_url&#39;)
+        if img_url == &#39;&#39;:
+            print(&#34;Image URL not available for this area-of-interest: {}-{}\n&#34;.format(aoi_id, aoi.get(&#39;area_of_interest&#39;)))
+        
+        footnote = &#39;Area of Interest: {} - {}, top_lat: {}, bottom_lat: {}, left_lon: {}, right_lon: {}&#39;.format(aoi_id, aoi.get(&#39;area_of_interest&#39;)
+                                                                                                          , aoi.get(&#39;top_lat&#39;)
+                                                                                                          , aoi.get(&#39;bottom_lat&#39;)
+                                                                                                          , aoi.get(&#39;left_lon&#39;)
+                                                                                                          , aoi.get(&#39;right_lon&#39;))
+        self.show_image(img_url, footnote, **kwargs)</code></pre>
+</details>
+</dd>
+<dt id="regions.Regions.show_image"><code class="name flex">
+<span>def <span class="ident">show_image</span></span>(<span>self, image_path, footnote='', **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_image(self, image_path, footnote=&#39;&#39;, **kwargs):
+    if not image_path == &#39;&#39;:
+        filename = os.path.basename(image_path)
+        overwrite_local_file = False if kwargs.get(&#39;overwrite_local_file&#39;) is None else kwargs.get(&#39;overwrite_local_file&#39;)
+        from_azure = False if kwargs.get(&#39;from_azure&#39;) is None else kwargs.get(&#39;from_azure&#39;)
+        print_msg = False if kwargs.get(&#39;print_msg&#39;) is None else kwargs.get(&#39;print_msg&#39;)
+        figure_size = (8,8) if kwargs.get(&#39;figure_size&#39;) is None else kwargs.get(&#39;figure_size&#39;)
+        if (isinstance(figure_size, int)):
+            figure_size = (figure_size, figure_size)  # make tuple
+
+        download_file(image_path, filename, overwrite_local_file, from_azure, print_msg)
+
+        # read the image file in a numpy array
+        img_data = plt.imread(filename)
+        plt.figure(figsize = figure_size)
+        plt.imshow(img_data)
+        plt.axis(&#39;off&#39;)
+        plt.show()
+
+    print(footnote)</code></pre>
+</details>
+</dd>
+<dt id="regions.Regions.show_region_by_ID"><code class="name flex">
+<span>def <span class="ident">show_region_by_ID</span></span>(<span>self, region_id, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Prints out the image, if available, for the specified region ID.
+<br>
+Input:
+region_id. Integer value.
+:
+for kwargs parameters, see the function show_image()
+Returns: None</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show_region_by_ID(self, region_id, **kwargs):
+    &#34;&#34;&#34;
+    Prints out the image, if available, for the specified region ID.    
+    Input:  region_id. Integer value.
+         :  for kwargs parameters, see the function show_image()
+    Returns: None
+    &#34;&#34;&#34;        
+    # create a file-like object from the url
+    img_url = self.regions.get(region_id).get(&#39;img_url&#39;)
+    reg = self.regions.get(region_id)
+    if img_url == &#39;&#39;:
+        print(&#34;Image URL not available for this region {}-{}&#34;.format(region_id, reg.get(&#39;region_name&#39;)))
+    else:
+        footnote = &#39;Region: {} - {}, top_lat: {}, bottom_lat: {}, left_lon: {}, right_lon: {}&#39;.format(region_id, reg.get(&#39;region_name&#39;)
+                                                                                                      , reg.get(&#39;top_lat&#39;)
+                                                                                                      , reg.get(&#39;bottom_lat&#39;)
+                                                                                                      , reg.get(&#39;left_lon&#39;)
+                                                                                                      , reg.get(&#39;right_lon&#39;))
+        self.show_image(img_url, footnote, **kwargs)</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="regions.Regions" href="#regions.Regions">Regions</a></code></h4>
+<ul class="">
+<li><code><a title="regions.Regions.aoi_1_na_0" href="#regions.Regions.aoi_1_na_0">aoi_1_na_0</a></code></li>
+<li><code><a title="regions.Regions.aoi_1_na_1" href="#regions.Regions.aoi_1_na_1">aoi_1_na_1</a></code></li>
+<li><code><a title="regions.Regions.aoi_1_na_2" href="#regions.Regions.aoi_1_na_2">aoi_1_na_2</a></code></li>
+<li><code><a title="regions.Regions.aoi_1_na_3" href="#regions.Regions.aoi_1_na_3">aoi_1_na_3</a></code></li>
+<li><code><a title="regions.Regions.aoi_1_na_4" href="#regions.Regions.aoi_1_na_4">aoi_1_na_4</a></code></li>
+<li><code><a title="regions.Regions.aoi_1_na_5" href="#regions.Regions.aoi_1_na_5">aoi_1_na_5</a></code></li>
+<li><code><a title="regions.Regions.aoi_1_na_6" href="#regions.Regions.aoi_1_na_6">aoi_1_na_6</a></code></li>
+<li><code><a title="regions.Regions.aoi_1_na_7" href="#regions.Regions.aoi_1_na_7">aoi_1_na_7</a></code></li>
+<li><code><a title="regions.Regions.aoi_1_na_8" href="#regions.Regions.aoi_1_na_8">aoi_1_na_8</a></code></li>
+<li><code><a title="regions.Regions.areas_of_interest" href="#regions.Regions.areas_of_interest">areas_of_interest</a></code></li>
+<li><code><a title="regions.Regions.get_all_areas_of_interest_by_region_ID" href="#regions.Regions.get_all_areas_of_interest_by_region_ID">get_all_areas_of_interest_by_region_ID</a></code></li>
+<li><code><a title="regions.Regions.get_all_regions" href="#regions.Regions.get_all_regions">get_all_regions</a></code></li>
+<li><code><a title="regions.Regions.get_area_of_interest_by_ID" href="#regions.Regions.get_area_of_interest_by_ID">get_area_of_interest_by_ID</a></code></li>
+<li><code><a title="regions.Regions.get_region_by_ID" href="#regions.Regions.get_region_by_ID">get_region_by_ID</a></code></li>
+<li><code><a title="regions.Regions.reg_1_na" href="#regions.Regions.reg_1_na">reg_1_na</a></code></li>
+<li><code><a title="regions.Regions.regions" href="#regions.Regions.regions">regions</a></code></li>
+<li><code><a title="regions.Regions.show_areas_of_interest_by_aoi_ID" href="#regions.Regions.show_areas_of_interest_by_aoi_ID">show_areas_of_interest_by_aoi_ID</a></code></li>
+<li><code><a title="regions.Regions.show_image" href="#regions.Regions.show_image">show_image</a></code></li>
+<li><code><a title="regions.Regions.show_region_by_ID" href="#regions.Regions.show_region_by_ID">show_region_by_ID</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

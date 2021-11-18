@@ -1,0 +1,2669 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>extreme_temp_identification API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>extreme_temp_identification</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">#### imports
+import io
+import os
+import gc
+# %matplotlib inline
+import matplotlib.pyplot as plt
+
+# data management
+import xarray as xr
+import numpy as np
+# import pandas as pd
+
+# Azure Connectivity
+import getpass
+import azure.storage.blob
+from azure.storage.blob import BlobClient
+
+# utilities
+import time
+import urllib.request
+from datetime import datetime
+import cftime
+import urllib
+import csv
+import zipfile
+
+# plotting - bokeh
+import hvplot.xarray
+import panel as pn
+
+# cartopy
+import cartopy.crs as ccrs
+import cartopy.feature as cfeature
+
+# custom code
+from extreme_temp_utils import *
+from regions import Regions
+    
+#### ####################################################################    
+#### 2
+#### Code to Generate Average and Record Temperature (minimum and maximum)
+#### Relies on NASA NEX generated climate coarse resolution temperature data
+#### expects the variable &#39;tasmax&#39; or &#39;tasmin&#39;
+#### ####################################################################    
+
+#### ####################################################################    
+#### 2.1 CreateDatasetForResults()
+#### Function to create the empty Results xarray dataset
+#### ####################################################################
+
+def CreateDatasetForResults(filename, start_year, end_year, cmip=6, model_name=None):
+    &#34;&#34;&#34;
+    A function that loads the CMIP data file into xarray dataset -- for reference,
+    then creates and returns a new xarray with matching dimensions and coordinates 
+    but with new, empty variables
+    
+    The variables of the new xarray will be [&#39;tasmaxavg&#39;, &#39;tasmaxrec&#39;] or [&#39;tasminavg&#39;, &#39;tasminrec&#39;]
+    Similar three dimensions and the coordinates will be there [day: 365 (or 360), lat: 720,  lon: 1440]
+    Input Parameter:
+    - filename : a CMIP source data file for createing the reference xarray dataset.
+    - start_year : should be the integer value for the intended results date range start (e.g. 1950)
+    - end_year : should be the integer value for the intended results date range end (e.g. 1959)
+    - cmip        : integer number to specify cmip version (5 or 6 or other). Default is 6    
+    - model_name  : name of the model, for averages (without _ssp245 at the end). For example: &#39;GFDL_ESM4&#39;
+    Returns: an xarray dataset
+    &#34;&#34;&#34;
+    ds_rec = None
+    validations_passed = False
+    data_type = &#39;&#39;
+    
+    # validations
+    if not (isinstance(start_year, int) and isinstance(end_year, int) and (end_year &gt; start_year)):
+        print(&#39;Validation Error: start_year and end_year should be integers; end year should be greater than start year.&#39;)
+    else:
+        validations_passed = True
+    
+    if validations_passed:
+        # load the file
+        based_on = xr.open_dataset(filename)
+        
+        var_minmax = list(based_on.data_vars.keys())[0]  # will be tasmax or tasmin
+        
+        #shape of the dataset
+        day_time = based_on.dims.get(&#39;time&#39;)
+        lat = based_on.dims.get(&#39;lat&#39;)
+        lon = based_on.dims.get(&#39;lon&#39;)        
+        
+        if var_minmax == &#39;tasmax&#39;:
+            data_type = &#39;Average and record maximum temperature, based on tasmax&#39;
+            ds_variables = [&#39;tasmaxavg&#39;, &#39;tasmaxrec&#39;]
+            ds_data = {&#39;tasmaxavg&#39; : ([&#39;day&#39;,&#39;lat&#39;,&#39;lon&#39;], np.empty((day_time, lat, lon))), &#39;tasmaxrec&#39; : ([&#39;day&#39;,&#39;lat&#39;,&#39;lon&#39;], np.empty((day_time, lat, lon)))}
+        else:
+            data_type = &#39;Average and record minimum temperature, based on tasmin&#39;
+            ds_variables = [&#39;tasminavg&#39;, &#39;tasminrec&#39;]
+            ds_data = {&#39;tasminavg&#39; : ([&#39;day&#39;,&#39;lat&#39;,&#39;lon&#39;], np.empty((day_time, lat, lon))), &#39;tasminrec&#39; : ([&#39;day&#39;,&#39;lat&#39;,&#39;lon&#39;], np.empty((day_time, lat, lon)))}
+
+        ds_rec = based_on.copy(deep = True)   
+        ds_rec = ds_rec.rename_dims({&#39;time&#39;:&#39;day&#39;})
+        ds_rec = ds_rec.assign(ds_data)
+        ds_rec = ds_rec.drop_vars(var_minmax)
+        ds_rec = ds_rec.assign_coords({&#34;day&#34;: xr.DataArray(np.arange(1,day_time+1), dims=&#39;day&#39;)})
+        ds_rec = ds_rec.reset_coords(&#39;time&#39;, drop=True)
+        
+        n_years = (end_year - start_year) + 1
+        
+        new_attrs = {&#39;Dataset&#39; : &#39;Average temperature CMIP{}&#39;.format(cmip),
+                     &#39;About dataset&#39; : &#39;A dataset with average and record temparatures, across years&#39;,
+                     &#39;Original values&#39; : var_minmax,
+                     &#39;Data variables&#39; : ds_variables,
+                     &#39;Data description&#39; : data_type,
+                     &#39;Range&#39; : str(n_years) + &#39; years&#39;,
+                     &#39;Start year&#39; : str(start_year),
+                     &#39;End year&#39; : str(end_year),
+                     &#39;Years processed&#39; : 0,
+                     &#39;Store as&#39; : get_averages_filename(var_minmax[-3:], cmip, model_name, n_years, start_year, end_year)                     
+                    }
+        
+        ds_rec.attrs = new_attrs
+    
+    return ds_rec
+        
+
+#### ####################################################################    
+#### 2.2 GenerateAverageOneFileAtATime()
+#### An internal function used to update the averages dataset -- 
+#### one file at a time.
+#### ####################################################################
+
+def GenerateAverageOneFileAtATime(results, lat_indices, lon_indices, start_year, end_year
+    , filename):
+    &#34;&#34;&#34;
+    Takes one file at a time and updates the average, peak values in the existing &#39;results&#39; dataset.
+    Average and Record temperatures are captured for each cell, i.e. the lat, lon combination in the specified grid.
+    The unit of temperature (Kelvin) is retained.
+    Input Parameters:
+    - results     : xarray dataset with average, record temperature for 365 days
+    - lat_indices : applicable index values for latitudes. If None, will calculate for the complete grid
+    - lon_indices : applicable index values for longitudes. If None, will calculate for the complete grid.
+    - start_year  : start year of the range
+    - end_year    : end year of the range
+    - filename    : name of the .nc file to process
+    Returns:  None. The input xarray dataframe &#39;results&#39; is updated.
+    &#34;&#34;&#34;
+    # load the file
+    print(filename)
+    xds = xr.open_dataset(filename)
+    
+    if not (lat_indices is None or lon_indices is None):
+        # take applicabel subset of lat and lon
+        xds = xds[dict(lat=lat_indices,lon=lon_indices)]
+    
+    # print(&#34;xds&#34;, xds)     ## For debugging
+    
+    # max or min
+    var_minmax = list(xds.data_vars.keys())[0]  # will be tasmax or tasmin
+        
+    # note the variable names in the results dataset
+    result_variables = results.attrs[&#39;Data variables&#39;]
+
+    new_values = xds[var_minmax][:].to_numpy()
+
+    n_years = results.attrs[&#39;Years processed&#39;]
+    
+    # if first year in the range
+    if n_years == 0:
+        results.update({result_variables[0] : ([&#39;day&#39;,&#39;lat&#39;,&#39;lon&#39;], new_values)       # avg temperature
+                        , result_variables[1] : ([&#39;day&#39;,&#39;lat&#39;,&#39;lon&#39;], new_values)})   # record temperature        
+    else:
+        if var_minmax == &#34;tasmin&#34;:        
+            results.update({result_variables[1] : xr.ufuncs.minimum(new_values
+                                                                    , results[result_variables[1]])})   # peak min temperature across years
+        else:
+            results.update({result_variables[1] : xr.ufuncs.maximum(new_values
+                                                                    , results[result_variables[1]])})   # peak max temperature across years
+        # for both max and min
+        results.update({result_variables[0] : np.round((((results[result_variables[0]] * n_years) + new_values) / (n_years+1)),2)})  # avg across years
+        results.update({result_variables[1] : np.round(results[result_variables[1]], 2)})  # round off only
+        
+    
+    # in any case...
+    n_years += 1
+    results.attrs[&#39;Years processed&#39;] = n_years
+
+
+
+#### ####################################################################    
+#### 2.3 PrepareAverageForRange()
+#### A function to prepare the average for the desired range of years
+#### Assumes that the yearly average files exist locally or in azure
+#### ####################################################################
+
+def PrepareAverageForRange(filename_prefix, lat_indices, lon_indices, start_year, end_year, cmip=6
+                           , model_name=None, url_prefix=None, sas_token=None, from_azure=False
+                           , overwrite_local_file=False, remove_after_use=True):
+    &#34;&#34;&#34;
+    Prepares an empty results dataset and then populates in a loop the averages for the specified range of years:
+    * downloads the file for each year if url_prefix is set, else no download and the file will be expected to be available locally.      
+    * calls the function that processes data one file at time.
+    * then deletes the yearly temperature file used in the process
+    Note: if url from azure or other location requiring access token, then provide the SAS token as well.
+    Average and Record temperatures are captured for each cell, i.e. the lat, lon combination in the specified grid.
+    The unit of temperature (Kelvin) is retained.
+    Input Parameters:
+    - filename_prefix  : initial part of the filename. Year will be appended to it, along with file extension &#39;.nc&#39;
+    - lat_indices : applicable index values for latitudes. If None, will calculate for the complete grid
+    - lon_indices : applicable index values for longitudes. If None, will calculate for the complete grid.
+    - start_year  : start year of the range
+    - end_year    : end year of the range
+    - cmip        : integer number to specify cmip version (5 or 6 or other). Default is 6
+    - model_name  : name of the model, for averages (without _ssp245 at the end). For example: &#39;GFDL_ESM4&#39;
+    - url_prefix  : url to files location, without the filename
+                  : for Azure blob storage, specify the url with the container and the folder location
+    - sas_token   : A sas token with &#39;read&#39; permissions to the azure blob container
+    - from_azure  : default is False. Set to True if downloading from Azure blob storage
+    - overwrite_local_file  : if True, will overwrite, else, if already available locally, will not download again.
+    - remove_after_use      : default = True. Set to False to retain the files locally
+    Returns:  The xarray dataframe with &#39;results&#39;
+    &#34;&#34;&#34;
+    validations_passed = False
+    ds_results = None
+    filename = &#39;&#39;
+    
+    # validations
+    if not (isinstance(start_year, int) and isinstance(end_year, int) and (end_year &gt; start_year)):
+        print(&#39;Validation Error: start_year and end_year should be integers; end year should be greater than start year.&#39;)
+    else:
+        validations_passed = True
+    
+    if validations_passed:               
+        total_years = 0        
+            
+        # prepare to time the operation
+        start_time = time.time()
+        for yr in range(start_year, (end_year + 1)):
+            print(yr)
+            filename = filename_prefix + str(yr) + &#39;.nc&#39;
+            
+            # if required, download the file so it is available locally
+            if not url_prefix is None:
+                sas_url = os.path.join(url_prefix, filename) # add filename to the url prefix
+                if sas_token is not None:
+                    sas_url = sas_url + &#34;?&#34; + sas_token            # add token, if provided
+                download_file(sas_url, filename, overwrite_local_file, from_azure)
+            
+            # first prepare results dataset
+            if total_years == 0:
+                ds_results = CreateDatasetForResults(filename = filename, start_year = start_year, end_year = end_year
+                                                     , cmip=cmip, model_name=model_name)
+
+            # process the file
+            GenerateAverageOneFileAtATime(ds_results, lat_indices, lon_indices, start_year, end_year
+                                          , filename)
+            total_years += 1
+            
+            # delete the file
+            if remove_after_use:
+                os.remove(filename)
+            
+        # print out the time it took
+        execution_time = (time.time() - start_time)
+        print(&#34;Complete execution time | PrepareAverageForRange | (mins) {:0.2f}&#34;.format(execution_time/60.0))
+            
+    return ds_results
+    
+    
+    
+#### ####################################################################    
+#### 2.4 AggregateAverageForRange()
+#### A function to aggregate average results from multiple pre-processed 
+####  10 year results into longer ranges
+#### ####################################################################
+
+def AggregateAverageForRange(start_year, end_year, cmip=6, model_name=None, result_type=&#39;max&#39;
+                           , azure_url_prefix=None, sas_token=None
+                           , overwrite_local_file=False, remove_after_use=True):
+    &#34;&#34;&#34;
+    Makes available Average and Record temperatures for multiple decades. 
+    * Date range should be a multiple of decades --- e.g. 1950 to 1969  OR 1951 to 1970.
+    * Make sure the underlying data files, by decades are available. Else, an exception will be raised!
+    
+    Checks the preprocessed average data files in Azure cloud or locally and:
+    * downloads the matching file if already exists
+    * else, checks for the component files (by decade). 
+    * -- If complete data not available, exception is thrown. Else, the required files are downloaded and aggregated.
+    * returns the results xarray dataset
+    Average and Record temperatures are captured for each cell, i.e. the lat, lon combination in the specified grid.
+    The unit of temperature (Kelvin) is retained.
+    Input Parameters:
+    - start_year  : start year of the range
+    - end_year    : end year of the range
+    - cmip        : integer number to specify cmip version (5 or 6 or other). Default is 6
+    - model_name  : name of the model, for averages (without _ssp245 at the end). For example: &#39;GFDL_ESM4&#39;
+    - result_type : string &#39;max&#39; or &#39;min&#39;
+    - azure_url_prefix=None : if downloading from Azure blob storage, specify the url with the container and the folder
+                              , else specify None to check the files locally.
+    - sas_token   : A sas token with &#39;read&#39; permissions to the azure blob container
+    - overwrite_local_file  : if True, will overwrite, else, if already available locally, will not download again.
+    - remove_after_use      : default = True. Set to False to retain the files locally
+    Returns:  The xarray dataframe with &#39;results&#39;
+    &#34;&#34;&#34;
+    validations_passed = False
+    ds_results = None
+    filename = &#39;&#39;
+    
+    n_years = (end_year - start_year) + 1   # range
+    
+    # validations
+    if not (isinstance(start_year, int) and isinstance(end_year, int) and (end_year &gt; start_year)):
+        print(&#39;Validation Error: start_year and end_year should be integers; end year should be greater than start year.&#39;)
+    elif not (n_years)%10 == 0:
+        print(&#39;Validation Error: The total range (end year - start year)+1 should be a multiple of 10.&#39;)    
+    elif model_name is None:
+        print(&#39;Validation Error: The model name cannot be None. Should be string value.&#39;)    
+    else:
+        validations_passed = True
+    
+    if validations_passed:
+        n_components = int(n_years / 10)             # number of decades in the range       
+        total_years = 0                    
+        
+        # intended filename
+        filename = get_averages_filename(result_type, cmip, model_name, n_years, start_year, end_year)
+        
+        # intended component filenames
+        component_files = [&#39;&#39;] * n_components   # as many component files as many decades in the range
+        component_available = [False] * n_components   # initialized as none of the files are available
+        complete_data = False                   # initialized as file / components are not available
+        
+        component_start_year = start_year  
+        for i in range(n_components):
+            component_end_year = component_start_year + 9
+            component_files[i] = get_averages_filename(result_type
+                                                        ,cmip, model_name,10,component_start_year,component_end_year)
+            print(&#39;component files[{}] = {}&#39;.format(i, component_files[i]))
+            component_start_year += 10
+
+        # prepare to time the operation
+        start_time = time.time()
+        
+        # if local storage is to be checked first
+        if azure_url_prefix is None or overwrite_local_file==False:
+            if os.path.exists(filename):                # if the complete file exists
+                complete_data = True                
+            else:
+                # check each file exists
+                for i in range(n_components):
+                    component_available[i] = os.path.exists(component_files[i])
+                    
+                complete_data = all(component_available)
+
+        # if complete data is not available locally, check if we can look in Azure blob storage
+        if not complete_data:
+            if azure_url_prefix is not None:
+                # check in azure
+                # first the complete file...
+                sas_url = azure_url_prefix + filename + &#34;?&#34; + sas_token
+                blob_client = BlobClient.from_blob_url(sas_url)
+                if blob_client.exists():
+                    download_file(sas_url, filename, overwrite_local_file, from_azure=True)
+                    complete_data = True
+                else:
+                    for i in range(n_components):
+                        # only for files not availble locally, unless overwrite_local_file = True
+                        if not component_available[i] or overwrite_local_file:
+                            sas_url = azure_url_prefix + component_files[i] + &#34;?&#34; + sas_token
+                            blob_client = BlobClient.from_blob_url(sas_url)
+                            if blob_client.exists():
+                                download_file(sas_url, component_files[i], overwrite_local_file, from_azure=True)
+                            else:
+                                errMsg = &#39;Missing component file (on Azure){}&#39;.format(component_available[i])
+                                raise ValueError(errMsg)
+                    complete_data = True    
+
+                
+            else: 
+                errMsg = &#39;Missing component files (locally): {}&#39;.format(&#39;, &#39;.join([str(component_files[i]) for i,bv in enumerate(component_available) if bv]))
+                raise ValueError(errMsg)
+
+
+        # complete files should be available locally at this stage
+        # start by checking for the complete file first
+        if os.path.exists(filename):
+            ds_results = xr.open_dataset(filename)  # load the complete file directly
+            total_year = n_years
+            # delete the file
+            if remove_after_use:
+                os.remove(filename)
+        else:
+            # prepare from component files            
+            for cfilename in component_files:
+                if total_years == 0:    # first file
+                    ds_results = xr.open_dataset(cfilename)                    
+                else:
+                    ds_comp = xr.open_dataset(cfilename)
+                    result_variables = ds_results.attrs[&#39;Data variables&#39;]
+                    if remove_after_use:
+                        os.remove(cfilename)
+                    if result_type == &#34;min&#34;:        
+                        ds_results.update({result_variables[1] : xr.ufuncs.minimum(ds_comp[result_variables[1]]
+                                                                                , ds_results[result_variables[1]])})   # peak min temperature across years
+                    else:
+                        ds_results.update({result_variables[1] : xr.ufuncs.maximum(ds_comp[result_variables[1]]
+                                                                                , ds_results[result_variables[1]])})   # peak max temperature across years
+                    # for both max and min
+                    ds_results.update({result_variables[0] : (ds_results[result_variables[0]] + ds_comp[result_variables[0]])})    # sum across years
+                    
+                # in any case    
+                total_years += 10
+            # finally, for avg from component files        
+            ds_results.update({result_variables[0] : np.round((ds_results[result_variables[0]] / n_components), 2)})    # avg across years
+            ds_results.update({result_variables[1] : np.round(ds_results[result_variables[1]], 2)})    # round off values
+
+        # set attributes
+        ds_results.attrs[&#39;Range&#39;] = str(n_years) + &#39; years&#39;
+        ds_results.attrs[&#39;Start year&#39;] = str(start_year)
+        ds_results.attrs[&#39;End year&#39;] = str(end_year)
+        ds_results.attrs[&#39;Years processed&#39;] = total_years
+        ds_results.attrs[&#39;Store as&#39;] = get_averages_filename(result_type, cmip, model_name, n_years, start_year, end_year)
+            
+        # print out the time it took
+        execution_time = (time.time() - start_time)
+        print(&#34;Complete execution time | AggregateAverageForRange | (mins) {:0.2f}&#34;.format(execution_time/60.0))
+            
+    return ds_results
+
+    
+
+#### ####################################################################    
+#### Interactive_GetAverageForRange() is the wrapper function for 
+#### generating complete range of Averages using all the other functions
+#### in this section
+#### ####################################################################
+
+#### ####################################################################    
+#### 2.5 Validations_for_Interactive_GetAverageForRange()
+#### A function to perform validations for the function 
+#### Interactive_GetAverageForRange()
+#### ####################################################################    
+
+def Validations_for_Interactive_GetAverageForRange(start_year, end_year, n_years, save_back_in_azure, azure_url_prefix, sas_token):
+    &#34;&#34;&#34;
+    Performs validations applicable to the function Interactive_GetAverageForRange.    
+    Returns: Boolean. True if validations pass. Else returns False.
+    &#34;&#34;&#34;
+    validations_passed = False
+    if not (isinstance(start_year, int) and isinstance(end_year, int) and (end_year &gt; start_year)):
+        print(&#39;Validation Error: start_year and end_year should be integers; end year should be greater than start year.&#39;)
+    elif not (n_years)%10 == 0:
+        print(&#39;Validation Error: The total range (end year - start year)+1 should be a multiple of 10.&#39;)    
+    elif (save_back_in_azure == True) and (azure_url_prefix is None or sas_token is None) :
+        print(&#39;Validation Error: Both azure_url_prefix and sas_token are to be provided if save_back_in_Azure = True.&#39;)    
+    else:
+        validations_passed = True
+    
+    return validations_passed
+
+
+#### ####################################################################    
+#### 2.6 prepare_component_averages_files()
+#### Another functions that gets used by Interactive_GetAverageForRange()
+#### helps arrange 10-year average files. first checks locally, then in
+#### Azure, else creates those files and optionally uploads to Azure
+#### ####################################################################    
+
+def prepare_component_averages_files(save_back_in_azure, azure_url_prefix, sas_token, result_type, cmip, model_name
+                                     , start_year, n_years, cmip_files_url, cmip_file_name_prefix, from_azure):
+    &#34;&#34;&#34;
+    For the given range, prepares component (10-year) averages files. 
+    Checks if available locally, or in Azure. Else prepares it.
+    Uploads to azure if save_back_in_azure = True, and not already there.
+    This helper function also gets used by Interactive_GetAverageForRange()
+    Returns: None
+    &#34;&#34;&#34;
+    n_components = int(n_years / 10)
+    component_start_year = start_year
+    
+    print(&#34;{} UTC: Arranging for all the component (10-year) files(s)&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+    
+    for i in range(n_components):
+        component_end_year = component_start_year + 9
+        filename = get_averages_filename(result_type,cmip,model_name,10,component_start_year,component_end_year)
+        print(&#39;prepare_component_averages_files: filename: &#39;, filename)
+        if azure_url_prefix is not None: 
+            sas_url = create_sas_url(azure_url_prefix, sas_token, filename)
+        else:
+            sas_url = None
+        
+        print(&#34;{} UTC: Component file {} of {} : --- {} to {} ----------&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)
+                                                                            , i+1, n_components, component_start_year, component_end_year))
+        
+                
+        local = os.path.exists(filename)    # first, check if available locally
+        print(&#34;{} UTC: Component file available locally? {}&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), &#39;Yes&#39; if local else &#39;No. Checking in Azure...&#39;))
+        
+        if local:
+            upload_file_to_Azure(save_back_in_azure, sas_url, filename)  # upload, if required            
+        else:
+            if is_file_in_Azure(sas_url):
+                print(&#34;{} UTC: Component file available in Azure, downloading...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                download_file(sas_url, filename, overwrite_local_file=True, from_azure=True)
+                print(&#34;{} UTC: Download complete&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+            else:
+                print(&#34;{} UTC: Component file also not in Azure, preparing...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                ds_results = PrepareAverageForRange(filename_prefix = cmip_file_name_prefix, lat_indices = None, lon_indices = None
+                                                    , start_year = component_start_year, end_year = component_end_year, cmip= cmip
+                                                   , model_name=model_name, url_prefix=cmip_files_url, sas_token=sas_token, from_azure=from_azure
+                                                   , overwrite_local_file=False, remove_after_use=True)
+                if ds_results is None:
+                    raise ValueError(&#39;Error! Component file could not be prepared. Check parameters&#39;)
+                
+                if save_back_in_azure:
+                    SaveResult(ds_results, azure_url_prefix, sas_token, local_copy=True)
+                else:
+                    SaveResult(ds_results, azure_url_prefix=None, sas_token=None, local_copy=True)
+                
+        component_start_year += 10
+        print(&#34;{} UTC: All the component (10-year) files(s) are now available&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+
+        
+#### ####################################################################    
+#### 2.7 plot_avg_and_record_temperatures()
+#### Visualize average and record temperatures (entire range)
+#### ####################################################################    
+
+def plot_avg_and_record_temperatures(ds_record, latitude, longitude):
+    &#34;&#34;&#34;
+    Pass in the dataset and the latitude, longitude.
+    Algorithm will find the nearest matching latitude and longitude in the grid.
+    Will show plot for the same.
+    Returns: None
+    &#34;&#34;&#34;
+    fig, ax = plt.subplots()
+
+    fig.set_size_inches(12, 8)
+
+    ds = ds_record.sel(lat=[latitude], lon=[longitude], method=&#34;nearest&#34;)
+
+    x = ds.get(&#39;day&#39;)
+
+    pmax = ds[&#39;tasmaxrec&#39;].squeeze()
+    ax.plot(x, pmax, color=&#39;lightgray&#39;, alpha=0.9, label=&#39;Average Temperature&#39;)
+
+    amax = ds[&#39;tasmaxavg&#39;].squeeze()
+    ax.plot(x, amax, color=&#39;gray&#39;, alpha=0.6, label=&#39;Maximum Temperature&#39;)
+    
+    ax.set_title(&#39;Avg and Record Max Temperature - {} to {}&#39;.format(ds_record.attrs[&#39;Start year&#39;], ds_record.attrs[&#39;End year&#39;]))
+    ax.set_xlabel(&#39;Day&#39;)
+    ax.set_ylabel(&#39;Temperature in Kelvin&#39;)
+    
+    ax.legend()
+    plt.show()
+    
+    
+#### ####################################################################    
+#### 2.8 Interactive_GetAverageForRange()
+#### The key wrapper function that makes available averages for the range
+#### checks if the file is available, or generates it.
+#### in doing so, checks if component 10-year average files are there
+#### or generates those. In doing so, pulls down the temperature files 
+#### and removes from the local environment, after calculating the average
+
+#### This function can be called by the user, OR, by downstream code
+#### like the one that generates heatwaves data and requires averages
+#### ####################################################################    
+    
+def Interactive_GetAverageForRange(start_year, end_year, cmip=6, result_type=&#39;max&#39;
+                            , model_name=None, azure_url_prefix=None, sas_token=None
+                            , cmip_files_url=None, cmip_file_name_prefix=None, from_azure=False
+                            , save_back_in_azure=False, interactive=True):
+    &#34;&#34;&#34;
+    Makes available Average and Record temperatures for multiple decades. 
+    * Date range should be a multiple of decades --- e.g. 1950 to 1969  OR 1951 to 1970.
+    Checks if the preprocessed average data files are already available locally. 
+    If not found, checks in Azure cloud. 
+    If not found in Azure as well, tries to prepare the output from the available underlying 10 year files, in azure.
+    If underlying 10 year files are also not there then tries to create those as well.
+    In that case, checks for underlying source CMIP data files based on the url provided.
+    All the files not found in Azure are attempted to be saved there, if azure_url_prefix is provided 
+    and save_back_in_azure = True.
+    
+    * returns the results xarray dataset
+    Average and Record temperatures are captured for each cell, i.e. the lat, lon combination in the specified grid.
+    The unit of temperature (Kelvin) is retained.
+    Input Parameters:
+    - start_year  : start year of the range
+    - end_year    : end year of the range
+    - cmip        : integer number to specify cmip version (5 or 6 or other). Default is 6
+    - result_type : string &#39;max&#39; or &#39;min&#39;
+    - model_name  : Specify the name of the model, for example &#39;GFDL-ESM4&#39;. This will become a part of the filename.
+    - azure_url_prefix=None : if downloading from Azure blob storage, specify the url with the container and the folder
+                              , else specify None to check the files locally.
+    - sas_token   : A sas token with &#39;read&#39; permissions to the azure blob container    
+    - cmip_files_url: Underlying cmip files could be at a different path in azure, or elsewhere.
+    - cmip_file_name_prefix: Name of the underlying cmip files, without the year. E.g. &#39;tasmin_day_BCSD_historical_r1i1p1_inmcm4_&#39;
+    - from_azure  : True, if the cmip files path is of azure. In that case sas_token will be used to read/write files.
+    - save_back_in_azure: If true, the final file
+    - interactive: If true, will prompt for user confirmation before executing. Set False to bypass user input.
+    Returns:  The xarray dataframe with &#39;results&#39;
+    &#34;&#34;&#34;
+    validations_passed = False
+    ds_results = None
+    filename = &#39;&#39;
+    sas_url = None
+    
+    n_years = (end_year - start_year) + 1   # range
+    
+    # proceed if validations pass
+    validations_passed = Validations_for_Interactive_GetAverageForRange(start_year, end_year, n_years
+                                                                        , save_back_in_azure, azure_url_prefix, sas_token)
+    
+    if validations_passed:
+        n_components = int(n_years / 10)             # number of decades in the range       
+        total_years = 0   
+        
+        print(&#39;Get Average and Record {} temperature for the range {} to {}, for CMIP{}, model {}&#39;.format(result_type, start_year
+                                                                                                          , end_year, cmip, model_name))
+        
+        if interactive:
+            ans = input(&#39;Do you want to continue? y/n&#39;).lower()
+        else:
+            ans = &#39;y&#39;
+        
+        if not ans == &#39;y&#39;:
+            print(&#34;Response: {}.\n Not &#39;y&#39;, stopping execution.&#34;.format(ans))        
+            return None
+        
+        start_time = time.time()        # prepare to time the operation
+        if model_name.endswith(&#39;_ssp245&#39;) or model_name.endswith(&#39;_ssp585&#39;):
+            model_name = model_name[:-7]
+                
+        filename = get_averages_filename(result_type, cmip, model_name, n_years, start_year, end_year)
+        print(&#34;{} UTC: Get Averages file {}&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))
+        
+        if azure_url_prefix is not None: 
+            sas_url = create_sas_url(azure_url_prefix, sas_token, filename)
+        
+        local = os.path.exists(filename)    # first, check if available locally
+        print(&#34;{} UTC: Available locally? {}&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), &#39;Yes&#39; if local else &#39;No. Checking in Azure...&#39;))
+        
+        if local:
+            upload_file_to_Azure(save_back_in_azure, sas_url, filename)  # upload, if required
+            ds_results = xr.open_dataset(filename)                                # open file        
+        else:
+            if is_file_in_Azure(sas_url):
+                print(&#34;{} UTC: Available in Azure {}, downloading...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))
+                download_file(sas_url, filename, overwrite_local_file=True, from_azure=True)
+                print(&#34;{} UTC: Download complete&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                ds_results = xr.open_dataset(filename)
+            else:
+                if sas_url is None or sas_url == &#39;&#39;:
+                    print(&#34;{} UTC: Azure url not provided, could not check there. Now preparing...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                else:
+                    print(&#34;{} UTC: Also not in Azure {}, preparing...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))
+                prepare_component_averages_files(save_back_in_azure, azure_url_prefix, sas_token, result_type, cmip, model_name
+                                                 , start_year, n_years, cmip_files_url, cmip_file_name_prefix, from_azure)
+            
+                print(&#34;{} UTC: Aggregate 10-year files into full range...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                ds_results = AggregateAverageForRange(start_year, end_year, cmip, model_name, result_type
+                           , azure_url_prefix, sas_token
+                           , overwrite_local_file=False, remove_after_use=False)
+                
+                if save_back_in_azure:
+                    print(&#34;{} UTC: Dataset ready, saving locally and in Azure...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))                
+                    SaveResult(ds_results, azure_url_prefix, sas_token, local_copy=True)
+                else:
+                    print(&#34;{} UTC: Dataset ready, saving locally...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))                
+                    SaveResult(ds_results, azure_url_prefix=None, sas_token=None, local_copy=True)
+        
+         # print out the time it took
+        execution_time = (time.time() - start_time)
+        print(&#34;Complete execution time | Interactive_GetAverageForRange | (mins) {:0.2f}&#34;.format(execution_time/60.0))
+        
+    return ds_results
+
+
+#### ####################################################################    
+#### 3
+#### Code to Generate Continous Days Extreme Temperature (minimum and maximum)
+#### That is, cold spells and heat waves
+#### expects the variable &#39;tasmax&#39; or &#39;tasmin&#39;
+#### ####################################################################    
+
+#### ####################################################################    
+#### 3.1 Validations_for_Identify_1_year_Extreme_Temp_By_Region()
+#### Helper function to perform validations
+#### ####################################################################
+
+def Validations_for_Identify_1_year_Extreme_Temp_By_Region(analysis_year, threshold
+                                                , n_continuous_days, region_id, area_of_interest, name_of_area_of_interest
+                                                , based_on_averages, averages_start_year, averages_end_year):
+    &#34;&#34;&#34;
+    Performs validations applicable to the function Identify_1_year_Extreme_Temp_By_Region.    
+    Returns: Boolean. True if validations pass. Else returns False.
+    &#34;&#34;&#34;
+    validations_passed = False
+    regions = Regions()
+       
+    if not isinstance(analysis_year, int):
+        print(&#39;Validation Error: analysis_year must be a valid integer&#39;)
+    elif regions.get_region_by_ID(region_id) is None:
+        print(&#39;Validation Error: Invalid region ID. Valid Regions are:&#39;)
+        for r in regions.get_all_regions().items():
+            print(&#39; &#39;, r[0], &#39;-&#39;, r[1][&#39;region_name&#39;])
+    elif not (isinstance(threshold, int) or isinstance(threshold, float)):
+        print(&#39;Validation Error: threshold must be a numeric value.&#39;)    
+    elif not isinstance(n_continuous_days, int):
+        print(&#39;Validation Error: n_continuous_days must be an integer value.&#39;)
+    elif area_of_interest is not None and not isinstance(area_of_interest, dict):
+        print(&#34;Validation Error: Area of interest, if provided, must be a dict with the keys &#39;top_lat&#39;, &#39;bottom_lat&#39;, &#39;left_lon&#39;, &#39;right_lon&#39;.&#34;)        
+    elif area_of_interest is not None and (&#39;top_lat&#39; not in area_of_interest.keys() \
+                                               or &#39;bottom_lat&#39; not in area_of_interest.keys() \
+                                               or &#39;left_lon&#39; not in area_of_interest.keys() \
+                                               or &#39;right_lon&#39; not in area_of_interest.keys()):
+        print(&#34;Validation Error: Area of interest, if provided, must be a dict with the keys &#39;top_lat&#39;, &#39;bottom_lat&#39;, &#39;left_lon&#39;, &#39;right_lon&#39;.&#34;)        
+    elif area_of_interest is not None and (name_of_area_of_interest is None or name_of_area_of_interest==&#39;&#39;):
+        print(&#34;Validation Error: Area of interest, if provided, then a Name for the area of interest must also be provided.&#34;)        
+    elif based_on_averages and not (isinstance(averages_start_year, int) and isinstance(averages_end_year, int)):
+        print(&#34;Validation Error: If based_on_averages = True, then provide integer values for averages_start_year and averages_end_year.&#34;)        
+    else:
+        validations_passed = True
+    
+    return validations_passed
+
+
+#### ####################################################################    
+#### 3.2 get_1_year_extreme_temp_filename()
+#### Helper function to generate consistently formatted file names.
+#### ####################################################################
+
+def get_1_year_extreme_temp_filename(result_type, cmip, model_name
+                               , region_id, analysis_year, name_of_area_of_interest
+                               , based_on_averages, threshold, is_percentage, n_continuous_days
+                               , averages_start_year, averages_end_year):
+    # example: Ext_max_t__Rgn_1__2025__Abv_5_K_for_3_days__CMIP6_ssp245_Avg_yrs_1990_09
+    
+    if based_on_averages:
+        criteria = &#39;{}_Avg_{}_{}&#39;.format(&#39;Abv&#39; if result_type == &#39;max&#39; else &#39;Blw&#39;, threshold, &#39;pct&#39; if is_percentage else &#39;K&#39;)
+        avgs_year = &#39;_Avg_yrs_{}_{}&#39;.format(averages_start_year, str(averages_end_year)[-2:])
+    else:
+        criteria = &#39;{}_{}_K&#39;.format(&#39;Abv&#39; if result_type == &#39;max&#39; else &#39;Blw&#39;, threshold)
+        avgs_year = &#39;&#39;
+                                           
+    criteria += &#39;_for_{}_days&#39;.format(n_continuous_days)
+    
+    
+    filename = &#39;Ext_{}_t__Rgn_{}{}__{}__{}__CMIP{}_{}{}.nc&#39;.format(result_type, region_id
+                                                                         , &#39;&#39; if name_of_area_of_interest is None else &#39;_AoI_&#39;+ str(name_of_area_of_interest)
+                                                                         , analysis_year, criteria, cmip, model_name, avgs_year)                
+    return filename
+
+
+#### ####################################################################    
+#### 3.3 window_gte_threshold()
+#### Helper function to determine for rolling windows, if above threshold
+#### of 0, or not.
+#### ####################################################################
+
+def window_gte_threshold(ds, axis):
+    &#34;&#34;&#34;
+    Determines for each rolling window if All the days in the window are equal to or above the threshold
+    Returns: a multi-dimensional array of the same size as the input
+    &#34;&#34;&#34;
+      
+    return np.all(np.greater_equal(ds, 0), axis=-1)
+
+
+#### ####################################################################    
+#### 3.4 Identify_1_year_Extreme_Temp_By_Region()
+#### Function to create the xarray dataset and the .nc file for 
+#### 1 year data of days with extreme temperature (cold spells or heat waves)
+#### ####################################################################
+
+def Identify_1_year_Extreme_Temp_By_Region(analysis_year, threshold, result_type = &#39;max&#39;
+                            , based_on_averages=False, is_percentage=False
+                            , n_continuous_days=3, cmip=6, model_name=&#39;historical&#39;, region_id=1
+                            , averages_start_year=None, averages_end_year=None
+                            , azure_url_extremes=None, sas_token=None
+                            , azure_url_averages=None, azure_url_1_year_temp=None, url_1_year_temp=None, temp_filename=None
+                            , remove_source_files=True, area_of_interest=None, name_of_area_of_interest=None
+                            , interactive=False, print_extra_msg=False):
+    &#34;&#34;&#34;
+    Makes available the extreme maxiumn temperature identification data, for analysis of 1-year duration,
+     for the specified region and optionally, for the specified area of interest
+    If azure_url_extremes is provided then: 
+      the file is first looked up in Azure and downloaded.
+      else, the file is generated and then uploaded back in to Azure.
+    Else - the file is generated.
+    Assumes that the source data files (averages and 1-yr temp) are already available locally, or in Azure, or elsewhere on Internet. 
+      Please generate those separately if not already available.    
+    
+    The unit of temperature (Kelvin) is retained.
+    Input Parameters:
+    - analysis_year        : The year for which .
+    - threshold            : a fixed temperature, or a value or pecentile above average that will be considered for extreme temp
+    - result_type          : &#39;max&#39; or &#39;min&#39; for analysis of extreme Maximum or Minimum temperatures
+    - based_on_averages    : if True, the threshold is the difference above the average temperature. Else, actual temp in Kelvin
+    - is_percentage        : True, a percentile above average. False, a fixed value above average. Evaluated only if based_on_averages=True. 
+    - n_continuous_days    : number of continuous days of above threshold temperature to qualify as a extreme temp event.
+    - cmip                 : integer number to specify cmip version (5 or 6 or other). Default is 6
+    - model_name           : Specify the name of the model, for example &#39;ssp245&#39;. This will become a part of the filename.
+    - region_id            : integer ID of the region. See Regions class for available regions.
+    - averages_start_year, averages_end_year: range of years to use for average temperatures
+    - azure_url_extremes   : if provided, the extreme temperature identification results will be uploaded in Azure for reuse.
+    - sas_token            : A sas token with &#39;read&#39; permissions to the azure blob container. If saving back, then &#39;write&#39; permission is required.  
+    - azure_url_averages   : url without filename. if averages file is to be downloded from azure. will be used only if not found locally.
+    - azure_url_1_yr_temp  : url without filename. if 1-year temperature files are to be downloded from azure. will be used only if not found locally.
+    - url_1_yr_temp        : url without filename. if 1-year temperature files are to be downloded from the Internet. will be used only if not found locally.
+    - temp_data_filename   : the name of the 1-year temperature file must be provided
+    - remove_source_files  : If downloaded, remove from local environment, after use, the source files (averages file and 1-year temperature files)
+    - area_of_interest     : if provided, must be a dict with the keys: &#39;top_lat&#39;, &#39;bottom_lat&#39;, &#39;left_lon&#39;, &#39;right_lon&#39;
+    - name_of_area_of_interest : string value if also provided area_of_interest, else None. A name to distinguish the results file.
+    - print_extra_msg      : default is False. If True, will print out extra information during the processing.
+    - interactive : If true, will prompt for user confirmation before executing. Set False to bypass user input.
+    Returns: tuple of 1) xarray of the 1-year extremes data file in the range and 2) xarray of the averages, if used, else None.
+    &#34;&#34;&#34;
+    validations_passed = False
+    ds_results = None
+    ds_averages = None
+    filename = None
+    averages_filename = None
+    temp_1_year_filename = None
+    sas_url = None
+    
+    top_lat = None
+    bottom_lat = None
+    left_lon = None
+    right_lon = None
+    
+    downloaded_avgs_file = False
+    downloaded_temp_file = False
+    
+    validations_passed = Validations_for_Identify_1_year_Extreme_Temp_By_Region(analysis_year, threshold
+                                                            , n_continuous_days, region_id, area_of_interest, name_of_area_of_interest
+                                                            , based_on_averages, averages_start_year, averages_end_year)
+    
+    reg = Regions().get_region_by_ID(region_id)
+    
+    if validations_passed:
+        print_msg = &#39;\nGet Extreme maximum temperature identification data\n ... for the year {},&#39;.format(analysis_year)
+        print_msg += &#39;\n ... for the region {}-{}&#39;.format(region_id, reg[&#39;region_name&#39;])
+        print_msg += &#39;\n ... for model {} of CMIP{}&#39;.format(model_name, cmip)
+        if area_of_interest is not None:
+            print_msg += &#39;\n ... area of interest: top_lat{}, bottom_lat{}, left_lon, right_lon&#39;.format(area_of_interest.get(&#39;top_lat&#39;),
+                                                                                                    area_of_interest.get(&#39;bottom_lat&#39;),
+                                                                                                    area_of_interest.get(&#39;left_lon&#39;),
+                                                                                                    area_of_interest.get(&#39;right_lon&#39;))
+        if based_on_averages:
+            print_msg += &#39;\n ... for {}{} above average from the years {} to {}&#39;.format(threshold, &#39;%&#39; if is_percentage else &#39; Kelvin&#39;
+                                                                           , averages_start_year, averages_end_year)
+        else:
+            print_msg += &#39;\n ... for temperature above {} Kelvin&#39;.format(threshold)
+        print_msg += &#39;\n ... when observed for {} continuous days\n&#39;.format(n_continuous_days)
+        
+        print(print_msg)
+        
+        if interactive:
+            ans = input(&#39;Do you want to continue? y/n&#39;).lower()
+        else:
+            ans = &#39;y&#39;
+        
+        if not ans == &#39;y&#39;:
+            print(&#34;Response: {}.\n Not &#39;y&#39;, stopping execution.&#34;.format(ans))        
+            return None
+        
+        start_time = time.time()        # prepare to time the operation
+        
+        # file naming patterns        
+        # Extreme_max_t__Rgn_1__2025__Abv_Avg_3_K_for_3_days__CMIP6_ssp245.nc
+        # Extreme_max_t__Rgn_1_AoI_US__2025__Abv_Avg_2_pct_for_4_days__CMIP6_ssp245.nc
+        # Extreme_min_t__Rgn_1_AoI_US__2025__Blw_270_K_for_4_days__CMIP6_ssp245.nc
+        
+        if based_on_averages:
+            criteria = &#39;Abv_Avg_{}_{}&#39;.format(threshold, &#39;pct&#39; if is_percentage else &#39;K&#39;)
+        else:
+            criteria = &#39;Abv_{}_K&#39;.format(threshold)
+        criteria += &#39;_for_{}_days&#39;.format(n_continuous_days)
+        
+        extremes_filename = get_1_year_extreme_temp_filename(result_type, cmip, model_name
+                               , region_id, analysis_year, name_of_area_of_interest
+                               , based_on_averages, threshold, is_percentage, n_continuous_days
+                               , averages_start_year, averages_end_year)
+
+        print(&#39;{} UTC: Extreme temperature data filename: {}&#39;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), extremes_filename))        
+        filename = extremes_filename
+        downloaded_from_azure = False
+        local = os.path.exists(filename)    # first, check if available locally
+        print(&#34;{} UTC: Already available locally? {}&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), &#39;Yes&#39; if local else &#39;No. Checking in Azure...&#39;))
+        if not local:            
+            if azure_url_extremes is not None: 
+                sas_url = create_sas_url(azure_url_extremes, sas_token, filename)
+                if is_file_in_Azure(sas_url):
+                    print(&#34;{} UTC: Available in Azure, downloading...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                    download_file(sas_url, filename, overwrite_local_file=True, from_azure=True)
+                    downloaded_from_azure = True
+                    print(&#34;{} UTC: Download complete&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))                    
+                else:
+                    print(&#34;{} UTC: Also not in Azure. Preparing the file...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                    
+            else:
+                print(&#34;{} UTC: URL not provided to check in Azure. Preparing the Extreme temp data file... &#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+        
+        if not local and not downloaded_from_azure:   # not found in azure as well, prepare file
+           # first, get 1 year temp file
+            filename = temp_filename               
+            print(&#39;{} UTC: Working with 1_year temperature filename: {}&#39;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))            
+            local = os.path.exists(filename)    # first, check if available locally
+            print(&#34;{} UTC: Available locally? {}&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), &#39;Yes&#39; if local else &#39;No. Checking in Azure / Internet...&#39;))
+            if not local:            
+                if azure_url_1_year_temp is not None: 
+                    sas_url = create_sas_url(azure_url_1_year_temp, sas_token, filename)
+                    if is_file_in_Azure(sas_url):
+                        print(&#34;{} UTC: Available in Azure {}, downloading...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))
+                        download_file(sas_url, filename, overwrite_local_file=True, from_azure=True)
+                        print(&#34;{} UTC: Download complete&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))                    
+                    else:
+                        print(&#34;{} UTC: Also not in Azure {}. Error!&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))
+                        raise ValueError(&#39;Required file {} not found in the local environment or in Azure.&#39;.format(filename))
+                elif url_1_year_temp is not None: 
+                    download_file(os.path.join(url_1_year_temp, filename), filename, overwrite_local_file=True, from_azure=False, print_msg=False)
+                else:
+                    raise ValueError(&#39;Required file not found in the local environment. Url not provided to check in Azure or Internet.&#39;)
+
+                downloaded_temp_file = True  # If not local, and here, means the tempfile was downloaded
+            
+            ds_1_year_temp = xr.open_dataset(filename)
+
+            # Determine applicable area of interest 
+            if area_of_interest is not None:
+                top_lat = area_of_interest.get(&#39;top_lat&#39;)
+                bottom_lat = area_of_interest.get(&#39;bottom_lat&#39;)
+                left_lon = area_of_interest.get(&#39;left_lon&#39;)
+                right_lon = area_of_interest.get(&#39;right_lon&#39;)                
+            else:
+                top_lat = reg[&#39;top_lat&#39;]
+                bottom_lat = reg[&#39;bottom_lat&#39;]
+                left_lon = reg[&#39;left_lon&#39;]
+                right_lon = reg[&#39;right_lon&#39;]
+
+            # take subset of full grid temp file
+            ds_1_year_temp = region_subset(ds_1_year_temp, top_lat, bottom_lat, left_lon, right_lon)
+
+            if based_on_averages:
+                # get averages file
+                n_years = (averages_end_year - averages_start_year) + 1                
+                if model_name.endswith(&#39;_ssp245&#39;) or model_name.endswith(&#39;_ssp585&#39;):
+                    avgs_model_name = model_name[:-7]
+                else:
+                    avgs_model_name = model_name
+                averages_filename = get_averages_filename(result_type, cmip, avgs_model_name, n_years, averages_start_year, averages_end_year)                
+                print(&#39;{} UTC: Working with Averages filename: {}&#39;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), averages_filename))
+                filename = averages_filename
+                local = os.path.exists(filename)    # first, check if available locally
+                print(&#34;{} UTC: Available locally? {}&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), &#39;Yes&#39; if local else &#39;No. Checking in Azure...&#39;))
+                if not local:            
+                    if azure_url_1_year_temp is not None: 
+                        sas_url = create_sas_url(azure_url_1_year_temp, sas_token, filename)
+                        if is_file_in_Azure(sas_url):
+                            print(&#34;{} UTC: Available in Azure {}, downloading...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))
+                            download_file(sas_url, filename, overwrite_local_file=True, from_azure=True)
+                            print(&#34;{} UTC: Download complete&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))                    
+                        else:
+                            print(&#34;{} UTC: Also not in Azure {}. Error!&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))
+                            raise ValueError(&#39;Required file {} not found in the local environment or in Azure.&#39;.format(filename))
+                    else:
+                        raise ValueError(&#39;Required file {} not found in the local environment. Url not provided to check in Azure.&#39;.format(filename))
+                    
+                    downloaded_avgs_file = True  # If not local, and here, means the averages file was downloaded
+
+                print(&#34;{} UTC: Getting subset of applicable region, apply threshold...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                ds_averages = xr.open_dataset(filename)
+                # subset of averages
+                ds_averages = region_subset(ds_averages, top_lat, bottom_lat, left_lon, right_lon)
+
+                ds_1_year_temp = ds_1_year_temp.assign(above_threshold=lambda x: x.tasmax + 0)   # first create the new column with the original temperature
+                if result_type == &#39;max&#39;:
+                    if is_percentage:
+                        ds_1_year_temp.above_threshold[:,:,:] = \
+                            ds_1_year_temp.above_threshold[:,:,:] - (ds_averages.tasmaxavg.values * (1 + (threshold/100)))
+                    else:
+                        ds_1_year_temp.above_threshold[:,:,:] = \
+                            ds_1_year_temp.above_threshold[:,:,:] - (ds_averages.tasmaxavg.values + threshold)
+                else:
+                    raise ValueError(&#39;min --- not fully implemented as yet&#39;)
+                    
+            else:       # based_on_averages=False
+                if result_type == &#39;max&#39;:
+                    ds_1_year_temp = ds_1_year_temp.assign(above_threshold=lambda x: x.tasmax - threshold)
+                else:
+                    raise ValueError(&#39;min --- not fully implemented as yet&#39;)
+                    
+                
+                ds_averages = None
+
+            print(&#34;{} UTC: Preparing extreme temperature data...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+
+            # determine extreme Y/N, using rolling windows of n_continuous_days
+            rolling = ds_1_year_temp.above_threshold.rolling(time=n_continuous_days)
+            arr_win_status = window_gte_threshold(rolling.construct(&#34;window_dim&#34;).values,0)
+            arr_hw = np.zeros(np.shape(ds_1_year_temp.tasmax))
+            n_idx = n_continuous_days - 1
+            for i in range(n_idx):
+                arr_hw[i:i-n_idx,:,:] =   xr.ufuncs.logical_or(arr_hw[i:i-n_idx,:,:], arr_win_status[n_idx:,:,:])
+            arr_hw[n_idx:,:,:] =   xr.ufuncs.logical_or(arr_hw[n_idx:,:,:], arr_win_status[n_idx:,:,:])
+
+            ds_1_year_temp = ds_1_year_temp.assign(extreme_yn = (ds_1_year_temp.dims, arr_hw))
+
+            ds_results = ds_1_year_temp
+
+            # update attributes 
+            ds_results.attrs[&#39;Data description&#39;] = &#39;maximum temperature; difference from theshold; 1 or 0 for extreme yes or no&#39;
+            ds_results.attrs[&#39;Years processed&#39;] = 1
+            ds_results.attrs[&#39;Store as&#39;] = extremes_filename
+            
+            new_attrs = {&#39;Dataset&#39; : &#39;1-year Extreme {} Temperature Data CMIP{} {} region_id: {}&#39;.format(result_type, cmip, model_name, region_id),
+                     &#39;About dataset&#39; : &#39;1-year Extreme {} Temp Data, for CMIP{} model: {}, for the region {}-{}&#39;.format(result_type
+                                                                                                                            , cmip, model_name
+                                                                                                                            , region_id
+                                                                                                                        , reg.get(&#39;region_name&#39;)),
+                     &#39;Data variables&#39; : &#39;tas{}, {}, extreme_yn&#39;.format(result_type, &#39;above_threshold&#39; if result_type==&#39;max&#39; else &#39;below_threshold&#39;),
+                     &#39;Data description&#39; : &#39;{} temperature; difference from threshold; extreme (y/n)-continuous for specified day&#39;.format(result_type),
+                     &#39;Range&#39; : &#39;1 year&#39;,
+                     &#39;Analysis year&#39; : str(analysis_year),
+                     &#39;threshold&#39; : region_id,
+                     &#39;based_on_averages&#39; : str(based_on_averages),
+                     &#39;averages_start_year&#39; : str(averages_start_year),
+                     &#39;averages_end_year&#39; : str(averages_end_year),
+                     &#39;threshold&#39; : threshold, 
+                     &#39;result_type&#39; : result_type,
+                     &#39;is_percentage&#39; : str(is_percentage),
+                     &#39;Number of continuous days to be considered extreme&#39; : n_continuous_days,
+                     &#39;cmip&#39; : cmip, 
+                     &#39;model_name&#39;: model_name,                         
+                     &#39;region_id&#39; : region_id,
+                     &#39;region_name&#39; : reg.get(&#39;region_name&#39;),
+                     &#39;region_top_lat&#39; : reg.get(&#39;top_lat&#39;),
+                     &#39;region_bottom_lat&#39; : reg.get(&#39;bottom_lat&#39;),
+                     &#39;region_left_lon&#39; : reg.get(&#39;left_lon&#39;),
+                     &#39;region_right_lon&#39; : reg.get(&#39;right_lon&#39;),
+                     &#39;region_img_url&#39; : reg.get(&#39;img_url&#39;),
+                     &#39;Years processed&#39; : 1,
+                     &#39;Store as&#39;: extremes_filename
+                    }
+        
+            ds_results.attrs = new_attrs
+
+
+            # save, and upload to azure - if azure_url_extremes is provided AND not already downloaded from there
+            if downloaded_from_azure:
+                SaveResult(ds_results, azure_url_prefix = None, sas_token=None, local_copy=True)  # save only
+            else:
+                SaveResult(ds_results, azure_url_prefix = azure_url_extremes, sas_token=sas_token, local_copy=True) # attempt to upload
+
+            print(&#39;{} UTC: Saved locally: Extreme temp data file: {}&#39;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), extremes_filename))
+            if azure_url_extremes is not None:
+                print(&#39;{} UTC: Also uploaded to Azure storage&#39;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), extremes_filename))
+
+            if remove_source_files:
+                if downloaded_avgs_file:
+                    os.remove(averages_filename)
+                    print(&#39;{} UTC: Averages file was downloaded, now removed - as requested&#39;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                    
+                if downloaded_temp_file:
+                    os.remove(temp_filename)
+                    print(&#39;{} UTC: 1-year temperature file was downloaded, now removed - as requested&#39;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                
+        else:   # in local or downloaded_from_azure
+            ds_results = xr.open_dataset(filename)
+            if azure_url_extremes is not None:
+                sas_url = os.path.join(azure_url_extremes, filename)
+                if sas_token is not None:
+                    sas_url += &#39;?&#39; + sas_token
+                upload_file_to_Azure(save_back_in_azure=True, sas_url=sas_url, filename=filename)
+            
+        # print out the time it took
+        execution_time = (time.time() - start_time)
+        print(&#34;Complete execution time | Identify_1_year_Extreme_Temp_By_Region | (mins) {:0.2f}&#34;.format(execution_time/60.0))
+        
+    return ds_results, ds_averages
+
+    
+
+#### ####################################################################    
+#### 3.5 verify_ext_data()
+#### A function to verify the extreme temperature data
+#### ####################################################################
+
+def verify_ext_data(ext_filename, ds_avg, day_start_idx, day_end_idx, test_lat, test_lon):
+    ds_ext = xr.open_dataset(ext_filename)
+
+    result_type = ds_ext.attrs[&#39;result_type&#39;]
+    temp_var = &#39;tasmax&#39; if result_type==&#39;max&#39; else &#39;tasmin&#39;
+    avg_var = temp_var + &#39;avg&#39;
+    threshold_var = &#39;above_threshold&#39; if result_type==&#39;max&#39; else &#39;below_threshold&#39;
+    
+    # specify range of days to test:
+    days = list(range(day_start_idx, day_end_idx+1))
+
+    print(&#39;days: {}&#39;.format(days))
+    print(&#39;lat: {}, lon: {}\n&#39;.format(test_lat, test_lon))
+
+    avg_for_30_yrs_from_file = ds_avg[avg_var].sel(lat=[test_lat], lon=[test_lon], method=&#34;nearest&#34;)[days].squeeze().values
+    print(avg_for_30_yrs_from_file, &#39;: average for this day, from 30-year avg file&#39;)
+
+    threshold = int(ds_ext.attrs[&#39;threshold&#39;])
+    print(threshold, &#39;: threshold&#39;)
+
+    print(avg_for_30_yrs_from_file + threshold, &#39;: temp value that will be considered {} threshold.\n&#39;.format(threshold_var[:5]))
+
+    print(np.round(ds_ext[temp_var].sel(lat=[test_lat], lon=[test_lon], method=&#34;nearest&#34;).values[days].squeeze(), 2), temp_var)
+    print(np.round(ds_ext[threshold_var].sel(lat=[test_lat], lon=[test_lon], method=&#34;nearest&#34;).values[days].squeeze(), 2), threshold_var)
+    print(ds_ext.extreme_yn.sel(lat=[test_lat], lon=[test_lon], method=&#34;nearest&#34;).values[days].squeeze(), &#39;extreme yn&#39;)
+    
+    print(&#39;\n--------------------\ntotal number of days of extreme {} temperature&#39;.format(result_type))
+    n_ext_yr = np.sum(ds_ext.extreme_yn.sel(lat=[test_lat], lon=[test_lon], method=&#34;nearest&#34;).values.squeeze())
+    print(n_ext_yr, &#39; = {}% of days&#39;.format(round((n_ext_yr/365)*100, 1)))
+    
+    print(&#39;\n--------------------\ntotal number of grid cells of extreme {} temperature, one day&#39;.format(result_type))
+    n_day = 180
+    nlat = int(ds_ext.coords.get(&#39;lat&#39;).count().values)
+    nlon = int(ds_ext.coords.get(&#39;lon&#39;).count().values)
+    print(&#39;Total grid cells (lat x lon) = ({} x {}) =&#39;.format(nlat, nlon), (nlat * nlon))
+    n_ext_cells = int(np.sum(ds_ext.extreme_yn.values[n_day].squeeze()))
+    print(n_ext_cells, &#39;= {}% of the area, for one day, index: {}&#39;.format(round((n_ext_cells/(nlat * nlon))*100, 1), n_day))
+    
+    return ds_ext
+
+
+
+#### ####################################################################    
+#### 3.6 interactive_visual_pct_pixels_extreme_by_day()
+#### A function to analyze Heatwaves, extreme cold Temperature 
+#### from 1-year data results -- 
+#### Visualize the Percentage of pixels in extreme (heatwave or cold)
+#### Returns - interactive bokeh pane
+#### ####################################################################
+
+def interactive_visual_pct_pixels_extreme_by_day(ds_ext):
+    &#34;&#34;&#34;
+    Returns: 1) xarray DataArray, with the number of pixels with extreme y/n flag as 1 (True), 
+     for each day in the dataset
+           : 2) bokeh pane for interactive visualization.
+    &#34;&#34;&#34;
+    result_type = ds_ext.attrs[&#39;result_type&#39;]
+    temp_var = &#39;tasmax&#39; if result_type==&#39;max&#39; else &#39;tasmin&#39;
+    day_wise_mean = ds_ext.extreme_yn.sum(dim=[&#39;lat&#39;,&#39;lon&#39;]) / ds_ext[temp_var].count(dim=[&#39;lat&#39;,&#39;lon&#39;])
+    dt_index = day_wise_mean.indexes[&#39;time&#39;].to_datetimeindex()
+    day_wise_mean = xr.DataArray(day_wise_mean, coords={&#39;time&#39;:dt_index.values})
+
+    day_wise_mean_plot = day_wise_mean.hvplot()
+
+    pane = pn.panel(day_wise_mean_plot)
+    return pane
+
+
+#### ####################################################################    
+#### 3.7 interactive_visual_region_in_polar()
+#### A function to analyze Heatwaves, extreme cold Temperature 
+#### from 1-year data results
+#### Visualize the temperature in polar coordinates (heatwave or cold)
+#### Returns - interactive bokeh pane
+#### ####################################################################
+
+def interactive_visual_region_in_polar(ds_ext, start_day=1, end_day=5, step_n_days=1, data_variable_name=&#39;tasmax&#39;):
+    &#34;&#34;&#34;&#34;&#34;&#34;
+    proj = ccrs.Orthographic(-90, 30)
+#     proj = ccrs.OSNI(ccrs.TransverseMercator(90,30,0,0))
+
+    col_map = &#39;coolwarm&#39;
+    if data_variable_name == &#39;extreme_yn&#39;:
+        col_map = &#39;cet_CET_L19&#39;
+    
+
+    visual = ds_ext[data_variable_name].isel(time=slice(start_day-1, end_day, step_n_days)).hvplot.quadmesh(
+    &#39;lon&#39;, &#39;lat&#39;, projection=proj, project=True, global_extent=False, 
+    cmap=col_map, rasterize=True, dynamic=False, coastline=True, 
+    frame_width=500)
+    
+    pane = pn.panel(visual)
+    return pane
+
+
+#### ####################################################################    
+#### 3.8 load_1_yr_results_and_basic_analysis()
+#### A function to analyze Heatwaves, extreme cold Temperature 
+#### from 1-year data results
+#### Returns - xarray dataset
+#### ####################################################################
+
+# specify filename to test:
+def load_1_yr_results_and_basic_analysis(ext_filename, show_basic_analysis=True, area_of_interest=None):
+    ds_ext = xr.open_dataset(ext_filename)
+
+    if not show_basic_analysis:
+        return 
+    
+    # specify range of days to test:
+    print_attrs = [&#39;region_id&#39;, &#39;Analysis year&#39;, &#39;threshold&#39;, &#39;based_on_averages&#39;
+                   , &#39;is_percentage&#39;, &#39;averages_start_year&#39;, &#39;averages_end_year&#39;]
+    attr_info = &#39;Extreme Temperature Base Results for: \n&#39;
+    for attribute in print_attrs:
+        value = str(ds_ext.attrs[attribute])        
+        attr_info += &#39;{}: {}; &#39;.format(attribute, value)
+    print(attr_info)
+    print(&#39;** from the filename: &#39;, ds_ext.attrs[&#39;Store as&#39;], &#39;**&#39;)
+
+    if area_of_interest is not None:
+        ds_ext = region_subset(ds_ext, area_of_interest.get(&#39;top_lat&#39;), area_of_interest.get(&#39;bottom_lat&#39;)
+                               , area_of_interest.get(&#39;left_lon&#39;), area_of_interest.get(&#39;right_lon&#39;))
+        
+    return ds_ext</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="extreme_temp_identification.AggregateAverageForRange"><code class="name flex">
+<span>def <span class="ident">AggregateAverageForRange</span></span>(<span>start_year, end_year, cmip=6, model_name=None, result_type='max', azure_url_prefix=None, sas_token=None, overwrite_local_file=False, remove_after_use=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes available Average and Record temperatures for multiple decades.
+* Date range should be a multiple of decades &mdash; e.g. 1950 to 1969
+OR 1951 to 1970.
+* Make sure the underlying data files, by decades are available. Else, an exception will be raised!</p>
+<p>Checks the preprocessed average data files in Azure cloud or locally and:
+* downloads the matching file if already exists
+* else, checks for the component files (by decade).
+* &ndash; If complete data not available, exception is thrown. Else, the required files are downloaded and aggregated.
+* returns the results xarray dataset
+Average and Record temperatures are captured for each cell, i.e. the lat, lon combination in the specified grid.
+The unit of temperature (Kelvin) is retained.
+Input Parameters:
+- start_year
+: start year of the range
+- end_year
+: end year of the range
+- cmip
+: integer number to specify cmip version (5 or 6 or other). Default is 6
+- model_name
+: name of the model, for averages (without _ssp245 at the end). For example: 'GFDL_ESM4'
+- result_type : string 'max' or 'min'
+- azure_url_prefix=None : if downloading from Azure blob storage, specify the url with the container and the folder
+, else specify None to check the files locally.
+- sas_token
+: A sas token with 'read' permissions to the azure blob container
+- overwrite_local_file
+: if True, will overwrite, else, if already available locally, will not download again.
+- remove_after_use
+: default = True. Set to False to retain the files locally
+Returns:
+The xarray dataframe with 'results'</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def AggregateAverageForRange(start_year, end_year, cmip=6, model_name=None, result_type=&#39;max&#39;
+                           , azure_url_prefix=None, sas_token=None
+                           , overwrite_local_file=False, remove_after_use=True):
+    &#34;&#34;&#34;
+    Makes available Average and Record temperatures for multiple decades. 
+    * Date range should be a multiple of decades --- e.g. 1950 to 1969  OR 1951 to 1970.
+    * Make sure the underlying data files, by decades are available. Else, an exception will be raised!
+    
+    Checks the preprocessed average data files in Azure cloud or locally and:
+    * downloads the matching file if already exists
+    * else, checks for the component files (by decade). 
+    * -- If complete data not available, exception is thrown. Else, the required files are downloaded and aggregated.
+    * returns the results xarray dataset
+    Average and Record temperatures are captured for each cell, i.e. the lat, lon combination in the specified grid.
+    The unit of temperature (Kelvin) is retained.
+    Input Parameters:
+    - start_year  : start year of the range
+    - end_year    : end year of the range
+    - cmip        : integer number to specify cmip version (5 or 6 or other). Default is 6
+    - model_name  : name of the model, for averages (without _ssp245 at the end). For example: &#39;GFDL_ESM4&#39;
+    - result_type : string &#39;max&#39; or &#39;min&#39;
+    - azure_url_prefix=None : if downloading from Azure blob storage, specify the url with the container and the folder
+                              , else specify None to check the files locally.
+    - sas_token   : A sas token with &#39;read&#39; permissions to the azure blob container
+    - overwrite_local_file  : if True, will overwrite, else, if already available locally, will not download again.
+    - remove_after_use      : default = True. Set to False to retain the files locally
+    Returns:  The xarray dataframe with &#39;results&#39;
+    &#34;&#34;&#34;
+    validations_passed = False
+    ds_results = None
+    filename = &#39;&#39;
+    
+    n_years = (end_year - start_year) + 1   # range
+    
+    # validations
+    if not (isinstance(start_year, int) and isinstance(end_year, int) and (end_year &gt; start_year)):
+        print(&#39;Validation Error: start_year and end_year should be integers; end year should be greater than start year.&#39;)
+    elif not (n_years)%10 == 0:
+        print(&#39;Validation Error: The total range (end year - start year)+1 should be a multiple of 10.&#39;)    
+    elif model_name is None:
+        print(&#39;Validation Error: The model name cannot be None. Should be string value.&#39;)    
+    else:
+        validations_passed = True
+    
+    if validations_passed:
+        n_components = int(n_years / 10)             # number of decades in the range       
+        total_years = 0                    
+        
+        # intended filename
+        filename = get_averages_filename(result_type, cmip, model_name, n_years, start_year, end_year)
+        
+        # intended component filenames
+        component_files = [&#39;&#39;] * n_components   # as many component files as many decades in the range
+        component_available = [False] * n_components   # initialized as none of the files are available
+        complete_data = False                   # initialized as file / components are not available
+        
+        component_start_year = start_year  
+        for i in range(n_components):
+            component_end_year = component_start_year + 9
+            component_files[i] = get_averages_filename(result_type
+                                                        ,cmip, model_name,10,component_start_year,component_end_year)
+            print(&#39;component files[{}] = {}&#39;.format(i, component_files[i]))
+            component_start_year += 10
+
+        # prepare to time the operation
+        start_time = time.time()
+        
+        # if local storage is to be checked first
+        if azure_url_prefix is None or overwrite_local_file==False:
+            if os.path.exists(filename):                # if the complete file exists
+                complete_data = True                
+            else:
+                # check each file exists
+                for i in range(n_components):
+                    component_available[i] = os.path.exists(component_files[i])
+                    
+                complete_data = all(component_available)
+
+        # if complete data is not available locally, check if we can look in Azure blob storage
+        if not complete_data:
+            if azure_url_prefix is not None:
+                # check in azure
+                # first the complete file...
+                sas_url = azure_url_prefix + filename + &#34;?&#34; + sas_token
+                blob_client = BlobClient.from_blob_url(sas_url)
+                if blob_client.exists():
+                    download_file(sas_url, filename, overwrite_local_file, from_azure=True)
+                    complete_data = True
+                else:
+                    for i in range(n_components):
+                        # only for files not availble locally, unless overwrite_local_file = True
+                        if not component_available[i] or overwrite_local_file:
+                            sas_url = azure_url_prefix + component_files[i] + &#34;?&#34; + sas_token
+                            blob_client = BlobClient.from_blob_url(sas_url)
+                            if blob_client.exists():
+                                download_file(sas_url, component_files[i], overwrite_local_file, from_azure=True)
+                            else:
+                                errMsg = &#39;Missing component file (on Azure){}&#39;.format(component_available[i])
+                                raise ValueError(errMsg)
+                    complete_data = True    
+
+                
+            else: 
+                errMsg = &#39;Missing component files (locally): {}&#39;.format(&#39;, &#39;.join([str(component_files[i]) for i,bv in enumerate(component_available) if bv]))
+                raise ValueError(errMsg)
+
+
+        # complete files should be available locally at this stage
+        # start by checking for the complete file first
+        if os.path.exists(filename):
+            ds_results = xr.open_dataset(filename)  # load the complete file directly
+            total_year = n_years
+            # delete the file
+            if remove_after_use:
+                os.remove(filename)
+        else:
+            # prepare from component files            
+            for cfilename in component_files:
+                if total_years == 0:    # first file
+                    ds_results = xr.open_dataset(cfilename)                    
+                else:
+                    ds_comp = xr.open_dataset(cfilename)
+                    result_variables = ds_results.attrs[&#39;Data variables&#39;]
+                    if remove_after_use:
+                        os.remove(cfilename)
+                    if result_type == &#34;min&#34;:        
+                        ds_results.update({result_variables[1] : xr.ufuncs.minimum(ds_comp[result_variables[1]]
+                                                                                , ds_results[result_variables[1]])})   # peak min temperature across years
+                    else:
+                        ds_results.update({result_variables[1] : xr.ufuncs.maximum(ds_comp[result_variables[1]]
+                                                                                , ds_results[result_variables[1]])})   # peak max temperature across years
+                    # for both max and min
+                    ds_results.update({result_variables[0] : (ds_results[result_variables[0]] + ds_comp[result_variables[0]])})    # sum across years
+                    
+                # in any case    
+                total_years += 10
+            # finally, for avg from component files        
+            ds_results.update({result_variables[0] : np.round((ds_results[result_variables[0]] / n_components), 2)})    # avg across years
+            ds_results.update({result_variables[1] : np.round(ds_results[result_variables[1]], 2)})    # round off values
+
+        # set attributes
+        ds_results.attrs[&#39;Range&#39;] = str(n_years) + &#39; years&#39;
+        ds_results.attrs[&#39;Start year&#39;] = str(start_year)
+        ds_results.attrs[&#39;End year&#39;] = str(end_year)
+        ds_results.attrs[&#39;Years processed&#39;] = total_years
+        ds_results.attrs[&#39;Store as&#39;] = get_averages_filename(result_type, cmip, model_name, n_years, start_year, end_year)
+            
+        # print out the time it took
+        execution_time = (time.time() - start_time)
+        print(&#34;Complete execution time | AggregateAverageForRange | (mins) {:0.2f}&#34;.format(execution_time/60.0))
+            
+    return ds_results</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.CreateDatasetForResults"><code class="name flex">
+<span>def <span class="ident">CreateDatasetForResults</span></span>(<span>filename, start_year, end_year, cmip=6, model_name=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>A function that loads the CMIP data file into xarray dataset &ndash; for reference,
+then creates and returns a new xarray with matching dimensions and coordinates
+but with new, empty variables</p>
+<p>The variables of the new xarray will be ['tasmaxavg', 'tasmaxrec'] or ['tasminavg', 'tasminrec']
+Similar three dimensions and the coordinates will be there [day: 365 (or 360), lat: 720,
+lon: 1440]
+Input Parameter:
+- filename : a CMIP source data file for createing the reference xarray dataset.
+- start_year : should be the integer value for the intended results date range start (e.g. 1950)
+- end_year : should be the integer value for the intended results date range end (e.g. 1959)
+- cmip
+: integer number to specify cmip version (5 or 6 or other). Default is 6
+<br>
+- model_name
+: name of the model, for averages (without _ssp245 at the end). For example: 'GFDL_ESM4'
+Returns: an xarray dataset</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def CreateDatasetForResults(filename, start_year, end_year, cmip=6, model_name=None):
+    &#34;&#34;&#34;
+    A function that loads the CMIP data file into xarray dataset -- for reference,
+    then creates and returns a new xarray with matching dimensions and coordinates 
+    but with new, empty variables
+    
+    The variables of the new xarray will be [&#39;tasmaxavg&#39;, &#39;tasmaxrec&#39;] or [&#39;tasminavg&#39;, &#39;tasminrec&#39;]
+    Similar three dimensions and the coordinates will be there [day: 365 (or 360), lat: 720,  lon: 1440]
+    Input Parameter:
+    - filename : a CMIP source data file for createing the reference xarray dataset.
+    - start_year : should be the integer value for the intended results date range start (e.g. 1950)
+    - end_year : should be the integer value for the intended results date range end (e.g. 1959)
+    - cmip        : integer number to specify cmip version (5 or 6 or other). Default is 6    
+    - model_name  : name of the model, for averages (without _ssp245 at the end). For example: &#39;GFDL_ESM4&#39;
+    Returns: an xarray dataset
+    &#34;&#34;&#34;
+    ds_rec = None
+    validations_passed = False
+    data_type = &#39;&#39;
+    
+    # validations
+    if not (isinstance(start_year, int) and isinstance(end_year, int) and (end_year &gt; start_year)):
+        print(&#39;Validation Error: start_year and end_year should be integers; end year should be greater than start year.&#39;)
+    else:
+        validations_passed = True
+    
+    if validations_passed:
+        # load the file
+        based_on = xr.open_dataset(filename)
+        
+        var_minmax = list(based_on.data_vars.keys())[0]  # will be tasmax or tasmin
+        
+        #shape of the dataset
+        day_time = based_on.dims.get(&#39;time&#39;)
+        lat = based_on.dims.get(&#39;lat&#39;)
+        lon = based_on.dims.get(&#39;lon&#39;)        
+        
+        if var_minmax == &#39;tasmax&#39;:
+            data_type = &#39;Average and record maximum temperature, based on tasmax&#39;
+            ds_variables = [&#39;tasmaxavg&#39;, &#39;tasmaxrec&#39;]
+            ds_data = {&#39;tasmaxavg&#39; : ([&#39;day&#39;,&#39;lat&#39;,&#39;lon&#39;], np.empty((day_time, lat, lon))), &#39;tasmaxrec&#39; : ([&#39;day&#39;,&#39;lat&#39;,&#39;lon&#39;], np.empty((day_time, lat, lon)))}
+        else:
+            data_type = &#39;Average and record minimum temperature, based on tasmin&#39;
+            ds_variables = [&#39;tasminavg&#39;, &#39;tasminrec&#39;]
+            ds_data = {&#39;tasminavg&#39; : ([&#39;day&#39;,&#39;lat&#39;,&#39;lon&#39;], np.empty((day_time, lat, lon))), &#39;tasminrec&#39; : ([&#39;day&#39;,&#39;lat&#39;,&#39;lon&#39;], np.empty((day_time, lat, lon)))}
+
+        ds_rec = based_on.copy(deep = True)   
+        ds_rec = ds_rec.rename_dims({&#39;time&#39;:&#39;day&#39;})
+        ds_rec = ds_rec.assign(ds_data)
+        ds_rec = ds_rec.drop_vars(var_minmax)
+        ds_rec = ds_rec.assign_coords({&#34;day&#34;: xr.DataArray(np.arange(1,day_time+1), dims=&#39;day&#39;)})
+        ds_rec = ds_rec.reset_coords(&#39;time&#39;, drop=True)
+        
+        n_years = (end_year - start_year) + 1
+        
+        new_attrs = {&#39;Dataset&#39; : &#39;Average temperature CMIP{}&#39;.format(cmip),
+                     &#39;About dataset&#39; : &#39;A dataset with average and record temparatures, across years&#39;,
+                     &#39;Original values&#39; : var_minmax,
+                     &#39;Data variables&#39; : ds_variables,
+                     &#39;Data description&#39; : data_type,
+                     &#39;Range&#39; : str(n_years) + &#39; years&#39;,
+                     &#39;Start year&#39; : str(start_year),
+                     &#39;End year&#39; : str(end_year),
+                     &#39;Years processed&#39; : 0,
+                     &#39;Store as&#39; : get_averages_filename(var_minmax[-3:], cmip, model_name, n_years, start_year, end_year)                     
+                    }
+        
+        ds_rec.attrs = new_attrs
+    
+    return ds_rec</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.GenerateAverageOneFileAtATime"><code class="name flex">
+<span>def <span class="ident">GenerateAverageOneFileAtATime</span></span>(<span>results, lat_indices, lon_indices, start_year, end_year, filename)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Takes one file at a time and updates the average, peak values in the existing 'results' dataset.
+Average and Record temperatures are captured for each cell, i.e. the lat, lon combination in the specified grid.
+The unit of temperature (Kelvin) is retained.
+Input Parameters:
+- results
+: xarray dataset with average, record temperature for 365 days
+- lat_indices : applicable index values for latitudes. If None, will calculate for the complete grid
+- lon_indices : applicable index values for longitudes. If None, will calculate for the complete grid.
+- start_year
+: start year of the range
+- end_year
+: end year of the range
+- filename
+: name of the .nc file to process
+Returns:
+None. The input xarray dataframe 'results' is updated.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def GenerateAverageOneFileAtATime(results, lat_indices, lon_indices, start_year, end_year
+    , filename):
+    &#34;&#34;&#34;
+    Takes one file at a time and updates the average, peak values in the existing &#39;results&#39; dataset.
+    Average and Record temperatures are captured for each cell, i.e. the lat, lon combination in the specified grid.
+    The unit of temperature (Kelvin) is retained.
+    Input Parameters:
+    - results     : xarray dataset with average, record temperature for 365 days
+    - lat_indices : applicable index values for latitudes. If None, will calculate for the complete grid
+    - lon_indices : applicable index values for longitudes. If None, will calculate for the complete grid.
+    - start_year  : start year of the range
+    - end_year    : end year of the range
+    - filename    : name of the .nc file to process
+    Returns:  None. The input xarray dataframe &#39;results&#39; is updated.
+    &#34;&#34;&#34;
+    # load the file
+    print(filename)
+    xds = xr.open_dataset(filename)
+    
+    if not (lat_indices is None or lon_indices is None):
+        # take applicabel subset of lat and lon
+        xds = xds[dict(lat=lat_indices,lon=lon_indices)]
+    
+    # print(&#34;xds&#34;, xds)     ## For debugging
+    
+    # max or min
+    var_minmax = list(xds.data_vars.keys())[0]  # will be tasmax or tasmin
+        
+    # note the variable names in the results dataset
+    result_variables = results.attrs[&#39;Data variables&#39;]
+
+    new_values = xds[var_minmax][:].to_numpy()
+
+    n_years = results.attrs[&#39;Years processed&#39;]
+    
+    # if first year in the range
+    if n_years == 0:
+        results.update({result_variables[0] : ([&#39;day&#39;,&#39;lat&#39;,&#39;lon&#39;], new_values)       # avg temperature
+                        , result_variables[1] : ([&#39;day&#39;,&#39;lat&#39;,&#39;lon&#39;], new_values)})   # record temperature        
+    else:
+        if var_minmax == &#34;tasmin&#34;:        
+            results.update({result_variables[1] : xr.ufuncs.minimum(new_values
+                                                                    , results[result_variables[1]])})   # peak min temperature across years
+        else:
+            results.update({result_variables[1] : xr.ufuncs.maximum(new_values
+                                                                    , results[result_variables[1]])})   # peak max temperature across years
+        # for both max and min
+        results.update({result_variables[0] : np.round((((results[result_variables[0]] * n_years) + new_values) / (n_years+1)),2)})  # avg across years
+        results.update({result_variables[1] : np.round(results[result_variables[1]], 2)})  # round off only
+        
+    
+    # in any case...
+    n_years += 1
+    results.attrs[&#39;Years processed&#39;] = n_years</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.Identify_1_year_Extreme_Temp_By_Region"><code class="name flex">
+<span>def <span class="ident">Identify_1_year_Extreme_Temp_By_Region</span></span>(<span>analysis_year, threshold, result_type='max', based_on_averages=False, is_percentage=False, n_continuous_days=3, cmip=6, model_name='historical', region_id=1, averages_start_year=None, averages_end_year=None, azure_url_extremes=None, sas_token=None, azure_url_averages=None, azure_url_1_year_temp=None, url_1_year_temp=None, temp_filename=None, remove_source_files=True, area_of_interest=None, name_of_area_of_interest=None, interactive=False, print_extra_msg=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes available the extreme maxiumn temperature identification data, for analysis of 1-year duration,
+for the specified region and optionally, for the specified area of interest
+If azure_url_extremes is provided then:
+the file is first looked up in Azure and downloaded.
+else, the file is generated and then uploaded back in to Azure.
+Else - the file is generated.
+Assumes that the source data files (averages and 1-yr temp) are already available locally, or in Azure, or elsewhere on Internet.
+Please generate those separately if not already available.
+</p>
+<p>The unit of temperature (Kelvin) is retained.
+Input Parameters:
+- analysis_year
+: The year for which .
+- threshold
+: a fixed temperature, or a value or pecentile above average that will be considered for extreme temp
+- result_type
+: 'max' or 'min' for analysis of extreme Maximum or Minimum temperatures
+- based_on_averages
+: if True, the threshold is the difference above the average temperature. Else, actual temp in Kelvin
+- is_percentage
+: True, a percentile above average. False, a fixed value above average. Evaluated only if based_on_averages=True.
+- n_continuous_days
+: number of continuous days of above threshold temperature to qualify as a extreme temp event.
+- cmip
+: integer number to specify cmip version (5 or 6 or other). Default is 6
+- model_name
+: Specify the name of the model, for example 'ssp245'. This will become a part of the filename.
+- region_id
+: integer ID of the region. See Regions class for available regions.
+- averages_start_year, averages_end_year: range of years to use for average temperatures
+- azure_url_extremes
+: if provided, the extreme temperature identification results will be uploaded in Azure for reuse.
+- sas_token
+: A sas token with 'read' permissions to the azure blob container. If saving back, then 'write' permission is required.<br>
+- azure_url_averages
+: url without filename. if averages file is to be downloded from azure. will be used only if not found locally.
+- azure_url_1_yr_temp
+: url without filename. if 1-year temperature files are to be downloded from azure. will be used only if not found locally.
+- url_1_yr_temp
+: url without filename. if 1-year temperature files are to be downloded from the Internet. will be used only if not found locally.
+- temp_data_filename
+: the name of the 1-year temperature file must be provided
+- remove_source_files
+: If downloaded, remove from local environment, after use, the source files (averages file and 1-year temperature files)
+- area_of_interest
+: if provided, must be a dict with the keys: 'top_lat', 'bottom_lat', 'left_lon', 'right_lon'
+- name_of_area_of_interest : string value if also provided area_of_interest, else None. A name to distinguish the results file.
+- print_extra_msg
+: default is False. If True, will print out extra information during the processing.
+- interactive : If true, will prompt for user confirmation before executing. Set False to bypass user input.
+Returns: tuple of 1) xarray of the 1-year extremes data file in the range and 2) xarray of the averages, if used, else None.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Identify_1_year_Extreme_Temp_By_Region(analysis_year, threshold, result_type = &#39;max&#39;
+                            , based_on_averages=False, is_percentage=False
+                            , n_continuous_days=3, cmip=6, model_name=&#39;historical&#39;, region_id=1
+                            , averages_start_year=None, averages_end_year=None
+                            , azure_url_extremes=None, sas_token=None
+                            , azure_url_averages=None, azure_url_1_year_temp=None, url_1_year_temp=None, temp_filename=None
+                            , remove_source_files=True, area_of_interest=None, name_of_area_of_interest=None
+                            , interactive=False, print_extra_msg=False):
+    &#34;&#34;&#34;
+    Makes available the extreme maxiumn temperature identification data, for analysis of 1-year duration,
+     for the specified region and optionally, for the specified area of interest
+    If azure_url_extremes is provided then: 
+      the file is first looked up in Azure and downloaded.
+      else, the file is generated and then uploaded back in to Azure.
+    Else - the file is generated.
+    Assumes that the source data files (averages and 1-yr temp) are already available locally, or in Azure, or elsewhere on Internet. 
+      Please generate those separately if not already available.    
+    
+    The unit of temperature (Kelvin) is retained.
+    Input Parameters:
+    - analysis_year        : The year for which .
+    - threshold            : a fixed temperature, or a value or pecentile above average that will be considered for extreme temp
+    - result_type          : &#39;max&#39; or &#39;min&#39; for analysis of extreme Maximum or Minimum temperatures
+    - based_on_averages    : if True, the threshold is the difference above the average temperature. Else, actual temp in Kelvin
+    - is_percentage        : True, a percentile above average. False, a fixed value above average. Evaluated only if based_on_averages=True. 
+    - n_continuous_days    : number of continuous days of above threshold temperature to qualify as a extreme temp event.
+    - cmip                 : integer number to specify cmip version (5 or 6 or other). Default is 6
+    - model_name           : Specify the name of the model, for example &#39;ssp245&#39;. This will become a part of the filename.
+    - region_id            : integer ID of the region. See Regions class for available regions.
+    - averages_start_year, averages_end_year: range of years to use for average temperatures
+    - azure_url_extremes   : if provided, the extreme temperature identification results will be uploaded in Azure for reuse.
+    - sas_token            : A sas token with &#39;read&#39; permissions to the azure blob container. If saving back, then &#39;write&#39; permission is required.  
+    - azure_url_averages   : url without filename. if averages file is to be downloded from azure. will be used only if not found locally.
+    - azure_url_1_yr_temp  : url without filename. if 1-year temperature files are to be downloded from azure. will be used only if not found locally.
+    - url_1_yr_temp        : url without filename. if 1-year temperature files are to be downloded from the Internet. will be used only if not found locally.
+    - temp_data_filename   : the name of the 1-year temperature file must be provided
+    - remove_source_files  : If downloaded, remove from local environment, after use, the source files (averages file and 1-year temperature files)
+    - area_of_interest     : if provided, must be a dict with the keys: &#39;top_lat&#39;, &#39;bottom_lat&#39;, &#39;left_lon&#39;, &#39;right_lon&#39;
+    - name_of_area_of_interest : string value if also provided area_of_interest, else None. A name to distinguish the results file.
+    - print_extra_msg      : default is False. If True, will print out extra information during the processing.
+    - interactive : If true, will prompt for user confirmation before executing. Set False to bypass user input.
+    Returns: tuple of 1) xarray of the 1-year extremes data file in the range and 2) xarray of the averages, if used, else None.
+    &#34;&#34;&#34;
+    validations_passed = False
+    ds_results = None
+    ds_averages = None
+    filename = None
+    averages_filename = None
+    temp_1_year_filename = None
+    sas_url = None
+    
+    top_lat = None
+    bottom_lat = None
+    left_lon = None
+    right_lon = None
+    
+    downloaded_avgs_file = False
+    downloaded_temp_file = False
+    
+    validations_passed = Validations_for_Identify_1_year_Extreme_Temp_By_Region(analysis_year, threshold
+                                                            , n_continuous_days, region_id, area_of_interest, name_of_area_of_interest
+                                                            , based_on_averages, averages_start_year, averages_end_year)
+    
+    reg = Regions().get_region_by_ID(region_id)
+    
+    if validations_passed:
+        print_msg = &#39;\nGet Extreme maximum temperature identification data\n ... for the year {},&#39;.format(analysis_year)
+        print_msg += &#39;\n ... for the region {}-{}&#39;.format(region_id, reg[&#39;region_name&#39;])
+        print_msg += &#39;\n ... for model {} of CMIP{}&#39;.format(model_name, cmip)
+        if area_of_interest is not None:
+            print_msg += &#39;\n ... area of interest: top_lat{}, bottom_lat{}, left_lon, right_lon&#39;.format(area_of_interest.get(&#39;top_lat&#39;),
+                                                                                                    area_of_interest.get(&#39;bottom_lat&#39;),
+                                                                                                    area_of_interest.get(&#39;left_lon&#39;),
+                                                                                                    area_of_interest.get(&#39;right_lon&#39;))
+        if based_on_averages:
+            print_msg += &#39;\n ... for {}{} above average from the years {} to {}&#39;.format(threshold, &#39;%&#39; if is_percentage else &#39; Kelvin&#39;
+                                                                           , averages_start_year, averages_end_year)
+        else:
+            print_msg += &#39;\n ... for temperature above {} Kelvin&#39;.format(threshold)
+        print_msg += &#39;\n ... when observed for {} continuous days\n&#39;.format(n_continuous_days)
+        
+        print(print_msg)
+        
+        if interactive:
+            ans = input(&#39;Do you want to continue? y/n&#39;).lower()
+        else:
+            ans = &#39;y&#39;
+        
+        if not ans == &#39;y&#39;:
+            print(&#34;Response: {}.\n Not &#39;y&#39;, stopping execution.&#34;.format(ans))        
+            return None
+        
+        start_time = time.time()        # prepare to time the operation
+        
+        # file naming patterns        
+        # Extreme_max_t__Rgn_1__2025__Abv_Avg_3_K_for_3_days__CMIP6_ssp245.nc
+        # Extreme_max_t__Rgn_1_AoI_US__2025__Abv_Avg_2_pct_for_4_days__CMIP6_ssp245.nc
+        # Extreme_min_t__Rgn_1_AoI_US__2025__Blw_270_K_for_4_days__CMIP6_ssp245.nc
+        
+        if based_on_averages:
+            criteria = &#39;Abv_Avg_{}_{}&#39;.format(threshold, &#39;pct&#39; if is_percentage else &#39;K&#39;)
+        else:
+            criteria = &#39;Abv_{}_K&#39;.format(threshold)
+        criteria += &#39;_for_{}_days&#39;.format(n_continuous_days)
+        
+        extremes_filename = get_1_year_extreme_temp_filename(result_type, cmip, model_name
+                               , region_id, analysis_year, name_of_area_of_interest
+                               , based_on_averages, threshold, is_percentage, n_continuous_days
+                               , averages_start_year, averages_end_year)
+
+        print(&#39;{} UTC: Extreme temperature data filename: {}&#39;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), extremes_filename))        
+        filename = extremes_filename
+        downloaded_from_azure = False
+        local = os.path.exists(filename)    # first, check if available locally
+        print(&#34;{} UTC: Already available locally? {}&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), &#39;Yes&#39; if local else &#39;No. Checking in Azure...&#39;))
+        if not local:            
+            if azure_url_extremes is not None: 
+                sas_url = create_sas_url(azure_url_extremes, sas_token, filename)
+                if is_file_in_Azure(sas_url):
+                    print(&#34;{} UTC: Available in Azure, downloading...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                    download_file(sas_url, filename, overwrite_local_file=True, from_azure=True)
+                    downloaded_from_azure = True
+                    print(&#34;{} UTC: Download complete&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))                    
+                else:
+                    print(&#34;{} UTC: Also not in Azure. Preparing the file...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                    
+            else:
+                print(&#34;{} UTC: URL not provided to check in Azure. Preparing the Extreme temp data file... &#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+        
+        if not local and not downloaded_from_azure:   # not found in azure as well, prepare file
+           # first, get 1 year temp file
+            filename = temp_filename               
+            print(&#39;{} UTC: Working with 1_year temperature filename: {}&#39;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))            
+            local = os.path.exists(filename)    # first, check if available locally
+            print(&#34;{} UTC: Available locally? {}&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), &#39;Yes&#39; if local else &#39;No. Checking in Azure / Internet...&#39;))
+            if not local:            
+                if azure_url_1_year_temp is not None: 
+                    sas_url = create_sas_url(azure_url_1_year_temp, sas_token, filename)
+                    if is_file_in_Azure(sas_url):
+                        print(&#34;{} UTC: Available in Azure {}, downloading...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))
+                        download_file(sas_url, filename, overwrite_local_file=True, from_azure=True)
+                        print(&#34;{} UTC: Download complete&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))                    
+                    else:
+                        print(&#34;{} UTC: Also not in Azure {}. Error!&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))
+                        raise ValueError(&#39;Required file {} not found in the local environment or in Azure.&#39;.format(filename))
+                elif url_1_year_temp is not None: 
+                    download_file(os.path.join(url_1_year_temp, filename), filename, overwrite_local_file=True, from_azure=False, print_msg=False)
+                else:
+                    raise ValueError(&#39;Required file not found in the local environment. Url not provided to check in Azure or Internet.&#39;)
+
+                downloaded_temp_file = True  # If not local, and here, means the tempfile was downloaded
+            
+            ds_1_year_temp = xr.open_dataset(filename)
+
+            # Determine applicable area of interest 
+            if area_of_interest is not None:
+                top_lat = area_of_interest.get(&#39;top_lat&#39;)
+                bottom_lat = area_of_interest.get(&#39;bottom_lat&#39;)
+                left_lon = area_of_interest.get(&#39;left_lon&#39;)
+                right_lon = area_of_interest.get(&#39;right_lon&#39;)                
+            else:
+                top_lat = reg[&#39;top_lat&#39;]
+                bottom_lat = reg[&#39;bottom_lat&#39;]
+                left_lon = reg[&#39;left_lon&#39;]
+                right_lon = reg[&#39;right_lon&#39;]
+
+            # take subset of full grid temp file
+            ds_1_year_temp = region_subset(ds_1_year_temp, top_lat, bottom_lat, left_lon, right_lon)
+
+            if based_on_averages:
+                # get averages file
+                n_years = (averages_end_year - averages_start_year) + 1                
+                if model_name.endswith(&#39;_ssp245&#39;) or model_name.endswith(&#39;_ssp585&#39;):
+                    avgs_model_name = model_name[:-7]
+                else:
+                    avgs_model_name = model_name
+                averages_filename = get_averages_filename(result_type, cmip, avgs_model_name, n_years, averages_start_year, averages_end_year)                
+                print(&#39;{} UTC: Working with Averages filename: {}&#39;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), averages_filename))
+                filename = averages_filename
+                local = os.path.exists(filename)    # first, check if available locally
+                print(&#34;{} UTC: Available locally? {}&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), &#39;Yes&#39; if local else &#39;No. Checking in Azure...&#39;))
+                if not local:            
+                    if azure_url_1_year_temp is not None: 
+                        sas_url = create_sas_url(azure_url_1_year_temp, sas_token, filename)
+                        if is_file_in_Azure(sas_url):
+                            print(&#34;{} UTC: Available in Azure {}, downloading...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))
+                            download_file(sas_url, filename, overwrite_local_file=True, from_azure=True)
+                            print(&#34;{} UTC: Download complete&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))                    
+                        else:
+                            print(&#34;{} UTC: Also not in Azure {}. Error!&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))
+                            raise ValueError(&#39;Required file {} not found in the local environment or in Azure.&#39;.format(filename))
+                    else:
+                        raise ValueError(&#39;Required file {} not found in the local environment. Url not provided to check in Azure.&#39;.format(filename))
+                    
+                    downloaded_avgs_file = True  # If not local, and here, means the averages file was downloaded
+
+                print(&#34;{} UTC: Getting subset of applicable region, apply threshold...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                ds_averages = xr.open_dataset(filename)
+                # subset of averages
+                ds_averages = region_subset(ds_averages, top_lat, bottom_lat, left_lon, right_lon)
+
+                ds_1_year_temp = ds_1_year_temp.assign(above_threshold=lambda x: x.tasmax + 0)   # first create the new column with the original temperature
+                if result_type == &#39;max&#39;:
+                    if is_percentage:
+                        ds_1_year_temp.above_threshold[:,:,:] = \
+                            ds_1_year_temp.above_threshold[:,:,:] - (ds_averages.tasmaxavg.values * (1 + (threshold/100)))
+                    else:
+                        ds_1_year_temp.above_threshold[:,:,:] = \
+                            ds_1_year_temp.above_threshold[:,:,:] - (ds_averages.tasmaxavg.values + threshold)
+                else:
+                    raise ValueError(&#39;min --- not fully implemented as yet&#39;)
+                    
+            else:       # based_on_averages=False
+                if result_type == &#39;max&#39;:
+                    ds_1_year_temp = ds_1_year_temp.assign(above_threshold=lambda x: x.tasmax - threshold)
+                else:
+                    raise ValueError(&#39;min --- not fully implemented as yet&#39;)
+                    
+                
+                ds_averages = None
+
+            print(&#34;{} UTC: Preparing extreme temperature data...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+
+            # determine extreme Y/N, using rolling windows of n_continuous_days
+            rolling = ds_1_year_temp.above_threshold.rolling(time=n_continuous_days)
+            arr_win_status = window_gte_threshold(rolling.construct(&#34;window_dim&#34;).values,0)
+            arr_hw = np.zeros(np.shape(ds_1_year_temp.tasmax))
+            n_idx = n_continuous_days - 1
+            for i in range(n_idx):
+                arr_hw[i:i-n_idx,:,:] =   xr.ufuncs.logical_or(arr_hw[i:i-n_idx,:,:], arr_win_status[n_idx:,:,:])
+            arr_hw[n_idx:,:,:] =   xr.ufuncs.logical_or(arr_hw[n_idx:,:,:], arr_win_status[n_idx:,:,:])
+
+            ds_1_year_temp = ds_1_year_temp.assign(extreme_yn = (ds_1_year_temp.dims, arr_hw))
+
+            ds_results = ds_1_year_temp
+
+            # update attributes 
+            ds_results.attrs[&#39;Data description&#39;] = &#39;maximum temperature; difference from theshold; 1 or 0 for extreme yes or no&#39;
+            ds_results.attrs[&#39;Years processed&#39;] = 1
+            ds_results.attrs[&#39;Store as&#39;] = extremes_filename
+            
+            new_attrs = {&#39;Dataset&#39; : &#39;1-year Extreme {} Temperature Data CMIP{} {} region_id: {}&#39;.format(result_type, cmip, model_name, region_id),
+                     &#39;About dataset&#39; : &#39;1-year Extreme {} Temp Data, for CMIP{} model: {}, for the region {}-{}&#39;.format(result_type
+                                                                                                                            , cmip, model_name
+                                                                                                                            , region_id
+                                                                                                                        , reg.get(&#39;region_name&#39;)),
+                     &#39;Data variables&#39; : &#39;tas{}, {}, extreme_yn&#39;.format(result_type, &#39;above_threshold&#39; if result_type==&#39;max&#39; else &#39;below_threshold&#39;),
+                     &#39;Data description&#39; : &#39;{} temperature; difference from threshold; extreme (y/n)-continuous for specified day&#39;.format(result_type),
+                     &#39;Range&#39; : &#39;1 year&#39;,
+                     &#39;Analysis year&#39; : str(analysis_year),
+                     &#39;threshold&#39; : region_id,
+                     &#39;based_on_averages&#39; : str(based_on_averages),
+                     &#39;averages_start_year&#39; : str(averages_start_year),
+                     &#39;averages_end_year&#39; : str(averages_end_year),
+                     &#39;threshold&#39; : threshold, 
+                     &#39;result_type&#39; : result_type,
+                     &#39;is_percentage&#39; : str(is_percentage),
+                     &#39;Number of continuous days to be considered extreme&#39; : n_continuous_days,
+                     &#39;cmip&#39; : cmip, 
+                     &#39;model_name&#39;: model_name,                         
+                     &#39;region_id&#39; : region_id,
+                     &#39;region_name&#39; : reg.get(&#39;region_name&#39;),
+                     &#39;region_top_lat&#39; : reg.get(&#39;top_lat&#39;),
+                     &#39;region_bottom_lat&#39; : reg.get(&#39;bottom_lat&#39;),
+                     &#39;region_left_lon&#39; : reg.get(&#39;left_lon&#39;),
+                     &#39;region_right_lon&#39; : reg.get(&#39;right_lon&#39;),
+                     &#39;region_img_url&#39; : reg.get(&#39;img_url&#39;),
+                     &#39;Years processed&#39; : 1,
+                     &#39;Store as&#39;: extremes_filename
+                    }
+        
+            ds_results.attrs = new_attrs
+
+
+            # save, and upload to azure - if azure_url_extremes is provided AND not already downloaded from there
+            if downloaded_from_azure:
+                SaveResult(ds_results, azure_url_prefix = None, sas_token=None, local_copy=True)  # save only
+            else:
+                SaveResult(ds_results, azure_url_prefix = azure_url_extremes, sas_token=sas_token, local_copy=True) # attempt to upload
+
+            print(&#39;{} UTC: Saved locally: Extreme temp data file: {}&#39;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), extremes_filename))
+            if azure_url_extremes is not None:
+                print(&#39;{} UTC: Also uploaded to Azure storage&#39;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), extremes_filename))
+
+            if remove_source_files:
+                if downloaded_avgs_file:
+                    os.remove(averages_filename)
+                    print(&#39;{} UTC: Averages file was downloaded, now removed - as requested&#39;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                    
+                if downloaded_temp_file:
+                    os.remove(temp_filename)
+                    print(&#39;{} UTC: 1-year temperature file was downloaded, now removed - as requested&#39;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                
+        else:   # in local or downloaded_from_azure
+            ds_results = xr.open_dataset(filename)
+            if azure_url_extremes is not None:
+                sas_url = os.path.join(azure_url_extremes, filename)
+                if sas_token is not None:
+                    sas_url += &#39;?&#39; + sas_token
+                upload_file_to_Azure(save_back_in_azure=True, sas_url=sas_url, filename=filename)
+            
+        # print out the time it took
+        execution_time = (time.time() - start_time)
+        print(&#34;Complete execution time | Identify_1_year_Extreme_Temp_By_Region | (mins) {:0.2f}&#34;.format(execution_time/60.0))
+        
+    return ds_results, ds_averages</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.Interactive_GetAverageForRange"><code class="name flex">
+<span>def <span class="ident">Interactive_GetAverageForRange</span></span>(<span>start_year, end_year, cmip=6, result_type='max', model_name=None, azure_url_prefix=None, sas_token=None, cmip_files_url=None, cmip_file_name_prefix=None, from_azure=False, save_back_in_azure=False, interactive=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Makes available Average and Record temperatures for multiple decades.
+* Date range should be a multiple of decades &mdash; e.g. 1950 to 1969
+OR 1951 to 1970.
+Checks if the preprocessed average data files are already available locally.
+If not found, checks in Azure cloud.
+If not found in Azure as well, tries to prepare the output from the available underlying 10 year files, in azure.
+If underlying 10 year files are also not there then tries to create those as well.
+In that case, checks for underlying source CMIP data files based on the url provided.
+All the files not found in Azure are attempted to be saved there, if azure_url_prefix is provided
+and save_back_in_azure = True.</p>
+<ul>
+<li>returns the results xarray dataset
+Average and Record temperatures are captured for each cell, i.e. the lat, lon combination in the specified grid.
+The unit of temperature (Kelvin) is retained.
+Input Parameters:</li>
+<li>start_year
+: start year of the range</li>
+<li>end_year
+: end year of the range</li>
+<li>cmip
+: integer number to specify cmip version (5 or 6 or other). Default is 6</li>
+<li>result_type : string 'max' or 'min'</li>
+<li>model_name
+: Specify the name of the model, for example 'GFDL-ESM4'. This will become a part of the filename.</li>
+<li>azure_url_prefix=None : if downloading from Azure blob storage, specify the url with the container and the folder
+, else specify None to check the files locally.</li>
+<li>sas_token
+: A sas token with 'read' permissions to the azure blob container
+</li>
+<li>cmip_files_url: Underlying cmip files could be at a different path in azure, or elsewhere.</li>
+<li>cmip_file_name_prefix: Name of the underlying cmip files, without the year. E.g. 'tasmin_day_BCSD_historical_r1i1p1_inmcm4_'</li>
+<li>from_azure
+: True, if the cmip files path is of azure. In that case sas_token will be used to read/write files.</li>
+<li>save_back_in_azure: If true, the final file</li>
+<li>interactive: If true, will prompt for user confirmation before executing. Set False to bypass user input.
+Returns:
+The xarray dataframe with 'results'</li>
+</ul></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Interactive_GetAverageForRange(start_year, end_year, cmip=6, result_type=&#39;max&#39;
+                            , model_name=None, azure_url_prefix=None, sas_token=None
+                            , cmip_files_url=None, cmip_file_name_prefix=None, from_azure=False
+                            , save_back_in_azure=False, interactive=True):
+    &#34;&#34;&#34;
+    Makes available Average and Record temperatures for multiple decades. 
+    * Date range should be a multiple of decades --- e.g. 1950 to 1969  OR 1951 to 1970.
+    Checks if the preprocessed average data files are already available locally. 
+    If not found, checks in Azure cloud. 
+    If not found in Azure as well, tries to prepare the output from the available underlying 10 year files, in azure.
+    If underlying 10 year files are also not there then tries to create those as well.
+    In that case, checks for underlying source CMIP data files based on the url provided.
+    All the files not found in Azure are attempted to be saved there, if azure_url_prefix is provided 
+    and save_back_in_azure = True.
+    
+    * returns the results xarray dataset
+    Average and Record temperatures are captured for each cell, i.e. the lat, lon combination in the specified grid.
+    The unit of temperature (Kelvin) is retained.
+    Input Parameters:
+    - start_year  : start year of the range
+    - end_year    : end year of the range
+    - cmip        : integer number to specify cmip version (5 or 6 or other). Default is 6
+    - result_type : string &#39;max&#39; or &#39;min&#39;
+    - model_name  : Specify the name of the model, for example &#39;GFDL-ESM4&#39;. This will become a part of the filename.
+    - azure_url_prefix=None : if downloading from Azure blob storage, specify the url with the container and the folder
+                              , else specify None to check the files locally.
+    - sas_token   : A sas token with &#39;read&#39; permissions to the azure blob container    
+    - cmip_files_url: Underlying cmip files could be at a different path in azure, or elsewhere.
+    - cmip_file_name_prefix: Name of the underlying cmip files, without the year. E.g. &#39;tasmin_day_BCSD_historical_r1i1p1_inmcm4_&#39;
+    - from_azure  : True, if the cmip files path is of azure. In that case sas_token will be used to read/write files.
+    - save_back_in_azure: If true, the final file
+    - interactive: If true, will prompt for user confirmation before executing. Set False to bypass user input.
+    Returns:  The xarray dataframe with &#39;results&#39;
+    &#34;&#34;&#34;
+    validations_passed = False
+    ds_results = None
+    filename = &#39;&#39;
+    sas_url = None
+    
+    n_years = (end_year - start_year) + 1   # range
+    
+    # proceed if validations pass
+    validations_passed = Validations_for_Interactive_GetAverageForRange(start_year, end_year, n_years
+                                                                        , save_back_in_azure, azure_url_prefix, sas_token)
+    
+    if validations_passed:
+        n_components = int(n_years / 10)             # number of decades in the range       
+        total_years = 0   
+        
+        print(&#39;Get Average and Record {} temperature for the range {} to {}, for CMIP{}, model {}&#39;.format(result_type, start_year
+                                                                                                          , end_year, cmip, model_name))
+        
+        if interactive:
+            ans = input(&#39;Do you want to continue? y/n&#39;).lower()
+        else:
+            ans = &#39;y&#39;
+        
+        if not ans == &#39;y&#39;:
+            print(&#34;Response: {}.\n Not &#39;y&#39;, stopping execution.&#34;.format(ans))        
+            return None
+        
+        start_time = time.time()        # prepare to time the operation
+        if model_name.endswith(&#39;_ssp245&#39;) or model_name.endswith(&#39;_ssp585&#39;):
+            model_name = model_name[:-7]
+                
+        filename = get_averages_filename(result_type, cmip, model_name, n_years, start_year, end_year)
+        print(&#34;{} UTC: Get Averages file {}&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))
+        
+        if azure_url_prefix is not None: 
+            sas_url = create_sas_url(azure_url_prefix, sas_token, filename)
+        
+        local = os.path.exists(filename)    # first, check if available locally
+        print(&#34;{} UTC: Available locally? {}&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), &#39;Yes&#39; if local else &#39;No. Checking in Azure...&#39;))
+        
+        if local:
+            upload_file_to_Azure(save_back_in_azure, sas_url, filename)  # upload, if required
+            ds_results = xr.open_dataset(filename)                                # open file        
+        else:
+            if is_file_in_Azure(sas_url):
+                print(&#34;{} UTC: Available in Azure {}, downloading...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))
+                download_file(sas_url, filename, overwrite_local_file=True, from_azure=True)
+                print(&#34;{} UTC: Download complete&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                ds_results = xr.open_dataset(filename)
+            else:
+                if sas_url is None or sas_url == &#39;&#39;:
+                    print(&#34;{} UTC: Azure url not provided, could not check there. Now preparing...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                else:
+                    print(&#34;{} UTC: Also not in Azure {}, preparing...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))
+                prepare_component_averages_files(save_back_in_azure, azure_url_prefix, sas_token, result_type, cmip, model_name
+                                                 , start_year, n_years, cmip_files_url, cmip_file_name_prefix, from_azure)
+            
+                print(&#34;{} UTC: Aggregate 10-year files into full range...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                ds_results = AggregateAverageForRange(start_year, end_year, cmip, model_name, result_type
+                           , azure_url_prefix, sas_token
+                           , overwrite_local_file=False, remove_after_use=False)
+                
+                if save_back_in_azure:
+                    print(&#34;{} UTC: Dataset ready, saving locally and in Azure...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))                
+                    SaveResult(ds_results, azure_url_prefix, sas_token, local_copy=True)
+                else:
+                    print(&#34;{} UTC: Dataset ready, saving locally...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), filename))                
+                    SaveResult(ds_results, azure_url_prefix=None, sas_token=None, local_copy=True)
+        
+         # print out the time it took
+        execution_time = (time.time() - start_time)
+        print(&#34;Complete execution time | Interactive_GetAverageForRange | (mins) {:0.2f}&#34;.format(execution_time/60.0))
+        
+    return ds_results</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.PrepareAverageForRange"><code class="name flex">
+<span>def <span class="ident">PrepareAverageForRange</span></span>(<span>filename_prefix, lat_indices, lon_indices, start_year, end_year, cmip=6, model_name=None, url_prefix=None, sas_token=None, from_azure=False, overwrite_local_file=False, remove_after_use=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Prepares an empty results dataset and then populates in a loop the averages for the specified range of years:
+* downloads the file for each year if url_prefix is set, else no download and the file will be expected to be available locally.
+<br>
+* calls the function that processes data one file at time.
+* then deletes the yearly temperature file used in the process
+Note: if url from azure or other location requiring access token, then provide the SAS token as well.
+Average and Record temperatures are captured for each cell, i.e. the lat, lon combination in the specified grid.
+The unit of temperature (Kelvin) is retained.
+Input Parameters:
+- filename_prefix
+: initial part of the filename. Year will be appended to it, along with file extension '.nc'
+- lat_indices : applicable index values for latitudes. If None, will calculate for the complete grid
+- lon_indices : applicable index values for longitudes. If None, will calculate for the complete grid.
+- start_year
+: start year of the range
+- end_year
+: end year of the range
+- cmip
+: integer number to specify cmip version (5 or 6 or other). Default is 6
+- model_name
+: name of the model, for averages (without _ssp245 at the end). For example: 'GFDL_ESM4'
+- url_prefix
+: url to files location, without the filename
+: for Azure blob storage, specify the url with the container and the folder location
+- sas_token
+: A sas token with 'read' permissions to the azure blob container
+- from_azure
+: default is False. Set to True if downloading from Azure blob storage
+- overwrite_local_file
+: if True, will overwrite, else, if already available locally, will not download again.
+- remove_after_use
+: default = True. Set to False to retain the files locally
+Returns:
+The xarray dataframe with 'results'</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def PrepareAverageForRange(filename_prefix, lat_indices, lon_indices, start_year, end_year, cmip=6
+                           , model_name=None, url_prefix=None, sas_token=None, from_azure=False
+                           , overwrite_local_file=False, remove_after_use=True):
+    &#34;&#34;&#34;
+    Prepares an empty results dataset and then populates in a loop the averages for the specified range of years:
+    * downloads the file for each year if url_prefix is set, else no download and the file will be expected to be available locally.      
+    * calls the function that processes data one file at time.
+    * then deletes the yearly temperature file used in the process
+    Note: if url from azure or other location requiring access token, then provide the SAS token as well.
+    Average and Record temperatures are captured for each cell, i.e. the lat, lon combination in the specified grid.
+    The unit of temperature (Kelvin) is retained.
+    Input Parameters:
+    - filename_prefix  : initial part of the filename. Year will be appended to it, along with file extension &#39;.nc&#39;
+    - lat_indices : applicable index values for latitudes. If None, will calculate for the complete grid
+    - lon_indices : applicable index values for longitudes. If None, will calculate for the complete grid.
+    - start_year  : start year of the range
+    - end_year    : end year of the range
+    - cmip        : integer number to specify cmip version (5 or 6 or other). Default is 6
+    - model_name  : name of the model, for averages (without _ssp245 at the end). For example: &#39;GFDL_ESM4&#39;
+    - url_prefix  : url to files location, without the filename
+                  : for Azure blob storage, specify the url with the container and the folder location
+    - sas_token   : A sas token with &#39;read&#39; permissions to the azure blob container
+    - from_azure  : default is False. Set to True if downloading from Azure blob storage
+    - overwrite_local_file  : if True, will overwrite, else, if already available locally, will not download again.
+    - remove_after_use      : default = True. Set to False to retain the files locally
+    Returns:  The xarray dataframe with &#39;results&#39;
+    &#34;&#34;&#34;
+    validations_passed = False
+    ds_results = None
+    filename = &#39;&#39;
+    
+    # validations
+    if not (isinstance(start_year, int) and isinstance(end_year, int) and (end_year &gt; start_year)):
+        print(&#39;Validation Error: start_year and end_year should be integers; end year should be greater than start year.&#39;)
+    else:
+        validations_passed = True
+    
+    if validations_passed:               
+        total_years = 0        
+            
+        # prepare to time the operation
+        start_time = time.time()
+        for yr in range(start_year, (end_year + 1)):
+            print(yr)
+            filename = filename_prefix + str(yr) + &#39;.nc&#39;
+            
+            # if required, download the file so it is available locally
+            if not url_prefix is None:
+                sas_url = os.path.join(url_prefix, filename) # add filename to the url prefix
+                if sas_token is not None:
+                    sas_url = sas_url + &#34;?&#34; + sas_token            # add token, if provided
+                download_file(sas_url, filename, overwrite_local_file, from_azure)
+            
+            # first prepare results dataset
+            if total_years == 0:
+                ds_results = CreateDatasetForResults(filename = filename, start_year = start_year, end_year = end_year
+                                                     , cmip=cmip, model_name=model_name)
+
+            # process the file
+            GenerateAverageOneFileAtATime(ds_results, lat_indices, lon_indices, start_year, end_year
+                                          , filename)
+            total_years += 1
+            
+            # delete the file
+            if remove_after_use:
+                os.remove(filename)
+            
+        # print out the time it took
+        execution_time = (time.time() - start_time)
+        print(&#34;Complete execution time | PrepareAverageForRange | (mins) {:0.2f}&#34;.format(execution_time/60.0))
+            
+    return ds_results</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.Validations_for_Identify_1_year_Extreme_Temp_By_Region"><code class="name flex">
+<span>def <span class="ident">Validations_for_Identify_1_year_Extreme_Temp_By_Region</span></span>(<span>analysis_year, threshold, n_continuous_days, region_id, area_of_interest, name_of_area_of_interest, based_on_averages, averages_start_year, averages_end_year)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Performs validations applicable to the function Identify_1_year_Extreme_Temp_By_Region.
+<br>
+Returns: Boolean. True if validations pass. Else returns False.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Validations_for_Identify_1_year_Extreme_Temp_By_Region(analysis_year, threshold
+                                                , n_continuous_days, region_id, area_of_interest, name_of_area_of_interest
+                                                , based_on_averages, averages_start_year, averages_end_year):
+    &#34;&#34;&#34;
+    Performs validations applicable to the function Identify_1_year_Extreme_Temp_By_Region.    
+    Returns: Boolean. True if validations pass. Else returns False.
+    &#34;&#34;&#34;
+    validations_passed = False
+    regions = Regions()
+       
+    if not isinstance(analysis_year, int):
+        print(&#39;Validation Error: analysis_year must be a valid integer&#39;)
+    elif regions.get_region_by_ID(region_id) is None:
+        print(&#39;Validation Error: Invalid region ID. Valid Regions are:&#39;)
+        for r in regions.get_all_regions().items():
+            print(&#39; &#39;, r[0], &#39;-&#39;, r[1][&#39;region_name&#39;])
+    elif not (isinstance(threshold, int) or isinstance(threshold, float)):
+        print(&#39;Validation Error: threshold must be a numeric value.&#39;)    
+    elif not isinstance(n_continuous_days, int):
+        print(&#39;Validation Error: n_continuous_days must be an integer value.&#39;)
+    elif area_of_interest is not None and not isinstance(area_of_interest, dict):
+        print(&#34;Validation Error: Area of interest, if provided, must be a dict with the keys &#39;top_lat&#39;, &#39;bottom_lat&#39;, &#39;left_lon&#39;, &#39;right_lon&#39;.&#34;)        
+    elif area_of_interest is not None and (&#39;top_lat&#39; not in area_of_interest.keys() \
+                                               or &#39;bottom_lat&#39; not in area_of_interest.keys() \
+                                               or &#39;left_lon&#39; not in area_of_interest.keys() \
+                                               or &#39;right_lon&#39; not in area_of_interest.keys()):
+        print(&#34;Validation Error: Area of interest, if provided, must be a dict with the keys &#39;top_lat&#39;, &#39;bottom_lat&#39;, &#39;left_lon&#39;, &#39;right_lon&#39;.&#34;)        
+    elif area_of_interest is not None and (name_of_area_of_interest is None or name_of_area_of_interest==&#39;&#39;):
+        print(&#34;Validation Error: Area of interest, if provided, then a Name for the area of interest must also be provided.&#34;)        
+    elif based_on_averages and not (isinstance(averages_start_year, int) and isinstance(averages_end_year, int)):
+        print(&#34;Validation Error: If based_on_averages = True, then provide integer values for averages_start_year and averages_end_year.&#34;)        
+    else:
+        validations_passed = True
+    
+    return validations_passed</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.Validations_for_Interactive_GetAverageForRange"><code class="name flex">
+<span>def <span class="ident">Validations_for_Interactive_GetAverageForRange</span></span>(<span>start_year, end_year, n_years, save_back_in_azure, azure_url_prefix, sas_token)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Performs validations applicable to the function Interactive_GetAverageForRange.
+<br>
+Returns: Boolean. True if validations pass. Else returns False.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def Validations_for_Interactive_GetAverageForRange(start_year, end_year, n_years, save_back_in_azure, azure_url_prefix, sas_token):
+    &#34;&#34;&#34;
+    Performs validations applicable to the function Interactive_GetAverageForRange.    
+    Returns: Boolean. True if validations pass. Else returns False.
+    &#34;&#34;&#34;
+    validations_passed = False
+    if not (isinstance(start_year, int) and isinstance(end_year, int) and (end_year &gt; start_year)):
+        print(&#39;Validation Error: start_year and end_year should be integers; end year should be greater than start year.&#39;)
+    elif not (n_years)%10 == 0:
+        print(&#39;Validation Error: The total range (end year - start year)+1 should be a multiple of 10.&#39;)    
+    elif (save_back_in_azure == True) and (azure_url_prefix is None or sas_token is None) :
+        print(&#39;Validation Error: Both azure_url_prefix and sas_token are to be provided if save_back_in_Azure = True.&#39;)    
+    else:
+        validations_passed = True
+    
+    return validations_passed</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.get_1_year_extreme_temp_filename"><code class="name flex">
+<span>def <span class="ident">get_1_year_extreme_temp_filename</span></span>(<span>result_type, cmip, model_name, region_id, analysis_year, name_of_area_of_interest, based_on_averages, threshold, is_percentage, n_continuous_days, averages_start_year, averages_end_year)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_1_year_extreme_temp_filename(result_type, cmip, model_name
+                               , region_id, analysis_year, name_of_area_of_interest
+                               , based_on_averages, threshold, is_percentage, n_continuous_days
+                               , averages_start_year, averages_end_year):
+    # example: Ext_max_t__Rgn_1__2025__Abv_5_K_for_3_days__CMIP6_ssp245_Avg_yrs_1990_09
+    
+    if based_on_averages:
+        criteria = &#39;{}_Avg_{}_{}&#39;.format(&#39;Abv&#39; if result_type == &#39;max&#39; else &#39;Blw&#39;, threshold, &#39;pct&#39; if is_percentage else &#39;K&#39;)
+        avgs_year = &#39;_Avg_yrs_{}_{}&#39;.format(averages_start_year, str(averages_end_year)[-2:])
+    else:
+        criteria = &#39;{}_{}_K&#39;.format(&#39;Abv&#39; if result_type == &#39;max&#39; else &#39;Blw&#39;, threshold)
+        avgs_year = &#39;&#39;
+                                           
+    criteria += &#39;_for_{}_days&#39;.format(n_continuous_days)
+    
+    
+    filename = &#39;Ext_{}_t__Rgn_{}{}__{}__{}__CMIP{}_{}{}.nc&#39;.format(result_type, region_id
+                                                                         , &#39;&#39; if name_of_area_of_interest is None else &#39;_AoI_&#39;+ str(name_of_area_of_interest)
+                                                                         , analysis_year, criteria, cmip, model_name, avgs_year)                
+    return filename</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.interactive_visual_pct_pixels_extreme_by_day"><code class="name flex">
+<span>def <span class="ident">interactive_visual_pct_pixels_extreme_by_day</span></span>(<span>ds_ext)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns: 1) xarray DataArray, with the number of pixels with extreme y/n flag as 1 (True),
+for each day in the dataset
+: 2) bokeh pane for interactive visualization.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def interactive_visual_pct_pixels_extreme_by_day(ds_ext):
+    &#34;&#34;&#34;
+    Returns: 1) xarray DataArray, with the number of pixels with extreme y/n flag as 1 (True), 
+     for each day in the dataset
+           : 2) bokeh pane for interactive visualization.
+    &#34;&#34;&#34;
+    result_type = ds_ext.attrs[&#39;result_type&#39;]
+    temp_var = &#39;tasmax&#39; if result_type==&#39;max&#39; else &#39;tasmin&#39;
+    day_wise_mean = ds_ext.extreme_yn.sum(dim=[&#39;lat&#39;,&#39;lon&#39;]) / ds_ext[temp_var].count(dim=[&#39;lat&#39;,&#39;lon&#39;])
+    dt_index = day_wise_mean.indexes[&#39;time&#39;].to_datetimeindex()
+    day_wise_mean = xr.DataArray(day_wise_mean, coords={&#39;time&#39;:dt_index.values})
+
+    day_wise_mean_plot = day_wise_mean.hvplot()
+
+    pane = pn.panel(day_wise_mean_plot)
+    return pane</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.interactive_visual_region_in_polar"><code class="name flex">
+<span>def <span class="ident">interactive_visual_region_in_polar</span></span>(<span>ds_ext, start_day=1, end_day=5, step_n_days=1, data_variable_name='tasmax')</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def interactive_visual_region_in_polar(ds_ext, start_day=1, end_day=5, step_n_days=1, data_variable_name=&#39;tasmax&#39;):
+    &#34;&#34;&#34;&#34;&#34;&#34;
+    proj = ccrs.Orthographic(-90, 30)
+#     proj = ccrs.OSNI(ccrs.TransverseMercator(90,30,0,0))
+
+    col_map = &#39;coolwarm&#39;
+    if data_variable_name == &#39;extreme_yn&#39;:
+        col_map = &#39;cet_CET_L19&#39;
+    
+
+    visual = ds_ext[data_variable_name].isel(time=slice(start_day-1, end_day, step_n_days)).hvplot.quadmesh(
+    &#39;lon&#39;, &#39;lat&#39;, projection=proj, project=True, global_extent=False, 
+    cmap=col_map, rasterize=True, dynamic=False, coastline=True, 
+    frame_width=500)
+    
+    pane = pn.panel(visual)
+    return pane</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.load_1_yr_results_and_basic_analysis"><code class="name flex">
+<span>def <span class="ident">load_1_yr_results_and_basic_analysis</span></span>(<span>ext_filename, show_basic_analysis=True, area_of_interest=None)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def load_1_yr_results_and_basic_analysis(ext_filename, show_basic_analysis=True, area_of_interest=None):
+    ds_ext = xr.open_dataset(ext_filename)
+
+    if not show_basic_analysis:
+        return 
+    
+    # specify range of days to test:
+    print_attrs = [&#39;region_id&#39;, &#39;Analysis year&#39;, &#39;threshold&#39;, &#39;based_on_averages&#39;
+                   , &#39;is_percentage&#39;, &#39;averages_start_year&#39;, &#39;averages_end_year&#39;]
+    attr_info = &#39;Extreme Temperature Base Results for: \n&#39;
+    for attribute in print_attrs:
+        value = str(ds_ext.attrs[attribute])        
+        attr_info += &#39;{}: {}; &#39;.format(attribute, value)
+    print(attr_info)
+    print(&#39;** from the filename: &#39;, ds_ext.attrs[&#39;Store as&#39;], &#39;**&#39;)
+
+    if area_of_interest is not None:
+        ds_ext = region_subset(ds_ext, area_of_interest.get(&#39;top_lat&#39;), area_of_interest.get(&#39;bottom_lat&#39;)
+                               , area_of_interest.get(&#39;left_lon&#39;), area_of_interest.get(&#39;right_lon&#39;))
+        
+    return ds_ext</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.plot_avg_and_record_temperatures"><code class="name flex">
+<span>def <span class="ident">plot_avg_and_record_temperatures</span></span>(<span>ds_record, latitude, longitude)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Pass in the dataset and the latitude, longitude.
+Algorithm will find the nearest matching latitude and longitude in the grid.
+Will show plot for the same.
+Returns: None</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def plot_avg_and_record_temperatures(ds_record, latitude, longitude):
+    &#34;&#34;&#34;
+    Pass in the dataset and the latitude, longitude.
+    Algorithm will find the nearest matching latitude and longitude in the grid.
+    Will show plot for the same.
+    Returns: None
+    &#34;&#34;&#34;
+    fig, ax = plt.subplots()
+
+    fig.set_size_inches(12, 8)
+
+    ds = ds_record.sel(lat=[latitude], lon=[longitude], method=&#34;nearest&#34;)
+
+    x = ds.get(&#39;day&#39;)
+
+    pmax = ds[&#39;tasmaxrec&#39;].squeeze()
+    ax.plot(x, pmax, color=&#39;lightgray&#39;, alpha=0.9, label=&#39;Average Temperature&#39;)
+
+    amax = ds[&#39;tasmaxavg&#39;].squeeze()
+    ax.plot(x, amax, color=&#39;gray&#39;, alpha=0.6, label=&#39;Maximum Temperature&#39;)
+    
+    ax.set_title(&#39;Avg and Record Max Temperature - {} to {}&#39;.format(ds_record.attrs[&#39;Start year&#39;], ds_record.attrs[&#39;End year&#39;]))
+    ax.set_xlabel(&#39;Day&#39;)
+    ax.set_ylabel(&#39;Temperature in Kelvin&#39;)
+    
+    ax.legend()
+    plt.show()</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.prepare_component_averages_files"><code class="name flex">
+<span>def <span class="ident">prepare_component_averages_files</span></span>(<span>save_back_in_azure, azure_url_prefix, sas_token, result_type, cmip, model_name, start_year, n_years, cmip_files_url, cmip_file_name_prefix, from_azure)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>For the given range, prepares component (10-year) averages files.
+Checks if available locally, or in Azure. Else prepares it.
+Uploads to azure if save_back_in_azure = True, and not already there.
+This helper function also gets used by Interactive_GetAverageForRange()
+Returns: None</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def prepare_component_averages_files(save_back_in_azure, azure_url_prefix, sas_token, result_type, cmip, model_name
+                                     , start_year, n_years, cmip_files_url, cmip_file_name_prefix, from_azure):
+    &#34;&#34;&#34;
+    For the given range, prepares component (10-year) averages files. 
+    Checks if available locally, or in Azure. Else prepares it.
+    Uploads to azure if save_back_in_azure = True, and not already there.
+    This helper function also gets used by Interactive_GetAverageForRange()
+    Returns: None
+    &#34;&#34;&#34;
+    n_components = int(n_years / 10)
+    component_start_year = start_year
+    
+    print(&#34;{} UTC: Arranging for all the component (10-year) files(s)&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+    
+    for i in range(n_components):
+        component_end_year = component_start_year + 9
+        filename = get_averages_filename(result_type,cmip,model_name,10,component_start_year,component_end_year)
+        print(&#39;prepare_component_averages_files: filename: &#39;, filename)
+        if azure_url_prefix is not None: 
+            sas_url = create_sas_url(azure_url_prefix, sas_token, filename)
+        else:
+            sas_url = None
+        
+        print(&#34;{} UTC: Component file {} of {} : --- {} to {} ----------&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)
+                                                                            , i+1, n_components, component_start_year, component_end_year))
+        
+                
+        local = os.path.exists(filename)    # first, check if available locally
+        print(&#34;{} UTC: Component file available locally? {}&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;), &#39;Yes&#39; if local else &#39;No. Checking in Azure...&#39;))
+        
+        if local:
+            upload_file_to_Azure(save_back_in_azure, sas_url, filename)  # upload, if required            
+        else:
+            if is_file_in_Azure(sas_url):
+                print(&#34;{} UTC: Component file available in Azure, downloading...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                download_file(sas_url, filename, overwrite_local_file=True, from_azure=True)
+                print(&#34;{} UTC: Download complete&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+            else:
+                print(&#34;{} UTC: Component file also not in Azure, preparing...&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))
+                ds_results = PrepareAverageForRange(filename_prefix = cmip_file_name_prefix, lat_indices = None, lon_indices = None
+                                                    , start_year = component_start_year, end_year = component_end_year, cmip= cmip
+                                                   , model_name=model_name, url_prefix=cmip_files_url, sas_token=sas_token, from_azure=from_azure
+                                                   , overwrite_local_file=False, remove_after_use=True)
+                if ds_results is None:
+                    raise ValueError(&#39;Error! Component file could not be prepared. Check parameters&#39;)
+                
+                if save_back_in_azure:
+                    SaveResult(ds_results, azure_url_prefix, sas_token, local_copy=True)
+                else:
+                    SaveResult(ds_results, azure_url_prefix=None, sas_token=None, local_copy=True)
+                
+        component_start_year += 10
+        print(&#34;{} UTC: All the component (10-year) files(s) are now available&#34;.format(datetime.now().strftime(&#34;%H:%M:%S&#34;)))</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.verify_ext_data"><code class="name flex">
+<span>def <span class="ident">verify_ext_data</span></span>(<span>ext_filename, ds_avg, day_start_idx, day_end_idx, test_lat, test_lon)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def verify_ext_data(ext_filename, ds_avg, day_start_idx, day_end_idx, test_lat, test_lon):
+    ds_ext = xr.open_dataset(ext_filename)
+
+    result_type = ds_ext.attrs[&#39;result_type&#39;]
+    temp_var = &#39;tasmax&#39; if result_type==&#39;max&#39; else &#39;tasmin&#39;
+    avg_var = temp_var + &#39;avg&#39;
+    threshold_var = &#39;above_threshold&#39; if result_type==&#39;max&#39; else &#39;below_threshold&#39;
+    
+    # specify range of days to test:
+    days = list(range(day_start_idx, day_end_idx+1))
+
+    print(&#39;days: {}&#39;.format(days))
+    print(&#39;lat: {}, lon: {}\n&#39;.format(test_lat, test_lon))
+
+    avg_for_30_yrs_from_file = ds_avg[avg_var].sel(lat=[test_lat], lon=[test_lon], method=&#34;nearest&#34;)[days].squeeze().values
+    print(avg_for_30_yrs_from_file, &#39;: average for this day, from 30-year avg file&#39;)
+
+    threshold = int(ds_ext.attrs[&#39;threshold&#39;])
+    print(threshold, &#39;: threshold&#39;)
+
+    print(avg_for_30_yrs_from_file + threshold, &#39;: temp value that will be considered {} threshold.\n&#39;.format(threshold_var[:5]))
+
+    print(np.round(ds_ext[temp_var].sel(lat=[test_lat], lon=[test_lon], method=&#34;nearest&#34;).values[days].squeeze(), 2), temp_var)
+    print(np.round(ds_ext[threshold_var].sel(lat=[test_lat], lon=[test_lon], method=&#34;nearest&#34;).values[days].squeeze(), 2), threshold_var)
+    print(ds_ext.extreme_yn.sel(lat=[test_lat], lon=[test_lon], method=&#34;nearest&#34;).values[days].squeeze(), &#39;extreme yn&#39;)
+    
+    print(&#39;\n--------------------\ntotal number of days of extreme {} temperature&#39;.format(result_type))
+    n_ext_yr = np.sum(ds_ext.extreme_yn.sel(lat=[test_lat], lon=[test_lon], method=&#34;nearest&#34;).values.squeeze())
+    print(n_ext_yr, &#39; = {}% of days&#39;.format(round((n_ext_yr/365)*100, 1)))
+    
+    print(&#39;\n--------------------\ntotal number of grid cells of extreme {} temperature, one day&#39;.format(result_type))
+    n_day = 180
+    nlat = int(ds_ext.coords.get(&#39;lat&#39;).count().values)
+    nlon = int(ds_ext.coords.get(&#39;lon&#39;).count().values)
+    print(&#39;Total grid cells (lat x lon) = ({} x {}) =&#39;.format(nlat, nlon), (nlat * nlon))
+    n_ext_cells = int(np.sum(ds_ext.extreme_yn.values[n_day].squeeze()))
+    print(n_ext_cells, &#39;= {}% of the area, for one day, index: {}&#39;.format(round((n_ext_cells/(nlat * nlon))*100, 1), n_day))
+    
+    return ds_ext</code></pre>
+</details>
+</dd>
+<dt id="extreme_temp_identification.window_gte_threshold"><code class="name flex">
+<span>def <span class="ident">window_gte_threshold</span></span>(<span>ds, axis)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Determines for each rolling window if All the days in the window are equal to or above the threshold
+Returns: a multi-dimensional array of the same size as the input</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def window_gte_threshold(ds, axis):
+    &#34;&#34;&#34;
+    Determines for each rolling window if All the days in the window are equal to or above the threshold
+    Returns: a multi-dimensional array of the same size as the input
+    &#34;&#34;&#34;
+      
+    return np.all(np.greater_equal(ds, 0), axis=-1)</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="">
+<li><code><a title="extreme_temp_identification.AggregateAverageForRange" href="#extreme_temp_identification.AggregateAverageForRange">AggregateAverageForRange</a></code></li>
+<li><code><a title="extreme_temp_identification.CreateDatasetForResults" href="#extreme_temp_identification.CreateDatasetForResults">CreateDatasetForResults</a></code></li>
+<li><code><a title="extreme_temp_identification.GenerateAverageOneFileAtATime" href="#extreme_temp_identification.GenerateAverageOneFileAtATime">GenerateAverageOneFileAtATime</a></code></li>
+<li><code><a title="extreme_temp_identification.Identify_1_year_Extreme_Temp_By_Region" href="#extreme_temp_identification.Identify_1_year_Extreme_Temp_By_Region">Identify_1_year_Extreme_Temp_By_Region</a></code></li>
+<li><code><a title="extreme_temp_identification.Interactive_GetAverageForRange" href="#extreme_temp_identification.Interactive_GetAverageForRange">Interactive_GetAverageForRange</a></code></li>
+<li><code><a title="extreme_temp_identification.PrepareAverageForRange" href="#extreme_temp_identification.PrepareAverageForRange">PrepareAverageForRange</a></code></li>
+<li><code><a title="extreme_temp_identification.Validations_for_Identify_1_year_Extreme_Temp_By_Region" href="#extreme_temp_identification.Validations_for_Identify_1_year_Extreme_Temp_By_Region">Validations_for_Identify_1_year_Extreme_Temp_By_Region</a></code></li>
+<li><code><a title="extreme_temp_identification.Validations_for_Interactive_GetAverageForRange" href="#extreme_temp_identification.Validations_for_Interactive_GetAverageForRange">Validations_for_Interactive_GetAverageForRange</a></code></li>
+<li><code><a title="extreme_temp_identification.get_1_year_extreme_temp_filename" href="#extreme_temp_identification.get_1_year_extreme_temp_filename">get_1_year_extreme_temp_filename</a></code></li>
+<li><code><a title="extreme_temp_identification.interactive_visual_pct_pixels_extreme_by_day" href="#extreme_temp_identification.interactive_visual_pct_pixels_extreme_by_day">interactive_visual_pct_pixels_extreme_by_day</a></code></li>
+<li><code><a title="extreme_temp_identification.interactive_visual_region_in_polar" href="#extreme_temp_identification.interactive_visual_region_in_polar">interactive_visual_region_in_polar</a></code></li>
+<li><code><a title="extreme_temp_identification.load_1_yr_results_and_basic_analysis" href="#extreme_temp_identification.load_1_yr_results_and_basic_analysis">load_1_yr_results_and_basic_analysis</a></code></li>
+<li><code><a title="extreme_temp_identification.plot_avg_and_record_temperatures" href="#extreme_temp_identification.plot_avg_and_record_temperatures">plot_avg_and_record_temperatures</a></code></li>
+<li><code><a title="extreme_temp_identification.prepare_component_averages_files" href="#extreme_temp_identification.prepare_component_averages_files">prepare_component_averages_files</a></code></li>
+<li><code><a title="extreme_temp_identification.verify_ext_data" href="#extreme_temp_identification.verify_ext_data">verify_ext_data</a></code></li>
+<li><code><a title="extreme_temp_identification.window_gte_threshold" href="#extreme_temp_identification.window_gte_threshold">window_gte_threshold</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>

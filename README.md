@@ -63,8 +63,8 @@ NASA Goddard Institute for Space Studies (GISS; https://www.giss.nasa.gov/) is a
 Microsoft intitiatives of [Project 15](https://docs.microsoft.com/en-us/azure/architecture/solution-ideas/articles/project-15-iot-sustainability) and [Plantery Computer](http://planetarycomputer.microsoft.com/) have been the technical partners providing a cloud based computing environment in Microsoft Azure and Microsoft Planetary Computer. 
 
 The student team:
-* Koray Kinik (koraykinik1984@gmail.com),
-* Phillip Booth (phillip.booth2015@gmail.com), and
-* Ravi Sharma (ravisharma111@gmail.com)  
+* Koray Kinik,
+* Phillip Booth, and
+* Ravi Sharma
 
 

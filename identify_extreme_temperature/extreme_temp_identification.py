@@ -1162,8 +1162,9 @@ def interactive_visual_pct_pixels_extreme_by_day(ds_ext):
 
 def interactive_visual_region_in_polar(ds_ext, start_day=1, end_day=5, step_n_days=1, data_variable_name='tasmax'):
     """"""
-    proj = ccrs.Orthographic(-90, 30)
+#     proj = ccrs.Orthographic(-90, 30)
 #     proj = ccrs.OSNI(ccrs.TransverseMercator(90,30,0,0))
+    proj = ccrs.PlateCarree(central_longitude=0.0, globe=None)
 
     col_map = 'coolwarm'
     if data_variable_name == 'extreme_yn':
@@ -1171,8 +1172,8 @@ def interactive_visual_region_in_polar(ds_ext, start_day=1, end_day=5, step_n_da
     
 
     visual = ds_ext[data_variable_name].isel(time=slice(start_day-1, end_day, step_n_days)).hvplot.quadmesh(
-    'lon', 'lat', projection=proj, project=True, global_extent=False, 
-    cmap=col_map, rasterize=True, dynamic=False, coastline=True, 
+    'lon', 'lat', projection=proj, project=True, global_extent=False, geo=True, 
+    cmap=col_map, rasterize=True, dynamic=False, coastline=True,
     frame_width=500)
     
     pane = pn.panel(visual)

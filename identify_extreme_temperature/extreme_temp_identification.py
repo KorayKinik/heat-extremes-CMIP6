@@ -19,6 +19,7 @@ from azure.storage.blob import BlobClient
 import time
 import urllib.request
 from datetime import datetime
+from datetime import timedelta
 import cftime
 import urllib
 import csv
@@ -1020,7 +1021,6 @@ def Identify_1_year_Extreme_Temp_By_Region(analysis_year, threshold, result_type
                      'Data description' : '{} temperature; difference from threshold; extreme (y/n)-continuous for specified day'.format(result_type),
                      'Range' : '1 year',
                      'Analysis year' : str(analysis_year),
-                     'threshold' : region_id,
                      'based_on_averages' : str(based_on_averages),
                      'averages_start_year' : str(averages_start_year),
                      'averages_end_year' : str(averages_end_year),
@@ -1131,7 +1131,7 @@ def verify_ext_data(ext_filename, ds_avg, day_start_idx, day_end_idx, test_lat, 
 #### A function to analyze Heatwaves, extreme cold Temperature 
 #### from 1-year data results -- 
 #### Visualize the Percentage of pixels in extreme (heatwave or cold)
-#### Returns - interactive bokeh pane
+#### Returns - xarray dataset AND interactive bokeh pane
 #### ####################################################################
 
 def interactive_visual_pct_pixels_extreme_by_day(ds_ext):
@@ -1144,12 +1144,12 @@ def interactive_visual_pct_pixels_extreme_by_day(ds_ext):
     temp_var = 'tasmax' if result_type=='max' else 'tasmin'
     day_wise_mean = ds_ext.extreme_yn.sum(dim=['lat','lon']) / ds_ext[temp_var].count(dim=['lat','lon'])
     dt_index = day_wise_mean.indexes['time'].to_datetimeindex()
-    day_wise_mean = xr.DataArray(day_wise_mean, coords={'time':dt_index.values})
+    day_wise_mean = xr.DataArray(day_wise_mean, coords={'time':dt_index.values}, name='pct_area_extreme')
 
     day_wise_mean_plot = day_wise_mean.hvplot()
 
     pane = pn.panel(day_wise_mean_plot)
-    return pane
+    return day_wise_mean, pane
 
 
 #### ####################################################################    
@@ -1160,8 +1160,15 @@ def interactive_visual_pct_pixels_extreme_by_day(ds_ext):
 #### Returns - interactive bokeh pane
 #### ####################################################################
 
-def interactive_visual_region_in_polar(ds_ext, start_day=1, end_day=5, step_n_days=1, data_variable_name='tasmax'):
-    """"""
+def interactive_visual_region(ds_ext, start_day, end_day, step_n_days=1, data_variable_name='tasmax'):
+    """
+    Plot interactive visual using the specified xarray dataset and
+    start_day : Integer or date; use same type for end_day. 
+                Day number (integer) 1 or later. Or, a date in the format 'yyyy-mm-dd'
+    end_day   : Integer or date; use same type for start_day. 
+                Day number (integer) 1 or later. Or, a date in the format 'yyyy-mm-dd'
+    Please do choose a short range as plotting multiple days can take longer.    
+    """
 #     proj = ccrs.Orthographic(-90, 30)
 #     proj = ccrs.OSNI(ccrs.TransverseMercator(90,30,0,0))
     proj = ccrs.PlateCarree(central_longitude=0.0, globe=None)
@@ -1170,8 +1177,12 @@ def interactive_visual_region_in_polar(ds_ext, start_day=1, end_day=5, step_n_da
     if data_variable_name == 'extreme_yn':
         col_map = 'cet_CET_L19'
     
-
-    visual = ds_ext[data_variable_name].isel(time=slice(start_day-1, end_day, step_n_days)).hvplot.quadmesh(
+    if isinstance(start_day, int):
+        subset = ds_ext[data_variable_name].isel(time=slice(start_day-1, end_day, step_n_days))
+    else:
+        subset = ds_ext[data_variable_name].sel(time=slice(start_day, end_day, step_n_days))
+    
+    visual = subset.hvplot.quadmesh(
     'lon', 'lat', projection=proj, project=True, global_extent=False, geo=True, 
     cmap=col_map, rasterize=True, dynamic=False, coastline=True,
     frame_width=500)
@@ -1209,3 +1220,542 @@ def load_1_yr_results_and_basic_analysis(ext_filename, show_basic_analysis=True,
                                , area_of_interest.get('left_lon'), area_of_interest.get('right_lon'))
         
     return ds_ext
+
+
+#### ####################################################################    
+#### 3.9 interactive_visual_difference_from_threshold_by_day()
+#### A function to analyze Heatwaves, extreme cold Temperature 
+#### from 1-year data results -- 
+#### Visualize the high and low of difference from threshold, across the
+#### specified region, by day. 
+#### Also, included is the average difference from threshold, for the entire 
+#### area, by day
+#### Returns - xarray dataset AND interactive bokeh pane
+#### ####################################################################
+
+def interactive_visual_difference_from_threshold_by_day(ds_ext):
+    """
+    Returns: 1) xarray DataArray, with three variables, for each day in the dataset
+                i)   Highest value difference from the threshold, across the area
+                ii)  Lowest value difference from the threshold, across the area
+                iii) Average difference from the threshold, from all pixels in the area 
+           : 2) bokeh pane for interactive visualization.
+    """
+    result_type = ds_ext.attrs['result_type']
+    temp_var = 'tasmax' if result_type=='max' else 'tasmin'
+    diff_var = 'above_threshold' if result_type=='max' else 'below_threshold'
+    threshold_diff_high = ds_ext[diff_var].max(dim=['lat','lon'], skipna=True)    
+    threshold_diff_low = ds_ext[diff_var].min(dim=['lat','lon'], skipna=True)
+    threshold_diff_avg = ds_ext[diff_var].mean(dim=['lat','lon'], skipna=True)
+    dt_index = threshold_diff_high.indexes['time'].to_datetimeindex()
+    difference_from_threshold = xr.Dataset(data_vars = {'threshold_diff_high':(['time'],threshold_diff_high.to_numpy())
+                                       , 'threshold_diff_low':(['time'],threshold_diff_low.to_numpy())
+                                       , 'threshold_diff_avg':(['time'],threshold_diff_avg.to_numpy())}
+                                       , coords=dict(time=dt_index))
+    
+
+    difference_from_threshold_plot = difference_from_threshold.hvplot(y=['threshold_diff_low','threshold_diff_high','threshold_diff_avg']
+                                                                      , value_label='difference_from_threshold'
+                                                                      , alpha=0.7)
+    pane = pn.panel(difference_from_threshold_plot)
+    return difference_from_threshold, pane
+
+
+
+#### ####################################################################    
+#### 3.10 static_visual_region()
+#### A function to analyze Heatwaves, extreme cold Temperature 
+#### from 1-year data results -- 
+#### Visualize the three variables of extreme temeprature results:
+#### tasmax or tasmin, above_threshold or below_threshold, and extreme_yn. 
+#### Returns - None. Plots static visuals (not interactive) 
+#### ####################################################################
+
+# static visuals - region
+def static_visual_region(ds_ext, start_day, end_day, step_n_days):
+    sdt = datetime.strptime(start_day, '%Y-%m-%d')
+    sdt = cftime.DatetimeNoLeap(sdt.year, sdt.month, sdt.day, 12)
+    edt = datetime.strptime(end_day, '%Y-%m-%d')
+    edt = cftime.DatetimeNoLeap(edt.year, edt.month, edt.day, 12)
+
+    range_start = ds_ext.coords['time'].item(0)
+    range_end = ds_ext.coords['time'].item(-1)
+
+    validation_passed = True
+    if not sdt in ds_ext.coords['time']:
+        print('Start day {} not in the dataset range: {} to {}'.format(start_day, range_start.strftime('%Y-%m-%d'), range_end.strftime('%Y-%m-%d')))
+        validation_passed = False
+    if not edt in ds_ext.coords['time']:
+        print('End day {} not in the dataset range: {} to {}'.format(end_day, range_start.strftime('%Y-%m-%d'), range_end.strftime('%Y-%m-%d')))
+        validation_passed = False
+
+    if validation_passed:
+        result_type = ds_ext.attrs['result_type']
+        var_names = [None]*3
+        var_names[0] = 'tasmax' if result_type=='max' else 'tasmin'
+        var_names[1] = 'above_threshold' if result_type=='max' else 'below_threshold'
+        var_names[2] = 'extreme_yn'
+
+        subset = ds_ext.sel(time=slice(start_day, end_day, step_n_days))
+
+        scale = '50m'
+        states50 = cfeature.NaturalEarthFeature(
+                category='cultural',
+                name='admin_1_states_provinces_lines',
+                scale=scale,
+                facecolor='none',
+                edgecolor='grey')
+
+        for img in range(len(subset.time)):
+            fig = plt.figure(figsize=(4,3))
+            fig.set_size_inches([14,3])
+            for i in range(3):
+                axs = fig.add_subplot(1,3,i+1, projection=ccrs.PlateCarree())
+                axs.coastlines()
+                axs.set_title('var'+str(i+1))
+                col_map = 'coolwarm'
+                if var_names[i] == 'extreme_yn':
+                    col_map = 'cet_CET_L19'
+                visual = subset[var_names[i]].isel(time=slice(img, img+1)).plot(cmap=col_map, ax=axs)
+                axs.add_feature(states50, zorder=2, linewidth=0.5)
+                axs.add_feature(cfeature.BORDERS, linewidth=0.5)
+                plt.axis('off')
+                
+
+#### ####################################################################    
+#### 4
+#### Code to aggregrate summary results from Extreme Temperature results
+#### of mulitple years, generetated in the previous step
+#### expects the variable 'tasmax' or 'tasmin', 'above_average' or
+#### 'below_average', and 'extreme_yn'
+#### ####################################################################    
+
+
+#### ####################################################################    
+#### 4.1 check_lat_lon_in_dataset()
+#### A function to support creating summary of extreme temperature results
+#### for the specifed region/area-of-intererst. 
+#### Checks that the specified location's latitude and longitude appear
+#### specified within the region
+#### ####################################################################
+
+def check_lat_lon_in_dataset(ds_ext, lat, lon):
+    """
+    Checks for the presence of the specified latitude, longitude in the provided dataset
+    Input:
+         - ds     : the xarray dataset 
+         - lat    : latitude 
+         - lon    : longitude         
+    Returns: status (boolean) and message (str). True, if the both exist in the coordinates. Else, False with apprpriate message.
+    """
+    err_msg = ''
+    
+    start_lat = ds_ext.coords['lat'].item(0)
+    end_lat = ds_ext.coords['lat'].item(-1)
+    start_lon = ds_ext.coords['lon'].item(0)
+    end_lon = ds_ext.coords['lon'].item(-1)
+    
+    if not (start_lat <= lat and end_lat >= lat):
+        err_msg = 'Latitude {} outside the dataset coordinates range of lat: {} to {}'.format(lat, start_lat, end_lat)
+    if not (start_lon <= lon and end_lon >= lon):
+        err_msg = 'Longitude {} outside the dataset coordinates range of lon: {} to {}'.format(lon, start_lon, end_lon)
+    if err_msg == '':
+        return True, ''
+    else:
+        return False, err_msg   
+
+#### ####################################################################    
+#### 4.2 get_multi_year_summary_extreme_temp_filename()
+#### A function to support creating summary of extreme temperature results
+#### for the specifed region/area-of-intererst. 
+#### Generates the name for the main results and for all locations 
+#### specified within the region
+#### ####################################################################
+
+def get_multi_year_summary_extreme_temp_filename(result_type, cmip, model_name
+                               , region_id, aoi_id
+                               , based_on_averages, threshold, is_percentage, n_continuous_days
+                               , averages_start_year, averages_end_year, start_year, end_year):
+    # example: Summary_2020_2030_Ext_max_t__Rgn_1__Abv_5_K_for_3_days__CMIP6_ssp245_Avg_yrs_1990_09
+    # example: Redmond_Summary_2020_2030_Ext_max_t__Rgn_1__Abv_5_K_for_3_days__CMIP6_ssp245_Avg_yrs_1990_09
+    # example: Summary_2020_2030_Ext_max_t__AoI_107__Abv_305_K_for_3_days__CMIP6_ssp245
+    # example: Redmond_Summary_2020_2030_Ext_max_t__AoI_107__Abv_305_K_for_3_days__CMIP6_ssp245
+    
+    if based_on_averages:
+        criteria = '{}_Avg_{}_{}'.format('Abv' if result_type == 'max' else 'Blw', threshold, 'pct' if is_percentage else 'K')
+        avgs_year = '_Avg_yrs_{}_{}'.format(averages_start_year, str(averages_end_year)[-2:])
+    else:
+        criteria = '{}_{}_K'.format('Abv' if result_type == 'max' else 'Blw', threshold)
+        avgs_year = ''
+                                           
+    criteria += '_for_{}_days'.format(n_continuous_days)
+    
+    
+    filename = 'Summary_{}_{}_Ext_{}_t__{}_{}__{}__CMIP{}_{}{}.nc'.format(start_year, end_year, result_type, 'AoI' if aoi_id else 'Rgn', aoi_id if aoi_id else region_id                                                                         
+                                                                         , criteria, cmip, model_name, avgs_year)                
+    return filename
+
+
+#### ####################################################################    
+#### 4.3 extreme_temperature_summary_by_region_and_locations()
+#### A function to prepare the summary of extreme temperature results
+#### for the specifed region/area-of-intererst. Also, prepares separate
+#### results for locations specified within the region
+#### ####################################################################
+
+def extreme_temperature_summary_by_region_and_locations(start_year, end_year, from_month, to_month, region_id
+                           , based_on_averages, threshold, is_percentage
+                           , n_continuous_days, averages_start_year, averages_end_year, cmip=6
+                           , result_type='max', model_name=None, locations=None, aoi_id=None, aoi_in_ext_results=False                        
+                           , azure_url_source_files=None, sas_token=None, azure_url_result_files=None
+                           , remove_after_use=True):
+    """
+    Prepares summary results of extreme temperature for multiple years.
+    * downloads the extreme temperature results file for each year if url_prefix is set, and if the file isn't already available
+      locally. Else, no download and the file will be expected to be available locally.      
+    * processes data one file at time.
+    * then deletes the yearly extreme temperature results file if it was downloaded from Azure, and remove_after_use=True
+    Summary results are produced for the entire dataset, as well as separate results for EACH location in the region.
+    Note: if url from azure or other location requiring access token, then provide the SAS token as well.
+    Input Parameters:
+    - start_year  : start year for the range of new results being prepared
+    - end_year    : end year for the range of new results being prepared
+    - from_month  : every year, consider data starting this month -- a value between 1 and 12. For e.g. 5 for May. 
+    - to_year     : every year, consider data ending this month -- a value between 1 and 12. For e.g. 9 for Sep.
+    **** These next 10 parametere values should be the SAME as used in original extreme temperature identification results ****                 
+    - region_id   : region ID
+    - based_on_averages  : if True, the threshold is the difference above the average temperature. Else, actual temp in Kelvin
+    - threshold          : a fixed temperature, or a value or pecentile above average that will be considered for extreme temp
+    - is_percentage      : True, a percentile above average. False, a fixed value above average. Evaluated only if based_on_averages=True. 
+    - n_continuous_days  : number of continuous days of above threshold temperature to qualify as a extreme temp event.
+    - averages_start_year, averages_end_year: range of years to use for average temperatures
+    - cmip        : integer number to specify cmip version (5 or 6 or other). Default is 6
+    - result_type : 'max' for heat extremes, and 'min' for cold spells.
+    - model_name  : name of the model. Example: 'GFDL_ESM4_ssp245'
+    **** ****
+    - locations   : if not None, this should be a dictionary with key as name for the location, and value as a tuple of (lat, lon)
+                    For e.g. {'Redmond':(47.67, -122.12)} OR {'Redmond':(47.67, 237.88)} 
+                    There could be multiple locations in the request.
+    - aoi_id      : Optional, An area of interest ID from within the specified region. If provided, results will be limited
+                    to this area of intereset only. 
+    - aoi_in_ext_results    : True if AOI was used in the source extreme temperature results, else False.
+    - azure_url_source_files : The url of Azure blob storage, including the container and the folder location of extreme temp files
+    - sas_token   : A sas token with 'read' permissions to the azure blob container
+    - azure_url_result_files : The url of Azure blob storage, including the container and the folder location where results will be uploaded
+    - remove_after_use      : default = True. Set to False to retain the files locally. If True, still only the files that were
+                              downloaded during this function will be deleted, and not the files that were already present locally.
+    Returns:  An xarray dataset with the results for the entire region, and a dictionary of xarray results for each input location.
+    """
+    validations_passed = True
+    ds_results = None
+    loc_results = None
+    filename = ''
+    results_filename = ''
+    
+    sdt = None
+    edt = None
+    
+    # validations
+    if not (isinstance(start_year, int) and isinstance(end_year, int) and (end_year > start_year)):
+        print('Validation Error: start_year and end_year should be integers; end year should be greater than start year.')
+        validations_passed = False
+    
+    # validations: from_month, to_month
+    if not isinstance(from_month, int) and not (0 > from_month > 13):
+        print('Validation Error: from_month should be an integer between 1 and 12.')
+        validations_passed = False
+    if not isinstance(to_month, int) and not (0 > to_month > 13):
+        print('Validation Error: to_month should be an integer between 1 and 12.')
+        validations_passed = False
+    if not to_month >= from_month:
+        print('Validation Error: to_month should greater than from_month.')
+        validations_passed = False
+        
+    
+    # validations: check region / area of interest
+    reg = Regions()
+    name_of_area_of_interest = None
+    if aoi_id:
+        area = reg.get_area_of_interest_by_ID(aoi_id)        
+    else:
+        area = reg.get_region_by_ID(region_id)    
+    if area is None:
+        print('Validation Error: {} could not be found.'.format('aoi_id' if aoi_id else 'region_id'))
+        validations_passed = False
+    else:
+        if aoi_in_ext_results:
+            name_of_area_of_interest = area['area_of_interest']
+        
+    # validations: check that all files exist, before generating results:
+    missing_files = []
+    for analysis_year in range(start_year, end_year+1):
+        filename = get_1_year_extreme_temp_filename(result_type, cmip, model_name
+                               , region_id, analysis_year, name_of_area_of_interest
+                               , based_on_averages, threshold, is_percentage, n_continuous_days
+                               , averages_start_year, averages_end_year)
+        found = False
+        if not os.path.exists(filename):
+            if azure_url_source_files:
+                sas_url = create_sas_url(azure_url_source_files, sas_token, filename)
+                if is_file_in_Azure(sas_url):                    
+                    found = True
+            if not found:    
+                missing_files.append(filename)
+                
+        if len(missing_files) == 6:
+            break
+    
+    if len(missing_files) == 6:
+        missing_files.pop()
+        print('Many source files are missing! Here are names of the first 5:')
+        for mfile in missing_files:
+            print(mfile)
+        validations_passed = False
+    elif len(missing_files) > 0:
+        print('{} source files missing! Here are the names:'.format(len(missing_files)))
+        for mfile in missing_files:
+            print(mfile)
+        validations_passed = False
+    
+    if validations_passed:               
+        results_filename = get_multi_year_summary_extreme_temp_filename(result_type, cmip, model_name
+                               , region_id, aoi_id
+                               , based_on_averages, threshold, is_percentage, n_continuous_days
+                               , averages_start_year, averages_end_year, start_year, end_year)
+    
+        print('validations passed, processing extreme temperature identification files...')
+        total_years = 0        
+        temp_var = 'tasmax' if result_type=='max' else 'tasmin'
+        diff_var = 'above_threshold' if result_type=='max' else 'below_threshold'
+        
+        if locations:
+            loc_results = {}
+                
+        # prepare to time the operation
+        start_time = time.time()
+        for analysis_year in range(start_year, (end_year + 1)):
+            print('process year: {} ...'.format(analysis_year))
+            filename = get_1_year_extreme_temp_filename(result_type, cmip, model_name
+                               , region_id, analysis_year, name_of_area_of_interest
+                               , based_on_averages, threshold, is_percentage, n_continuous_days
+                               , averages_start_year, averages_end_year)
+            
+            # if required, download the file so it is available locally
+            found = False
+            downloaded = False
+            if not os.path.exists(filename):
+                if azure_url_source_files:
+                    sas_url = create_sas_url(azure_url_source_files, sas_token, filename)
+                    if is_file_in_Azure(sas_url):
+                        download_file(sas_url, filename, overwrite_local_file=True, from_azure=True, print_msg=False)
+                        downloaded = True
+                        found = True
+            else:
+                found = True
+                
+            if not found:
+                raise ValueError('file {} not found, after starting the processing!'.format(filename))
+            else:
+                ds_ext = xr.open_dataset(filename)
+                # region subset
+                if aoi_id is not None and aoi_in_ext_results==False:  # aoi_id provided but not used in original results
+                    ds_ext = region_subset(ds_ext, area['top_lat'], area['bottom_lat'], area['left_lon'], area['right_lon'])
+                # month-wise subset
+                if not (from_month==1 and to_month==12):
+                    strdt = '{}/{}'.format(from_month, analysis_year)
+                    sdt = datetime.strptime(strdt, '%m/%Y')
+                    if to_month == 12:
+                        strdt = '{}/{}/{}'.format(to_month, 31, analysis_year)
+                        edt = datetime.strptime(strdt, '%m/%d/%Y')
+                    else:
+                        strdt = '{}/{}'.format(to_month+1, analysis_year)  # move forward by a month
+                        edt = datetime.strptime(strdt, '%m/%Y')
+                        edt = edt-timedelta(days=1)                        # last day of previous month
+                    
+                    ds_ext = datewise_subset(ds_ext, sdt.strftime('%m/%d/%Y'), edt.strftime('%m/%d/%Y'))
+            
+            day_wise_mean = ds_ext.extreme_yn.sum(dim=['lat','lon']) / ds_ext[temp_var].count(dim=['lat','lon'])
+            threshold_diff_high = ds_ext[diff_var].max(dim=['lat','lon'], skipna=True)    
+            threshold_diff_low = ds_ext[diff_var].min(dim=['lat','lon'], skipna=True)
+            threshold_diff_avg = ds_ext[diff_var].mean(dim=['lat','lon'], skipna=True)
+            temp_max = ds_ext[temp_var].max(dim=['lat','lon'], skipna=True)    
+            temp_min = ds_ext[temp_var].min(dim=['lat','lon'], skipna=True)
+            temp_avg = ds_ext[temp_var].mean(dim=['lat','lon'], skipna=True)
+            dt_index = threshold_diff_high.indexes['time'].to_datetimeindex()
+            difference_from_threshold = xr.Dataset(data_vars = { 'pct_of_area_extreme':(['time'],day_wise_mean.to_numpy())
+                                               , 'threshold_diff_high':(['time'],threshold_diff_high.to_numpy())
+                                               , 'threshold_diff_low':(['time'],threshold_diff_low.to_numpy())
+                                               , 'threshold_diff_avg':(['time'],threshold_diff_avg.to_numpy())
+                                               , 'temp_max':(['time'],temp_max.to_numpy())
+                                               , 'temp_min':(['time'],temp_min.to_numpy())
+                                               , 'temp_avg':(['time'],temp_avg.to_numpy())}
+                                               , coords=dict(time=dt_index))
+            
+            
+            # first file being processed
+            if total_years == 0:
+                ds_results = difference_from_threshold            
+            else:
+                ds_results = xr.concat([ds_results, difference_from_threshold], 'time')
+            
+            
+            # check that all locations are within the area, then prepare results for locations:
+            if locations:                
+                for loc_key in locations:
+                    lat, lon = None, None
+                    try:
+                        lat, lon = locations[loc_key]
+                    except Exception as e:
+                        print('Error in accessing location {}. Value must be a tuple of 2 values (<lat>, <lon>)'.format(loc_key))
+                        print('Reveived value: '.format(locations[loc_key]))
+                        raise e
+
+                    if not ((isinstance(lat, int) or isinstance(lat, float)) and (isinstance(lon, int) or isinstance(lon, float))):
+                        err_msg = 'Latitude, Longitude must be numeric values. Received -- lat: {}, lon: {}'.format(lat, lon)
+                        raise ValueError(err_msg)
+                    elif not (90 >= lat >= -90):
+                        err_msg = 'Latitude must be between -90 and 90. Received -- lat: {}'.format(lat)
+                        raise ValueError(err_msg)
+                    elif not (360 >= lon >= -180):
+                        err_msg = 'Longitude must be between -180 and 180, or between 0 and 360. Received -- lon: {}'.format(lon)
+                        raise ValueError(err_msg)
+                    elif lon < 0:
+                        lon = lon % 360
+
+                    is_location_in_dataset, err_msg = check_lat_lon_in_dataset(ds_ext, lat, lon)
+                    if not is_location_in_dataset:
+                        print(err_msg)
+                        raise ValueError(err_msg)
+
+                    ds_one_day = ds_ext.sel(lat = [lat], lon = [lon], method="nearest")
+                    
+                    if total_years == 0:
+                        loc_results[loc_key] = ds_one_day            
+                    else:
+                        loc_results[loc_key] = xr.concat([loc_results[loc_key], ds_one_day], 'time')
+                    
+                    # last file being processed
+                    if analysis_year == end_year:
+                        if aoi_id:
+                            dataset_val = 'Multi-year Summary of Extreme {} Temperature Data CMIP{} {} aoi_id: {} -- location: {}'.format(result_type, cmip, model_name, aoi_id, loc_key)
+                            about_val = 'Multi-year Summary of Extreme {} Temp Data, for CMIP{} model: {}, from the area of interest {}-{} -- location: {}'.format(result_type
+                                                                                                                                    , cmip, model_name
+                                                                                                                                    , aoi_id
+                                                                                                                                    , area['area_of_interest'], loc_key)
+                        else:    
+                            dataset_val = 'Multi-year Summary of Extreme {} Temperature Data CMIP{} {} region_id: {} -- location: {}'.format(result_type, cmip, model_name, region_id, loc_key)
+                            about_val = 'Multi-year Summary of Extreme {} Temp Data, for CMIP{} model: {}, from the region {}-{} -- location: {}'.format(result_type, cmip, model_name
+                                                                                                                                    , region_id
+                                                                                                                                    , area.get('region_name'), loc_key)
+                        new_attrs = {'Dataset' : dataset_val,
+                                    'About dataset' : about_val,
+                                    'Data variables' : '{}, {}, extreme_yn'.format(temp_var, diff_var),
+                                    'Data description' : '{} temperature; difference from threshold; extreme (y/n)-continuous for specified day'.format(result_type),
+                                    'location' : loc_key,
+                                    'lat' : lat,
+                                    'lon' : lon,
+                                    'Range' : '{} years'.format(total_years+1),
+                                    'Start year' : start_year,
+                                    'End year' : end_year,
+                                    'based_on_averages' : str(based_on_averages),
+                                    'averages_start_year' : str(averages_start_year),
+                                    'averages_end_year' : str(averages_end_year),
+                                    'threshold' : threshold,
+                                    'result_type' : result_type,
+                                    'is_percentage' : str(is_percentage),
+                                    'Number of continuous days to be considered extreme' : n_continuous_days,
+                                    'cmip' : cmip,
+                                    'model_name': model_name,
+                                    'Store as': loc_key.replace(' ', '_') + '_' + results_filename
+                                    }
+                        loc_results[loc_key].attrs = new_attrs
+                # for loop for locations ends here
+            # if locations processing ends here
+            
+            total_years += 1
+            
+            # last file being processed
+            if analysis_year == end_year:
+                if aoi_id:
+                    dataset_val = 'Multi-year Summary of Extreme {} Temperature Data CMIP{} {} aoi_id: {}'.format(result_type, cmip, model_name, aoi_id)
+                    about_val = 'Multi-year Summary of Extreme {} Temp Data, for CMIP{} model: {}, for the area of interest {}-{}'.format(result_type
+                                                                                                                            , cmip, model_name
+                                                                                                                            , aoi_id
+                                                                                                                            , area['area_of_interest'])
+                else:    
+                    dataset_val = 'Multi-year Summary of Extreme {} Temperature Data CMIP{} {} region_id: {}'.format(result_type, cmip, model_name, region_id)
+                    about_val = 'Multi-year Summary of Extreme {} Temp Data, for CMIP{} model: {}, for the region {}-{}'.format(result_type, cmip, model_name
+                                                                                                                            , region_id
+                                                                                                                            , area.get('region_name'))
+                new_attrs = {'Dataset' : dataset_val,
+                    'About dataset' : about_val,
+                    'Data variables' : 'pct_of_area_extreme, threshold_diff_high, threshold_diff_low, threshold_diff_avg, temp_max, temp_min, temp_avg',
+                    'Data description' : 'percentage of area extreme; high-low-avg difference of temp from threshold across the area; max-min-avg temp across the area',
+                    'Range' : '{} years'.format(total_years),
+                    'Start year' : start_year,
+                    'End year' : end_year,
+                    'based_on_averages' : str(based_on_averages),
+                    'averages_start_year' : str(averages_start_year),
+                    'averages_end_year' : str(averages_end_year),
+                    'threshold' : threshold,
+                    'result_type' : result_type,
+                    'is_percentage' : str(is_percentage),
+                    'Number of continuous days to be considered extreme' : n_continuous_days,
+                    'cmip' : cmip,
+                    'model_name': model_name,
+                    'Store as': results_filename}
+            
+                if aoi_id:
+                    new_attrs['aoi_id'] = aoi_id
+                    new_attrs['aoi_name'] = area.get('area_of_interest')
+                else:
+                    new_attrs['region_id'] = region_id
+                    new_attrs['region_name'] = area.get('region_name')
+                
+                new_attrs['top_lat'] = area.get('top_lat')
+                new_attrs['bottom_lat'] = area.get('bottom_lat')
+                new_attrs['left_lon'] = area.get('left_lon')
+                new_attrs['right_lon'] = area.get('right_lon')
+                new_attrs['img_url'] = area.get('img_url')
+
+                ds_results.attrs = new_attrs
+            
+            # delete the file
+            if remove_after_use and downloaded:
+                os.remove(filename)
+        
+        # save results and, if requested, upload to azure
+        SaveResult(ds_results, azure_url_prefix = azure_url_result_files, sas_token=sas_token, local_copy=True)
+        for loc_key in loc_results:
+            SaveResult(loc_results[loc_key], azure_url_prefix = azure_url_result_files, sas_token=sas_token, local_copy=True)
+                
+        
+        # print out the time it took
+        execution_time = (time.time() - start_time)
+        print("Complete execution time | PrepareAverageForRange | (mins) {:0.2f}".format(execution_time/60.0))
+            
+    return ds_results, loc_results
+
+
+#### ####################################################################    
+#### 4.4 interactive_visual_line_plot()
+#### A function to analyze Heatwaves, extreme cold Temperature 
+#### from multi-year summary data results -- 
+#### Visualize the high and low of difference from threshold, across the
+#### specified region, by day. 
+#### Also, included is the average difference from threshold, for the entire 
+#### area, by day
+#### Returns - interactive bokeh pane
+#### ####################################################################
+
+def interactive_visual_line_plot(ds_ext, data_variables, y_label, alpha_value=0.7):
+    """
+    Specify the variables to plot
+    Returns: 1) bokeh pane for interactive visualization.
+    """
+    interactive_plot = ds_ext.hvplot(y = data_variables
+                                                   , value_label = y_label
+                                                   , alpha = alpha_value)
+    pane = pn.panel(interactive_plot)
+    return pane
+

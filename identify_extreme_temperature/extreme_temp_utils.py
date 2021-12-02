@@ -71,10 +71,14 @@ def download_file(sas_url, filename, overwrite_local_file, from_azure=False, pri
                     my_blob.write(download_stream.readall())
                 downloaded = True
         else:
-            with open(filename, "wb") as dnld_file:                
-                with urllib.request.urlopen(sas_url) as f:                    
-                    dnld_file.write(f.read())
-            downloaded = True                    
+            try:
+                with open(filename, "wb") as dnld_file:                
+                    with urllib.request.urlopen(sas_url) as f:                    
+                        dnld_file.write(f.read())
+                downloaded = True                    
+            except Exception as e:
+                print('Exception with url: ', sas_url)
+                raise e
 
     return downloaded
 

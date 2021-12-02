@@ -1758,4 +1758,3 @@ def interactive_visual_line_plot(ds_ext, data_variables, y_label, alpha_value=0.
                                                    , alpha = alpha_value)
     pane = pn.panel(interactive_plot)
     return pane
-

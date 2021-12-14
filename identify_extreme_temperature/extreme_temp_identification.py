@@ -1758,3 +1758,247 @@ def interactive_visual_line_plot(ds_ext, data_variables, y_label, alpha_value=0.
                                                    , alpha = alpha_value)
     pane = pn.panel(interactive_plot)
     return pane
+
+
+
+#### ####################################################################    
+#### 5
+#### Generate images for Machine Learning
+#### ####################################################################    
+
+#### ####################################################################    
+#### 5.1 Generate_ML_Images_and_Labels_By_Region_or_AoI()
+#### A function that first generates the extreme temp data, if not already
+#### available.
+#### Then generates the images for machine learning AND
+#### uploads to Azure, as zipfile dataset, along with csv file of labels.
+#### ####################################################################
+
+# Generate Images
+def Generate_ML_Images_and_Labels_By_Region_or_AoI(start_year, end_year, threshold, result_type = 'max'
+                            , based_on_averages=False, is_percentage=False
+                            , n_continuous_days=3, cmip=6, model_name='historical', region_id=1
+                            , averages_start_year=None, averages_end_year=None
+                            , azure_url_extremes=None, sas_token=None
+                            , azure_url_averages=None, azure_url_1_year_temp=None, temp_filename_prefix_1=None, temp_filename_prefix_2=None
+                            , cmip_files_url_1=None, cmip_files_url_2=None
+                            , remove_source_files=True, aoi_id=None, interactive=False, print_extra_msg=False, extreme_area_pct=0.3
+                            , image_start_day=1, image_end_day=1, attribute_for_temp_range='may_to_oct_range'
+                            , azure_dataset_url=None, remove_dataset=False):
+    """
+    For the specified years, images are generated along with yes / no labels.
+    
+    Makes available the extreme maxiumn temperature identification data, for analysis of 1-year duration,
+     for the specified region and optionally, for the specified area of interest
+    If azure_url_extremes is provided then: 
+      the file is first looked up in Azure and downloaded.
+      else, the file is generated and then uploaded back in to Azure.
+    Else - the file is generated.
+    Assumes that the source data files (averages and 1-yr temp) are already available locally, or in Azure, or elsewhere on Internet. 
+      Please generate those separately if not already available.    
+    
+    The unit of temperature (Kelvin) is retained.
+    Input Parameters:
+    - start_year, end year : The range of years for which the images need to be generated.
+    - threshold            : a fixed temperature, or a value or pecentile above average that will be considered for extreme temp
+    - result_type          : 'max' or 'min' for analysis of extreme Maximum or Minimum temperatures
+    - based_on_averages    : if True, the threshold is the difference above the average temperature. Else, actual temp in Kelvin
+    - is_percentage        : True, a percentile above average. False, a fixed value above average. Evaluated only if based_on_averages=True. 
+    - n_continuous_days    : number of continuous days of above threshold temperature to qualify as a extreme temp event.
+    - cmip                 : integer number to specify cmip version (5 or 6 or other). Default is 6
+    - model_name           : Specify the name of the model, for example 'ssp245'. This will become a part of the filename.
+    - region_id            : integer ID of the region. See Regions class for available regions.
+    - averages_start_year, averages_end_year: range of years to use for average temperatures
+    - azure_url_extremes   : if provided, the extreme temperature identification results will be uploaded in Azure for reuse.
+    - sas_token            : A sas token with 'read' permissions to the azure blob container. If saving back, then 'write' permission is required.  
+    - azure_url_averages   : url without filename. if averages file is to be downloded from azure. will be used only if not found locally.
+    - azure_url_1_yr_temp  : url without filename. if 1-year temperature files are to be downloded from azure. will be used only if not found locally.
+    - url_1_yr_temp        : url without filename. if 1-year temperature files are to be downloded from the Internet. will be used only if not found locally.
+    - temp_data_filename   : the name of the 1-year temperature file must be provided
+    - remove_source_files  : If downloaded, remove from local environment, after use, the source files (averages file and 1-year temperature files)
+    - aoi_id               : Area of Interest ID. if provided, must be the integer ID
+    - print_extra_msg      : default is False. If True, will print out extra information during the processing.
+    - interactive : If true, will prompt for user confirmation before executing. Set False to bypass user input.
+    - extreme_area_pct     : Between 0 and 1. The percentage of area with extreme_yn = 1 for the entire area's image to be labeled 'yes'. Otherwise, labeled 'no'.
+    - image_start_day, image_end_day: in the range 1 to 365.
+    - attribute_for_temp_range: For the range to be used for color scale in images, the range will come from this attribute of Region / AoI
+    - azure_dataset_url    :  If not none, the path to the Azure folder to which the compressed zip file is to be uploaded
+    - remove_dataset       : If True, and uploading to Azure, after upload the dataset zip file will be removed    
+    Returns: str. Name of the first image
+    """
+    validations_passed = False
+    
+    ds_ext = None
+    day_wise_mean = None
+    proj = None
+    col_map = None
+    
+    name_of_area_of_interest = None
+    ext_file_downloaded = False
+    
+    start_time = time.time()        # prepare to time the operation
+    
+    validations_passed = Validations_for_Generate_ML_Images_and_Labels_By_Region_or_AoI(start_year, end_year, threshold
+                                                , n_continuous_days, region_id, aoi_id
+                                                , based_on_averages, averages_start_year, averages_end_year
+                                                , extreme_area_pct, image_start_day, image_end_day, attribute_for_temp_range)
+    if not validations_passed:
+        raise ValueError('Validation failed')
+    
+    # prepare for the logic
+    reg = Regions()
+    region = reg.get_region_by_ID(region_id)
+    if area_of_interest is not None:
+        aoi = reg.get_area_of_interest_by_ID(area_of_interest)
+        name_of_area_of_interest = aoi.get('area_of_interest')
+        temp_range = aoi.get('may_to_oct_range')
+    else:
+        temp_range = region.get('may_to_oct_range')
+        
+    states50 = cfeature.NaturalEarthFeature(
+                                category='cultural',
+                                name='admin_1_states_provinces_lines',
+                                scale='50m',
+                                facecolor='none',
+                                edgecolor='grey')
+    if result_type == 'max':
+        variable_name = 'tasmax'
+    else:
+        variable_name = 'tasmin'
+    
+    identifier_info='hw_area_pct_'+str(int(extreme_area_pct*100))
+    folder_name = '{}_to_{}__{}'.format(start_year, end_year, identifier_info)
+    zip_file_name = folder_name + '.zip'
+    labels_file_name = folder_name + '_labels.csv'
+    
+    labels = []
+    if os.path.exists(folder_name):
+        print('Cannot continue! folder {} already exists. Remove it before starting again'.format(folder_name))
+        return
+    elif os.path.exists(zip_file_name):
+        print('Cannot continue! dataset file {} already exists. Remove it before starting again'.format(zip_file_name))
+        return
+    elif os.path.exists(labels_file_name):
+        print('Cannot continue! labels_file_name file {} already exists. Remove it before starting again'.format(labels_file_name))
+        return
+    
+    os.mkdir(folder_name)
+    if print_extra_msg:
+        print('created folder ', folder_name)
+        
+    for analysis_year in range(start_year, end_year+1):
+        print('{} UTC: Generating images and labels -- for the Year: {}'.format(datetime.now().strftime("%H:%M:%S"),analysis_year))
+        # get the images, one-at-a-time, in a loop
+        ds_ext = None
+        for img_day in range(image_start_day - 1, image_end_day):
+            image_filename, _ = get_1_year_extreme_temp_Image_filename(result_type, cmip, model_name
+                                   , region_id, analysis_year, aoi_id
+                                   , based_on_averages, threshold, is_percentage, n_continuous_days
+                                   , averages_start_year, averages_end_year
+                                   , img_day+1, variable_name, identifier_info='hw_area_pct_'+str(int(extreme_area_pct*100))
+                                   , label=None, azure_root_folder= '')
+            
+            # create images from dataset
+            if ds_ext is None:  # first time, create dataset. Otherwise, reuse.
+                if print_extra_msg:
+                    print('{} UTC: First image in the loop, get the extreme temperature dataset'.format(datetime.now().strftime("%H:%M:%S")))
+                extremes_filename = get_1_year_extreme_temp_filename(result_type, cmip, model_name
+                                           , region_id, analysis_year, None
+                                           , based_on_averages, threshold, is_percentage, n_continuous_days
+                                           , averages_start_year, averages_end_year)
+                
+                if print_extra_msg:
+                    print('{} UTC: Extreme temperature data filename: {}'.format(datetime.now().strftime("%H:%M:%S"), extremes_filename))        
+                filename = extremes_filename    
+                local = os.path.exists(filename)    
+                if local:
+                    ds_ext = xr.open_dataset(filename)
+                else:
+                    if analysis_year < 2015:
+                        temp_filename = temp_filename_prefix_1 + str(analysis_year) + '.nc'             
+                    else:
+                        temp_filename = temp_filename_prefix_2 + str(analysis_year) + '.nc'
+
+                    if analysis_year < 2015:
+                        url_1_year_temp = cmip_files_url_1                              
+                    else:
+                        url_1_year_temp = cmip_files_url_2                              
+                        
+                    ds_ext, ds_avg_sub = Identify_1_year_Extreme_Temp_By_Region(analysis_year, threshold, result_type
+                                        , based_on_averages, is_percentage
+                                        , n_continuous_days, cmip, model_name, region_id
+                                        , averages_start_year, averages_end_year
+                                        , azure_url_extremes, sas_token
+                                        , azure_url_averages, azure_url_1_year_temp, url_1_year_temp
+                                                                    , temp_filename
+                                        , remove_source_files, area_of_interest=None, name_of_area_of_interest=None
+                                        , interactive=False, print_extra_msg=False)
+                    ext_file_downloaded = True
+
+                if aoi_id is not None:
+                    ds_ext = region_subset(ds_ext, aoi.get('top_lat'), aoi.get('bottom_lat'), aoi.get('left_lon'), aoi.get('right_lon'))
+
+                day_wise_pct_extreme = ds_ext.extreme_yn.sum(dim=['lat','lon']) / ds_ext.tasmax.count(dim=['lat','lon'])
+
+                print('{} UTC: Extreme temperature data file available, creating images...'.format(datetime.now().strftime("%H:%M:%S")))        
+
+            label = 0
+            if day_wise_pct_extreme[img_day] >= extreme_area_pct:
+                label = 1            
+
+#             ax = plt.axes(projection=ccrs.PlateCarree())
+#             ax.coastlines()
+            visual = ds_ext['tasmax'].isel(time=slice(img_day, img_day+1)).plot(cmap='coolwarm',levels=range(temp_range[0], temp_range[1]))
+            visual.colorbar.remove()
+#             ax.add_feature(states50, zorder=2, linewidth=0.5)
+#             ax.add_feature(cfeature.BORDERS, linewidth=0.5)
+
+            plt.title('')
+            plt.axis('off')
+            plt.savefig(os.path.join(folder_name, image_filename), bbox_inches = 'tight')
+            labels.append(label)
+
+            if img_day%50 == 0 or img_day==end_day:
+                print_msgs = True                
+                plt.clf()
+                print('{} UTC: File: {}, Label: {}'.format(datetime.now().strftime("%H:%M:%S"), image_filename, label))
+                
+
+        if ext_file_downloaded and remove_source_files:
+            os.remove(filename)    
+
+    print('{} UTC: All images done, creating zip file and labels file...')
+    # all years done. make zip file, labels file 
+    # code credit: https://stackoverflow.com/questions/2084069/create-a-csv-file-with-values-from-a-python-list
+    with open(labels_file_name, 'w', newline='') as csvfile:
+        wr = csv.writer(csvfile, delimiter=',', quoting=csv.QUOTE_MINIMAL)
+        wr.writerow(labels)
+    
+    with zipfile.ZipFile(zip_file_name, 'w') as myzip:  # code reference: https://docs.python.org/3/library/zipfile.html
+        for im_file in os.listdir(folder_name):            
+            if im_file.endswith(".jpg") or im_file.endswith(".png"):
+                myzip.write(os.path.join(folder_name, im_file), im_file)
+
+    print('{} UTC: Zip file and labels file created.')
+
+    if azure_dataset_url:
+        print('{} UTC: Uploading to Azure...')
+        sas_url = create_sas_url(azure_dataset_url, sas_token, zip_file_name)
+        upload_file_to_Azure(save_back_in_azure=True, sas_url=sas_url, filename=zip_file_name, print_msgs=False, overwrite=True)
+        sas_url = create_sas_url(azure_dataset_url, sas_token, labels_file_name)
+        upload_file_to_Azure(save_back_in_azure=True, sas_url=sas_url, filename=labels_file_name, print_msgs=False, overwrite=True)
+        print('{} UTC: Upload completed.')
+
+        if remove_dataset:
+            os.remove(zip_file_name)
+            os.remove(labels_file_name)
+            for im_file in os.listdir(folder_name):            
+                os.remove(os.path.join(folder_name, im_file))
+            os.rmdir(folder_name)
+            print('{} UTC: Dataset removed from local machine.')
+
+    # print out the time it took
+    execution_time = (time.time() - start_time)
+    print("Complete execution time | Generate_ML_Images_and_Labels_By_Region_or_AoI | (mins) {:0.2f}".format(execution_time/60.0))
+    print("Number of labels/images: {}. label 1: {}, label 0: {}".format(len(labels), sum(labels), len(labels) - sum(labels)))
+    
